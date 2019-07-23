@@ -33,3 +33,6 @@ def login(request):
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})
+    
+def registration(request):
+    return render(request, 'registration.html')
