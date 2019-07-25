@@ -1,6 +1,4 @@
-{% extends 'base.html' %} 
-{% block content %}
-{% load bootstrap_tags %}
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
 <div class="parallax-bugs">
     <div class="container-fluid">
         <section class="container">
@@ -9,5 +7,32 @@
             </div>
         </section>
     </div>
+</div>
+
+
+<div class="row">
+    {% for bug in bugs %}
+    <div class="col-xs-12 col-sm-4 col-md-3">
+        <div class="row">
+        <div class="panel panel-default bug-panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{bug.name}}</h3>
+            </div>
+            <div class="row panel-heading">
+                <div class="col-xs-6">
+                    <h3 class="panel-title">View</h3>
+                </div>
+                <div class="col-xs-6">
+                    <h3 class="panel-title">Upvote button</h3>
+                </div>
+                
+            </div>
+            <div class="panel-body">
+                <p>{{bug.desc|truncatechars:200 }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
