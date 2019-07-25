@@ -1,4 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block page_title %} Homepage {% endblock %} {% block content %}
+<div class="parallax">
+    <div class="container-fluid">
+        <section class="container">
+            <div class="jumbotron index-header">
+                <h1>Solutions to your software needs</h1>
+                <p>Join our community of software developers where you can share feedback on bugs and feature requests</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Register</a></p>
+            </div>
+        </section>
+    </div>
+</div>
 
-{% block page_title %} Homepage {% endblock %}
-{% block page_heading %} Home {% endblock %}
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 home-info">
+            <h3>The what</h3>
+            <p>Here at Unicorn Attractor we take your feedback and provide soloutions. Feedback any bugs you may encounter and any features* you would like and we will make it our mission to resolve and impliment.</p>
+            <p><small>*A small fee is in place for the ability to request features.</small></p>
+        </div>
+        <div class="col-xs-12 col-md-6 home-info">
+            <h3>The why</h3>
+            <p>We are set on users having the best experience they can. We believe the user is what makes the application as to why we strive to fix all bugs ASAP and take on feedback regarding feature implimentation.</p>
+        </div>
+    </div>
+    
+</section>
+
+{% endblock %}
