@@ -16,13 +16,8 @@ form {
 }
 
 .parallax {
-    /* The image used */
     background-image: url("/static/img/home.jpg");
-
-    /* Set a specific height */
     min-height: 500px;
-
-    /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,7 +35,7 @@ form {
     width: 100%;
 }
 
-.bug-panel{
-    height:250px;
-    width:250px;
+.bug-panel {
+    height: 250px;
+    width: 250px;
 }

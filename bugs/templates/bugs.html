@@ -10,29 +10,55 @@
 </div>
 
 
-<div class="row">
+<div class="container">
     {% for bug in bugs %}
-    <div class="col-xs-12 col-sm-4 col-md-3">
-        <div class="row">
-        <div class="panel panel-default bug-panel">
+    <div class="row">
+        <div class="col-xs-12 panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">{{bug.name}}</h3>
-            </div>
-            <div class="row panel-heading">
-                <div class="col-xs-6">
-                    <h3 class="panel-title">View</h3>
-                </div>
-                <div class="col-xs-6">
-                    <h3 class="panel-title">Upvote button</h3>
-                </div>
-                
+                <h3 class="panel-title">{{bug.name|truncatechars:16}} <i class="far fa-eye"> 55 </i></h3>
             </div>
             <div class="panel-body">
-                <p>{{bug.desc|truncatechars:200 }}</p>
+                <p>{{bug.desc|truncatechars:80 }}</p>
+            </div>
+            <div class="panel-footer"><a href="#">View</a>
             </div>
         </div>
-        </div>
     </div>
+
     {% endfor %}
 </div>
+
+<div class="card-deck">
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
