@@ -10,9 +10,8 @@
 <div class="container">
   <div class="row">
     {% for bug in bugs %}
-
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-      <div class="card">
+      <div class="card main-card">
         <div class="card-body">
           <h5 class="card-title">{{bug.name|truncatechars:18}}</h5>
           <div class="dropdown-divider"></div>
@@ -21,10 +20,10 @@
         <div class="container">
           <div class="row card-footer">
             <div class="col-sm">
-              <a class="btn btn btn-secondary" href="" role="button">Register</a>
+              <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
             </div>
             <div class="col-sm">
-              <i class="far fa-eye"> 55</i>
+              <i class="far fa-eye"> {{ bug.views }}</i>
             </div>
           </div>
         </div>

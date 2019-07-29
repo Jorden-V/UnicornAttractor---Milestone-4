@@ -1,1 +1,29 @@
-test
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
+
+<div class="container detail-container">
+    <div class="card">
+        <div class="card-body detail-body">
+            <h5 class="card-title">{{bug.name|truncatechars:50}}</h5>
+            <div class="dropdown-divider"></div>
+            <p class="card-text">{{bug.desc }}</p>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div>Author: {{bug.author}} </div>
+        <div class="container">
+            <div class="row card-footer">
+                <div class="col-sm">
+                    <div class="col-sm">
+                        <a class="btn btn btn-secondary" href="#" role="button">Upvote {{bug.upvotes}}</a>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

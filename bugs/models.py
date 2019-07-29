@@ -8,6 +8,9 @@ from django.utils import timezone
 class Bug(models.Model):
     name = models.CharField(max_length=75)
     desc = models.TextField(max_length=500)
+    upvotes = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
+    author = models.ForeignKey(User, related_name='created_by')
 
     def __str__(self):
         return self.name
