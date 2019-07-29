@@ -1,64 +1,36 @@
 {% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
 <div class="parallax-bugs">
-    <div class="container-fluid">
-        <section class="container">
-            <div class="jumbotron index-header">
-                <h1>View, submit and discuss bugs below</h1>
-            </div>
-        </section>
+  <section class="container main-message">
+    <div class="jumbotron">
+      <h1 class="display-4">View, submit and discuss bugs below</h1>
     </div>
+  </section>
 </div>
-
 
 <div class="container">
+  <div class="row">
     {% for bug in bugs %}
-    <div class="row">
-        <div class="col-xs-12 panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{bug.name|truncatechars:16}} <i class="far fa-eye"> 55 </i></h3>
-            </div>
-            <div class="panel-body">
-                <p>{{bug.desc|truncatechars:80 }}</p>
-            </div>
-            <div class="panel-footer"><a href="#">View</a>
-            </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{bug.name|truncatechars:18}}</h5>
+          <div class="dropdown-divider"></div>
+          <p class="card-text">{{bug.desc|truncatechars:80 }}</p>
         </div>
+        <div class="container">
+          <div class="row card-footer">
+            <div class="col-sm">
+              <a class="btn btn btn-secondary" href="" role="button">Register</a>
+            </div>
+            <div class="col-sm">
+              <i class="far fa-eye"> 55</i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
     {% endfor %}
-</div>
-
-<div class="card-deck">
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
   </div>
 </div>
-
 {% endblock %}

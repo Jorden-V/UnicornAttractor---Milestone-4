@@ -4,7 +4,10 @@
             <div class="jumbotron">
                 <h1 class="display-4">Solutions to your software needs</h1>
                 <p class="lead">Join our community of software developers where you can share feedback on bugs and feature requests</p>
+                {% if user.is_authenticated %}
+                {% else %}
                 <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a>
+                {% endif %}
             </div>
         </section>
 </div>

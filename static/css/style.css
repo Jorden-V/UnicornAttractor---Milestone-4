@@ -7,12 +7,8 @@ form {
 }
 
 .main-message{
-    padding-top: 70px;
+    padding-top: 100px;
     text-align: center;
-}
-
-.container{
-    padding-top: 70px;
 }
 
 .navbar {
@@ -28,6 +24,16 @@ form {
     background-size: cover;
 }
 
+.parallax-bugs {
+    background-image: url("/static/img/bugs.jpeg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 .home-info {
     text-align: center;
     min-height: 200px;
@@ -42,4 +48,13 @@ form {
 .bug-panel {
     height: 250px;
     width: 250px;
+}
+
+.card-footer{
+    text-align:center;
+}
+
+.card{
+    width:300px;
+    height:300px;
 }
