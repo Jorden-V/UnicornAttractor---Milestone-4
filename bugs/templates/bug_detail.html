@@ -13,11 +13,14 @@
             <div class="row card-footer">
                 <div class="col-sm">
                     <div class="col-sm">
-                        <a class="btn btn btn-secondary" href="#" role="button">Upvote {{bug.upvotes}}</a>
+                        <form method="post" action="{% url 'upvote_bug' bug.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn btn-secondary" type="submit">Upvote {{bug.upvotes}}</button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-sm">
-                    <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">Back</a>
+                    <a class="btn btn btn-secondary" href="{% url 'view_bugs'%}" role="button">Back</a>
                 </div>
             </div>
         </div>
