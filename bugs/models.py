@@ -14,3 +14,11 @@ class Bug(models.Model):
 
     def __str__(self):
         return self.name
+        
+class BugComment(models.Model):
+    description = models.TextField()
+    bug = models.ForeignKey(Bug)
+    author = models.ForeignKey(User)
+    
+    def __str__(self):
+        return self.description
