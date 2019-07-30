@@ -12,8 +12,8 @@
                 <div class="row card-footer">
                     <div class="col-sm">
                         <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
-                        <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">Edit</a>
-                        <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">Delete</a>
+                        <a class="btn btn btn-secondary" href="{% url 'edit_bug' bug.id %}" role="button">Edit</a>
+                        <a class="btn btn btn-secondary" href="{% url 'delete_bug' bug.id %}" role="button">Delete</a>
                     </div>
                     <div class="col-sm">
                         <i class="far fa-eye"> {{ bug.views }}</i>
