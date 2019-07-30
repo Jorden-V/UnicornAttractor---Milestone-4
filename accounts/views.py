@@ -1,7 +1,8 @@
-from django.shortcuts import render,redirect, reverse
+from django.shortcuts import render,redirect, reverse, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from bugs.models import Bug
 
 # Create your views here.
 
@@ -56,3 +57,11 @@ def registration(request):
         registration_form = UserRegistrationForm()
     return render(request, 'registration.html', {
         "registration_form": registration_form})
+        
+@login_required
+def profile(request):
+    """A view that displays the profile page of a logged in user"""
+    bugs = Bug.objects.filter(author=request.user)
+    return render(request, 'profile.html', {'bugs':bugs})
+
+

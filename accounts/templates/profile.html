@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %} {% if bugs %}
+<div class="row">
+    {% for bug in bugs %}
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="card main-card">
+            <div class="card-body">
+                <h5 class="card-title">{{bug.name|truncatechars:18}}</h5>
+                <div class="dropdown-divider"></div>
+                <p class="card-text">{{bug.desc|truncatechars:80 }}</p>
+            </div>
+            <div class="container">
+                <div class="row card-footer">
+                    <div class="col-sm">
+                        <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                        <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">Edit</a>
+                        <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">Delete</a>
+                    </div>
+                    <div class="col-sm">
+                        <i class="far fa-eye"> {{ bug.views }}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

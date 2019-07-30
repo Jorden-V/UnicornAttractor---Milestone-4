@@ -15,7 +15,7 @@
                     <div class="col-sm">
                         <form method="post" action="{% url 'upvote_bug' bug.id %}">
                             {% csrf_token %}
-                            <button class="btn btn btn-secondary" type="submit">Upvote {{bug.upvotes}}</button>
+                            <button class="btn btn btn-secondary" type="submit">Upvotes: {{bug.upvotes}}</button>
                         </form>
                     </div>
                 </div>
