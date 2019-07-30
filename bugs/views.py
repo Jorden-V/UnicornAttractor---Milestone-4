@@ -46,3 +46,24 @@ def upvote_bug(request, pk):
         bug.upvotes += 1
         bug.save()
         return redirect('view_bugs')
+        
+def add_or_edit_bug(request, pk=None):
+    """
+    Create a view that allows us to create or edit a bug
+    depending if the PostID is null or not
+    """
+    bug =  get_object_or_404(Bug, pk=pk) if pk else None
+    
+    if request.method == "POST":
+        form = CreateBugForm(request.POST, instance=bug)
+        
+        
+        if form.is_valid():
+            bug = form.save(commit=False)
+            bug.author = request.user
+            bug.save()
+            return redirect(bug_detail, bug.pk)
+            
+    else:
+        form = CreateBugForm(instance=bug)
+    return render(request, 'create_bug.html', {'form':form})
