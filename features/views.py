@@ -5,8 +5,8 @@ from .forms import CreateFeatureForm, FeatureCommentForm
 # Create your views here.
 
 def view_features(request):
-    feature = Feature.objects.all().order_by('-id')
-    return render(request, "features.html", {"feature": feature})
+    features = Feature.objects.all().order_by('-id')
+    return render(request, "features.html", {"features": features})
 
 
 def feature_detail(request, pk):
