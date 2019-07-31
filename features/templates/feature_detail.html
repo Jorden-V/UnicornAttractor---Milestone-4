@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
+
+<div class="container detail-container">
+    <div class="card">
+        <div class="card-body detail-body">
+            <h5 class="card-title">{{feature.name|truncatechars:50}}</h5>
+            <div class="dropdown-divider"></div>
+            <p class="card-text">{{feature.desc }}</p>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div>Author: {{feature.author}} </div>
+        <div class="container">
+            <div class="row card-footer">
+                <div class="col-sm">
+                    <div class="col-sm">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <button class="btn btn btn-secondary" type="submit">Upvotes:</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <a class="btn btn btn-secondary" href="{% url 'view_features'%}" role="button">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    {% if comments %}
+    <div class="row">
+        <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
+    </div>
+    <div class="card">
+        {% for comment in comments %}
+        <div class="card-body detail-body">
+            <h5 class="card-title">User: {{ comment.author }}</h5>
+            <div class="dropdown-divider"></div>
+            <p class="card-text"> {{ comment.description }} </p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} {{ form | as_bootstrap }}
+            <button type="submit" class="btn btn btn-secondary">Add comment</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
