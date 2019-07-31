@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %} {% if bugs %}
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %} 
+{% if bugs %}
 <div class="row">
     {% for bug in bugs %}
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -24,4 +25,5 @@
     </div>
     {% endfor %}
 </div>
-{% endif %} {% endblock %}
+{% endif %} 
+{% endblock %}
