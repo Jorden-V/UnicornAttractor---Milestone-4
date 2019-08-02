@@ -76,16 +76,13 @@
         </div>
     </nav>
 
-
-
-
     {% if messages %}
     <div>
         {% for message in messages %} {{ message }} {% endfor %}
     </div>
     {% endif %} {% block content %} {% endblock %}
     <footer>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <div class="navbar-header footer">
                     <div class="row social-footer">

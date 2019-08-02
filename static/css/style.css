@@ -1,6 +1,25 @@
-.jumbotron {
-    background-color: rgba(255, 255, 255, 0.5);
+.center{
+    text-align: center;
 }
+
+.jumbotron {
+    background-color: rgba(255, 255, 255, 0.0);
+}
+
+.jumbotron h1 {
+    color: white;
+}
+
+.jumbotron p {
+    color: white;
+}
+
+.display-4 {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
 
 .main-message{
     padding-top: 100px;
@@ -36,6 +55,41 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: rgb(211, 211, 211);
 }
+
+.home-title{
+    margin-top: 110px;
+    margin-bottom: 80px;
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+
+.home-title h1{
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.home-icon{
+    font-size:52px;
+    margin-bottom: 15px;
+}
+
+.home-sub-header{
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.home-sub-text{
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.bottom-register{
+    margin-bottom: 30px;
+}
+
 
 .footer {
     width: 100%;

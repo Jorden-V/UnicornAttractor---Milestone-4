@@ -1,31 +1,76 @@
 {% extends 'base.html' %} {% block page_title %} Homepage {% endblock %} {% block content %}
 <div class="parallax">
-        <section class="container main-message">
-            <div class="jumbotron">
-                <h1 class="display-4">Solutions to your software needs</h1>
-                <p class="lead">Join our community of software developers where you can share feedback on bugs and feature requests</p>
-                {% if user.is_authenticated %}
-                {% else %}
-                <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a>
-                {% endif %}
-            </div>
-        </section>
+    <section class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-4">Solutions to your <br> software needs</h1>
+            {% if user.is_authenticated %} {% else %}
+            <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a> {% endif %}
+        </div>
+    </section>
 </div>
 
-<section class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-md-6 home-info">
-            <h3><i class="fas fa-question"></i> The what</h3>
-            <hr>
-            <p>Here at Unicorn Attractor we take your feedback and provide soloutions. Feedback any bugs you may encounter and any features* you would like and we will make it our mission to resolve and impliment.</p>
-            <p><small>*A small fee is in place for the ability to request features.</small></p>
-        </div>
-        <div class="col-xs-12 col-md-6 home-info">
-            <h3><i class="far fa-lightbulb"></i>The why</h3>
-            <hr>
-            <p>We are set on users having the best experience they can. We believe the user is what makes the application as to why we strive to fix all bugs ASAP and take on feedback regarding feature implimentation.</p>
+<section class="container">
+    <div class="center home-title">
+        <h1> Everything You Need. And More.</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row center">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="home-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <div class="home-sub-header">
+                    <strong>Bugs</strong>
+                </div>
+                <div class="home-sub-text">
+                    Submit and review bugs, free of charge.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="home-icon">
+                   <i class="fas fa-wrench"></i>
+                </div>
+                <div class="home-sub-header">
+                    <strong>Features</strong>
+                </div>
+                <div class="home-sub-text">
+                    Submit and review features for a small fee.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="home-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="home-sub-header">
+                    <strong>Community</strong>
+                </div>
+                <div class="home-sub-text">
+                    Discuss your opinions with your fellow site users.
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="home-icon">
+                    <i class="far fa-chart-bar"></i>
+                </div>
+                <div class="home-sub-header">
+                    <strong>Statistics</strong>
+                </div>
+                <div class="home-sub-text">
+                    View our data dashboard to track our work.
+                </div>
+            </div>
         </div>
     </div>
+    
+    <div class="container center">
+        <div class="bottom-register">
+            {% if user.is_authenticated %} {% else %}
+            <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a> {% endif %}
+        </div>
+        
+    </div>
+
 </section>
 
 {% endblock %}
