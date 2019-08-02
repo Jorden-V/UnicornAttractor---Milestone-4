@@ -20,6 +20,7 @@ from accounts import urls as accounts_urls
 from bugs import urls as urls_bugs
 from features import urls as urls_features
 from cart import urls as urls_cart
+from checkout import urls as urls_checkout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,4 +29,5 @@ urlpatterns = [
     url(r'^view_bugs/', include(urls_bugs)),
     url(r'^features/', include(urls_features)),
     url(r'^cart/', include(urls_cart)),
+    url(r'^checkout/', include(urls_checkout)),
 ]
