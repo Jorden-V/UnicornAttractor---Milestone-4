@@ -74,6 +74,12 @@
 .home-icon{
     font-size:52px;
     margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.home-icon a{
+    text-decoration: none;
+    color: none;
 }
 
 .home-sub-header{
@@ -116,4 +122,24 @@
 .detail-container{
     padding-top: 100px;
     padding-bottom:100px;
+}
+
+.input-forms{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card-footer i {
+    float: left;
+    margin-top: 10px;
+    margin-left:20px;
+    font-size: 20px;
+}
+
+.card-footer a {
+    float: right;
+}
+
+.comments{
+    margin-left: 3px;
 }

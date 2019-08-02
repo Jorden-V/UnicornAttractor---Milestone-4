@@ -1,35 +1,26 @@
 {% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
 
-<div class="container detail-container">
-    <div class="card">
-        <div class="card-body detail-body">
-            <h5 class="card-title">{{feature.name|truncatechars:50}}</h5>
-            <div class="dropdown-divider"></div>
-            <p class="card-text">{{feature.desc }}</p>
-        </div>
-        <div class="dropdown-divider"></div>
-        <div>Author: {{feature.author}} </div>
-        <div class="container">
-            <div class="row card-footer">
-                <div class="col-sm">
-                    <div class="col-sm">
-                        <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn btn-secondary" type="submit">Upvotes:</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <a class="btn btn btn-secondary" href="{% url 'view_features'%}" role="button">Back</a>
-                </div>
-            </div>
-        </div>
+<section class="container">
+  <div class="card mb-3">
+    <h3 class="card-header">{{feature.name}}</h3>
+    <div class="card-body">
+      <p class="card-text">{{feature.desc }}</p>
+      <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
     </div>
-</div>
+    <div class="card-footer text-muted">
+      <i class="far fa-eye"> {{ feature.views }} </i>
+      <form method="post" action="{% url 'add_to_cart' feature.id %}">
+        {% csrf_token %}
+        <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
+      </form>
+      <a class="btn btn btn-primary" href="{% url 'view_features'%}" role="button">Back</a>
+    </div>
+  </div>
+</section>
 
 <div class="container">
     {% if comments %}
-    <div class="row">
+    <div class="row comments">
         <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
     </div>
     <div class="card">

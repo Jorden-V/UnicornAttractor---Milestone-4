@@ -7,30 +7,28 @@
   </section>
 </div>
 
-<div class="container">
-  <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"><span </span> Submit Feature</button></a>
-  <div class="row">
-    {% for feature in features %}
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-      <div class="card main-card">
-        <div class="card-body">
-          <h5 class="card-title">{{feature.name|truncatechars:18}}</h5>
-          <div class="dropdown-divider"></div>
-          <p class="card-text">{{feature.desc|truncatechars:80 }}</p>
-        </div>
-        <div class="container">
-          <div class="row card-footer">
-            <div class="col-sm">
-              <a class="btn btn btn-secondary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
-            </div>
-            <div class="col-sm">
-              <i class="far fa-eye"> {{ feature.views }}</i>
-            </div>
-          </div>
-        </div>
-      </div>
+<a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"><span </span> Submit Feature</button></a>
+
+
+<section class="container">
+  {% for feature in features %}
+  <div class="card mb-3">
+    <h3 class="card-header">{{feature.name}}</h3>
+    <div class="card-body">
+      <p class="card-text">{{feature.desc }}</p>
+      <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
     </div>
-    {% endfor %}
+    <div class="card-footer text-muted">
+      <i class="far fa-eye"> {{ feature.views }} </i>
+      <form method="post" action="{% url 'add_to_cart' feature.id %}">
+        {% csrf_token %}
+        <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
+      </form>
+      <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+    </div>
   </div>
-</div>
+  {% endfor %}
+
+</section>
+
 {% endblock %}
