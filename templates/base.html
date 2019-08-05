@@ -51,7 +51,7 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <form action="{% url 'search' %}" method="GET" class="form-inline my-2 my-lg-0">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'view_cart' %}">
@@ -62,7 +62,7 @@
                     </a>
                     </li>
                 </ul>
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q">
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
             {% else %}

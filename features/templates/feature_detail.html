@@ -11,7 +11,7 @@
       <i class="far fa-eye"> {{ feature.views }} </i>
       <form method="post" action="{% url 'add_to_cart' feature.id %}">
         {% csrf_token %}
-        <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
+        <i type="submit" class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
       </form>
       <a class="btn btn btn-primary" href="{% url 'view_features'%}" role="button">Back</a>
     </div>
