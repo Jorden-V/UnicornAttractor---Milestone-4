@@ -5,6 +5,8 @@
 
 <section class="container">
     {%if features%}
+    <h2>Features</h2>
+    {% for feature in features %}
     <div class="card mb-3">
         <h3 class="card-header">{{feature.name}}</h3>
         <div class="card-body">
@@ -20,8 +22,11 @@
             <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
         </div>
     </div>
+    {% endfor %}
     {% endif %}
     {% if bugs %}
+    <h2>Bugs</h2>
+    {% for bug in bugs %}
     <div class="card mb-3">
         <h3 class="card-header">{{bug.name}}</h3>
         <div class="card-body">
@@ -37,6 +42,7 @@
             <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
         </div>
     </div>
+    {% endfor %}
     {% endif %}
     
     
