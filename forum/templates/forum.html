@@ -18,6 +18,10 @@
     </div>
     <div class="card-footer text-muted">
       <i class="far fa-eye"> {{ post.views }} </i>
+      <form method="post" action="{% url 'upvote_post' post.id %}">
+        {% csrf_token %}
+        <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
+      </form>
       <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
     </div>
   </div>

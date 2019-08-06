@@ -32,3 +32,13 @@ def post_detail(request, pk):
         post.views += 1
         post.save()
         return render(request, 'post_detail.html', {'post':post, 'comments':comments, 'comments_total':comments_total, 'form':form})
+        
+def upvote_post(request, pk):
+    """
+    A view that upvotes the selected post
+    """
+    if request.method == "POST":
+        post = get_object_or_404(Bug, pk=pk)
+        post.upvotes += 1
+        post.save()
+        return redirect('view_posts')
