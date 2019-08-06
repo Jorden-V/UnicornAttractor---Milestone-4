@@ -92,7 +92,7 @@
             </form>
             <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
             <a class="btn btn btn-secondary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
-            <a class="btn btn btn-secondary" href="" role="button">Delete</a>
+            <a class="btn btn btn-secondary" href="{% url 'delete_post' post.id %}" role="button">Delete</a>
         </div>
     </div>
     {% endfor %}
