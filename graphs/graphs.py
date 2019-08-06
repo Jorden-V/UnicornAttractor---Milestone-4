@@ -60,3 +60,30 @@ def FeatureBarChart():
     
     chart = feature_bar_chart()
     return chart
+    
+def bug_pie_chart():
+    
+    """A pie chart showing the status of bugs"""
+
+    todo = Bug.objects.filter(status='To do').count()
+    inprogress = Bug.objects.filter(status='In progress').count()
+    done = Bug.objects.filter(status='Done').count()
+    cancelled = Bug.objects.filter(status='Cancelled').count()
+    p_chart = pygal.Pie(
+        print_values=True, 
+        style=custom_style,
+    )
+
+    p_chart.add('To Do', todo)
+    p_chart.add('In Progress', inprogress)
+    p_chart.add('Done', done)
+    p_chart.add('Cancelled', cancelled)
+    return p_chart.render()
+
+def BugPieChart():
+    
+    """Enable importing the graph into a view"""
+    
+    chart = bug_pie_chart()
+    return chart
+    
