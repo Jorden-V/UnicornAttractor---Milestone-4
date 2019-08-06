@@ -42,3 +42,24 @@ def upvote_post(request, pk):
         post.upvotes += 1
         post.save()
         return redirect('view_posts')
+        
+def add_or_edit_post(request, pk=None):
+    """
+    Create a view that allows us to create or edit a post
+    depending if the PostID is null or not
+    """
+    post =  get_object_or_404(ForumPost, pk=pk) if pk else None
+    
+    if request.method == "POST":
+        form = ForumPostForm(request.POST, instance=post)
+        
+        
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect(post_detail, post.pk)
+            
+    else:
+        form = ForumPostForm(instance=post)
+    return render(request, 'create_post.html', {'form':form})
