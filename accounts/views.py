@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from bugs.models import Bug
 from features.models import Feature
+from forum.models import ForumPost
 
 # Create your views here.
 
@@ -64,6 +65,7 @@ def profile(request):
     """A view that displays the profile page of a logged in user"""
     bugs = Bug.objects.filter(author=request.user)
     features = Feature.objects.filter(author=request.user)
-    return render(request, 'profile.html', {'bugs':bugs, 'features':features})
+    posts = ForumPost.objects.filter(author=request.user)
+    return render(request, 'profile.html', {'bugs':bugs, 'features':features, 'posts': posts})
 
 

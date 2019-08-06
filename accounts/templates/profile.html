@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %} {% if bugs %}
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %} 
+{% if bugs %}
+<h2> Bugs </h2>
 <div class="row">
     {% for bug in bugs %}
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -24,10 +26,12 @@
     </div>
     {% endfor %}
 </div>
- {% endif %} 
-<h2> Features </h2>
+{% endif %}
+
+
 
 {% if features %}
+<h2> Features </h2>
 <div class="row">
     {% for feature in features %}
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
@@ -51,6 +55,36 @@
             </div>
         </div>
     </div>
-    {% endfor %} 
+    {% endfor %}
+</div>
+{% endif %} 
+
+
+{% if posts %}
+<h2> Posts </h2>
+<div class="row">
+    {% for post in posts %}
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="card main-card">
+            <div class="card-body">
+                <h5 class="card-title">{{post.name}}</h5>
+                <div class="dropdown-divider"></div>
+                <p class="card-text">{{post.desc|truncatechars:80 }}</p>
+            </div>
+            <div class="container">
+                <div class="row card-footer">
+                    <div class="col-sm">
+                        <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                        <a class="btn btn btn-secondary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
+                        <a class="btn btn btn-secondary" href="" role="button">Delete</a>
+                    </div>
+                    <div class="col-sm">
+                        <i class="far fa-eye"> {{ post.views }}</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endif %} {% endblock %}
