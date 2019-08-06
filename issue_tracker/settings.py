@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'checkout',
     'search',
     'graphs',
+    'forum',
 ]
 
 MIDDLEWARE = [

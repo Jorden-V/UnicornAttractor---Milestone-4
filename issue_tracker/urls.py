@@ -23,6 +23,7 @@ from cart import urls as urls_cart
 from checkout import urls as urls_checkout
 from search import urls as urls_search
 from graphs import urls as urls_graphs
+from forum import urls as urls_posts
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -34,4 +35,6 @@ urlpatterns = [
     url(r'^checkout/', include(urls_checkout)),
     url(r'^search/', include(urls_search)),
     url(r'^graphs/', include(urls_graphs)),
+    url(r'^view_posts/', include(urls_posts))
+    
 ]

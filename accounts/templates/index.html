@@ -40,7 +40,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <i class="fas fa-comments"></i>
+                    <a href="{% if user.is_authenticated %} {% url 'view_posts' %} {% else %} {% url 'registration' %} {% endif %}"   <i class="fas fa-comments"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Community</strong>
