@@ -1,90 +1,102 @@
-{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %} 
-{% if bugs %}
-<h2> Bugs </h2>
-<div class="row">
+{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
+
+<a href="{% url 'new_bug' %}"><button type="button" class="btn btn-primary"><span </span> Submit Bug</button></a>
+<a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"><span </span> Submit Feature</button></a>
+<a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"><span </span> Submit Post</button></a> {% if bugs %}
+
+<section class="container">
+    {% if bugs %}
+    <h1>Bugs</h1>
     {% for bug in bugs %}
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-        <div class="card main-card">
-            <div class="card-body">
-                <h5 class="card-title">{{bug.name|truncatechars:18}}</h5>
-                <div class="dropdown-divider"></div>
-                <p class="card-text">{{bug.desc|truncatechars:80 }}</p>
+    <div class="card mb-3">
+        <h3 class="card-header">{{bug.name}}</h3>
+        <div class="card-body">
+            <div class="progress">
+                {% if bug.status == "To do" %}
+                <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                {% elif bug.status == "In progress" %}
+                <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                {% elif bug.status == "Cancelled" %}
+                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                {% else %}
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                {% endif %}
             </div>
-            <div class="container">
-                <div class="row card-footer">
-                    <div class="col-sm">
-                        <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
-                        <a class="btn btn btn-secondary" href="{% url 'edit_bug' bug.id %}" role="button">Edit</a>
-                        <a class="btn btn btn-secondary" href="{% url 'delete_bug' bug.id %}" role="button">Delete</a>
-                    </div>
-                    <div class="col-sm">
-                        <i class="far fa-eye"> {{ bug.views }}</i>
-                    </div>
-                </div>
-            </div>
+            <p class="card-text">{{bug.desc}}</p>
+            <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="far fa-eye"> {{ bug.views }} </i>
+            <form method="post" action="{% url 'upvote_bug' bug.id %}">
+                {% csrf_token %}
+                <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
+            </form>
+            <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+            <a class="btn btn btn-secondary" href="{% url 'edit_bug' bug.id %}" role="button">Edit</a>
+            <a class="btn btn btn-secondary" href="{% url 'delete_bug' bug.id %}" role="button">Delete</a>
         </div>
     </div>
     {% endfor %}
-</div>
-{% endif %}
-
-
-
-{% if features %}
-<h2> Features </h2>
-<div class="row">
+</section>
+{% endif %} {% if features %}
+<section class="container">
+    <h1> Features</h1>
     {% for feature in features %}
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-        <div class="card main-card">
-            <div class="card-body">
-                <h5 class="card-title">{{feature.name|truncatechars:18}}</h5>
-                <div class="dropdown-divider"></div>
-                <p class="card-text">{{feature.desc|truncatechars:80 }}</p>
+    <div class="card mb-3">
+        <h3 class="card-header">{{feature.name}}</h3>
+        <div class="card-body">
+            <div class="progress">
+                {% if feature.status == "To do" %}
+                <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                {% elif feature.status == "In progress" %}
+                <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                {% elif feature.status == "Cancelled" %}
+                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                {% else %}
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                {% endif %}
             </div>
-            <div class="container">
-                <div class="row card-footer">
-                    <div class="col-sm">
-                        <a class="btn btn btn-secondary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
-                        <a class="btn btn btn-secondary" href="{% url 'edit_feature' feature.id %}" role="button">Edit</a>
-                        <a class="btn btn btn-secondary" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
-                    </div>
-                    <div class="col-sm">
-                        <i class="far fa-eye"> {{ feature.views }}</i>
-                    </div>
-                </div>
-            </div>
+            <p class="card-text">{{feature.desc }}</p>
+            <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="far fa-eye"> {{ feature.views }} </i>
+            <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                {% csrf_token %}
+                <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
+            </form>
+            <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+            <a class="btn btn btn-secondary" href="{% url 'edit_feature' feature.id %}" role="button">Edit</a>
+            <a class="btn btn btn-secondary" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
         </div>
     </div>
     {% endfor %}
-</div>
-{% endif %} 
 
+</section>
 
 {% if posts %}
-<h2> Posts </h2>
-<div class="row">
+<section class="container">
+    <h1>Posts</h1>
     {% for post in posts %}
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-        <div class="card main-card">
-            <div class="card-body">
-                <h5 class="card-title">{{post.name}}</h5>
-                <div class="dropdown-divider"></div>
-                <p class="card-text">{{post.desc|truncatechars:80 }}</p>
-            </div>
-            <div class="container">
-                <div class="row card-footer">
-                    <div class="col-sm">
-                        <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
-                        <a class="btn btn btn-secondary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
-                        <a class="btn btn btn-secondary" href="" role="button">Delete</a>
-                    </div>
-                    <div class="col-sm">
-                        <i class="far fa-eye"> {{ post.views }}</i>
-                    </div>
-                </div>
-            </div>
+    <div class="card mb-3">
+        <h3 class="card-header">{{post.name}}</h3>
+        <div class="card-body">
+            <p class="card-text">{{post.desc}}</p>
+            <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="far fa-eye"> {{ post.views }} </i>
+            <form method="post" action="{% url 'upvote_post' post.id %}">
+                {% csrf_token %}
+                <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
+            </form>
+            <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+            <a class="btn btn btn-secondary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
+            <a class="btn btn btn-secondary" href="" role="button">Delete</a>
         </div>
     </div>
     {% endfor %}
-</div>
-{% endif %} {% endblock %}
+
+</section>
+
+{% endif %} {% endif %} {% endif %} {% endblock %}
