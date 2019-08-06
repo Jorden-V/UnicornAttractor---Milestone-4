@@ -9,6 +9,7 @@ class ForumPost(models.Model):
     desc = models.TextField(max_length=500)
     author = models.ForeignKey(User, related_name='posted_by')
     views = models.IntegerField(default=0)
+    upvotes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

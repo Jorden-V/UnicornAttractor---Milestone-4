@@ -9,8 +9,8 @@ def view_posts(request):
 def post_detail(request, pk):
     """
     Create a view that returns a single
-    bug object based on the bug ID (pk) and
-    render it to the bug_detail.html template
+    post object based on the post ID (pk) and
+    render it to the post_detail.html template
     or return 404 error if object is not found
     """
     post = get_object_or_404(ForumPost, pk=pk)
@@ -38,7 +38,7 @@ def upvote_post(request, pk):
     A view that upvotes the selected post
     """
     if request.method == "POST":
-        post = get_object_or_404(Bug, pk=pk)
+        post = get_object_or_404(ForumPost, pk=pk)
         post.upvotes += 1
         post.save()
         return redirect('view_posts')
