@@ -143,3 +143,13 @@
 .comments{
     margin-left: 3px;
 }
+
+.progress {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 1.5rem;
+    overflow: hidden;
+    font-size: 0.703125rem;
+    background-color: #e9ecef;
+}
