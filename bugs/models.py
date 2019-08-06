@@ -11,6 +11,18 @@ class Bug(models.Model):
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     author = models.ForeignKey(User, related_name='created_by')
+    
+    STATUS_CHOICES = (
+        ('To do', 'To do'),
+        ('In progress', 'In progress'),
+        ('Done', 'Done'),
+        ('Cancelled', 'Cancelled')
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='To do'
+    )
 
     def __str__(self):
         return self.name

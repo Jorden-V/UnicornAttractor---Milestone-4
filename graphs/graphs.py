@@ -3,6 +3,16 @@ from bugs.models import Bug
 from features.models import Feature
 from pygal.style import Style
 
+custom_style = Style(
+    background = 'transparent',
+    plot_background = 'transparent',
+    font_family = 'Roboto',
+    legend_font_size = 25,
+    value_font_size=25, 
+    label_font_size=25,
+    major_label_font_size=25,
+    colors=('#2E2FE3', '#583870', '#AE0D7A', '#347B98', '#B88914'))
+
 def bug_bar_chart():
     
     """A bar chart showing the 5 most upvoted bugs in descending order"""
@@ -12,6 +22,7 @@ def bug_bar_chart():
         show_minor_y_labels=False,
         print_values=True,
         print_zeroes=False,
+        style=custom_style
     )
 
     for bug in bugs:
@@ -24,4 +35,28 @@ def BugBarChart():
     """Enable importing the graph into a view"""
     
     chart = bug_bar_chart()
+    return chart
+    
+def feature_bar_chart():
+    
+    """A bar chart showing the 5 most upvoted bugs in descending order"""
+
+    features = Feature.objects.order_by('-upvotes')[:5]
+    bar_chart = pygal.Bar(
+        show_minor_y_labels=False,
+        print_values=True,
+        print_zeroes=False,
+        style=custom_style
+    )
+
+    for feature in features:
+        bar_chart.add(feature.name, feature.upvotes)
+
+    return bar_chart.render()
+
+def FeatureBarChart():
+    
+    """Enable importing the graph into a view"""
+    
+    chart = feature_bar_chart()
     return chart
