@@ -44,6 +44,26 @@
     </div>
     {% endfor %}
     {% endif %}
+    {% if posts %}
+    <h2>Posts</h2>
+    {% for post in posts %}
+    <div class="card mb-3">
+        <h3 class="card-header">{{post.name}}</h3>
+        <div class="card-body">
+            <p class="card-text">{{post.desc }}</p>
+            <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="far fa-eye"> {{ post.views }} </i>
+            <form method="post" action="{% url 'upvote_post' post.id %}">
+                {% csrf_token %}
+                <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
+            </form>
+            <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
     
     
 
