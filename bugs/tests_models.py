@@ -8,7 +8,7 @@ class TestBugForm(TestCase):
         form = CreateBugForm({'name': 'Tests', 'desc': "create a test"})
         self.assertTrue(form.is_valid())
         
-    def test_cannot_create_a_bug_with_required_values(self):
+    def test_cannot_create_a_bug_without_required_values(self):
         form = CreateBugForm({'name': 'Test'})
         self.assertFalse(form.is_valid())
     
@@ -21,3 +21,13 @@ class TestBugForm(TestCase):
         form = CreateBugForm({'form': ''})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['desc'], [u'This field is required.'])
+        
+class TestBugCommentForm(TestCase):
+    
+    def test_can_create_a_comment_with_required_values(self):
+        form = BugCommentForm({'description': "comment"})
+        self.assertTrue(form.is_valid())
+        
+    def test_cannot_post_blank_comment(self):
+        form = BugCommentForm({'description': ''})
+        self.assertFalse(form.is_valid())
