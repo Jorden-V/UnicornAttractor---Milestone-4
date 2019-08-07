@@ -5,11 +5,11 @@ from django.utils import timezone
 
 # Create your models here.
 class Bug(models.Model):
-    name = models.CharField(max_length=75)
-    desc = models.TextField(max_length=500)
+    name = models.CharField(max_length=75, blank=False)
+    desc = models.TextField(max_length=500, blank=False)
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
-    author = models.ForeignKey(User, related_name='created_by')
+    author = models.ForeignKey(User, related_name='created_by', on_delete=models.CASCADE)
     
     STATUS_CHOICES = (
         ('To do', 'To do'),
@@ -27,7 +27,7 @@ class Bug(models.Model):
         return self.name
         
 class BugComment(models.Model):
-    description = models.TextField()
+    description = models.TextField(max_length=256, blank=False)
     bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
     

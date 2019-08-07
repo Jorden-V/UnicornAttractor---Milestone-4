@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Bug, BugComment
 from .forms import CreateBugForm, BugCommentForm
 
 # Create your views here.
-
+@login_required()
 def view_bugs(request):
     bugs = Bug.objects.all().order_by('-id')
     return render(request, "bugs.html", {"bugs": bugs})
     
-
+@login_required()
 def bug_detail(request, pk):
     """
     Create a view that returns a single
@@ -36,7 +37,7 @@ def bug_detail(request, pk):
         bug.save()
         return render(request, 'bug_detail.html', {'bug':bug, 'comments':comments, 'comments_total':comments_total, 'form':form})
 
-
+@login_required()
 def upvote_bug(request, pk):
     """
     A view that upvotes the selected bug
@@ -46,7 +47,8 @@ def upvote_bug(request, pk):
         bug.upvotes += 1
         bug.save()
         return redirect('view_bugs')
-        
+
+@login_required()
 def add_or_edit_bug(request, pk=None):
     """
     Create a view that allows us to create or edit a bug
@@ -68,7 +70,7 @@ def add_or_edit_bug(request, pk=None):
         form = CreateBugForm(instance=bug)
     return render(request, 'create_bug.html', {'form':form})
 
-
+@login_required()
 def delete_bug(request, pk):
      bug =  get_object_or_404(Bug, pk=pk) 
      bug.delete()
