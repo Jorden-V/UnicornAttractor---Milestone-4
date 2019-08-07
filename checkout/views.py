@@ -47,9 +47,14 @@ def checkout(request):
             
             if customer.paid:
                 messages.success(request, "You have successfully paid")
+                upvote_list = []
+                for id, quantity in cart.items():
+                    upvote_list.append(id)
+                for id in upvote_list:
+                    feature = get_object_or_404(Feature, pk=id)
+                    feature.upvotes += 1
+                    feature.save()
                 request.session['cart'] = {}
-                feature.upvotes += 1
-                feature.save()
                 return redirect(reverse('view_features'))
             else:
                 messages.error(request, "Unable to take payment")
