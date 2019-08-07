@@ -48,7 +48,6 @@ def upvote_bug(request, pk):
         bug.save()
         return redirect('view_bugs')
 
-@login_required()
 def add_or_edit_bug(request, pk=None):
     """
     Create a view that allows us to create or edit a bug
@@ -70,7 +69,7 @@ def add_or_edit_bug(request, pk=None):
         form = CreateBugForm(instance=bug)
     return render(request, 'create_bug.html', {'form':form})
 
-@login_required()
+
 def delete_bug(request, pk):
      bug =  get_object_or_404(Bug, pk=pk) 
      bug.delete()

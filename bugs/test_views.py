@@ -16,12 +16,11 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "bugs.html")
 
-
     def test_get_bug_details_page(self):
         user = User.objects.get(username="test")
         bug = Bug(name="Test title", desc="Test description", author_id=user.id)
         bug.save()
-        response = self.client.get('/bugs/{}'.format(bug.id))
+        response = self.client.get('/view_bugs/{}'.format(bug.id))
         self.assertEqual(response.status_code, 301)
 
     def test_get_add_bug_page(self):
@@ -29,3 +28,12 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "create_bug.html")
         
+    def test_get_edit_bug_page(self):
+        user = User.objects.get(username="test")
+        bug = Bug(name="Create a Test", desc="description", author_id=user.id)
+        bug.save()
+
+        page = self.client.get("/view_bugs/{0}/edit/".format(bug.id))
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "create_bug.html")
+
