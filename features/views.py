@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Feature, FeatureComment
 from .forms import CreateFeatureForm, FeatureCommentForm
 
 # Create your views here.
-
+@login_required()
 def view_features(request):
     features = Feature.objects.all().order_by('-id')
     return render(request, "features.html", {"features": features})
 
-
+@login_required()
 def feature_detail(request, pk):
     """
     Create a view that returns a single
@@ -36,7 +37,7 @@ def feature_detail(request, pk):
         feature.save()
         return render(request, 'feature_detail.html', {'feature':feature, 'comments':comments, 'comments_total':comments_total, 'form':form})
         
-
+@login_required()
 def add_or_edit_feature(request, pk=None):
     """
     Create a view that allows us to create or edit a bug
@@ -58,7 +59,7 @@ def add_or_edit_feature(request, pk=None):
         form = CreateFeatureForm(instance=feature)
     return render(request, 'create_feature.html', {'form':form})
 
-
+@login_required()
 def delete_feature(request, pk):
      feature =  get_object_or_404(Feature, pk=pk) 
      feature.delete()

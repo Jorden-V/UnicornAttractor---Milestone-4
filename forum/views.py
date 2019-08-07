@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import ForumPost, ForumComment
 from .forms import ForumPostForm, ForumCommentForm
 
+@login_required()
 def view_posts(request):
     posts = ForumPost.objects.all()
     return render(request, "forum.html", {"posts": posts})
-    
+
+@login_required()    
 def post_detail(request, pk):
     """
     Create a view that returns a single
@@ -32,7 +35,8 @@ def post_detail(request, pk):
         post.views += 1
         post.save()
         return render(request, 'post_detail.html', {'post':post, 'comments':comments, 'comments_total':comments_total, 'form':form})
-        
+
+@login_required()        
 def upvote_post(request, pk):
     """
     A view that upvotes the selected post
@@ -42,7 +46,8 @@ def upvote_post(request, pk):
         post.upvotes += 1
         post.save()
         return redirect('view_posts')
-        
+
+@login_required()        
 def add_or_edit_post(request, pk=None):
     """
     Create a view that allows us to create or edit a post
@@ -63,7 +68,8 @@ def add_or_edit_post(request, pk=None):
     else:
         form = ForumPostForm(instance=post)
     return render(request, 'create_post.html', {'form':form})
-    
+
+@login_required()    
 def delete_post(request, pk):
      post =  get_object_or_404(ForumPost, pk=pk) 
      post.delete()
