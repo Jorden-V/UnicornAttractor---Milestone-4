@@ -23,3 +23,14 @@ class TestBugModel(TestCase):
         bug.save()
         self.assertEqual(bug.name, "Create a Test")
         self.assertTrue(bug.desc)
+        
+    def test_name_str(self):
+        test_name = Bug(name="A test bug")
+        self.assertEqual(str(test_name), "A test bug")
+        
+class TestBugCommentModel(TestCase):
+    
+    def test_description_str(self):
+        test_description = BugComment(description="A test description")
+        self.assertEqual(str(test_description), "A test description")
+    
