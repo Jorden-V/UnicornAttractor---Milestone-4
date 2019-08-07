@@ -36,4 +36,8 @@ class TestViews(TestCase):
         page = self.client.get("/view_bugs/{0}/edit/".format(bug.id))
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "create_bug.html")
+        
+    def test_get_edit_page_for_bug_that_does_not_exist(self):
+        page = self.client.get("/view_bugs/100/edit/")
+        self.assertEqual(page.status_code, 404)
 
