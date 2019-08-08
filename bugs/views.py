@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Bug, BugComment
+from django.contrib import messages
+from .models import Bug, BugComment, BugUpvote
 from .forms import CreateBugForm, BugCommentForm
 
 # Create your views here.
@@ -40,13 +41,17 @@ def bug_detail(request, pk):
 @login_required()
 def upvote_bug(request, pk):
     """
-    A view that upvotes the selected bug
+    Stops user voting multiple times if they have already.
     """
-    if request.method == "POST":
-        bug = get_object_or_404(Bug, pk=pk)
+    bug = Bug.objects.get(pk=pk)
+    if BugUpvote.objects.filter(user=request.user, bug=bug):
+        messages.error(request, "You have upvoted this bug already!")
+    else:
         bug.upvotes += 1
         bug.save()
-        return redirect('view_bugs')
+        BugUpvote.objects.create(user=request.user, bug=bug)
+    return redirect('view_bugs')
+
 
 def add_or_edit_bug(request, pk=None):
     """
