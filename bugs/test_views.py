@@ -20,8 +20,9 @@ class TestViews(TestCase):
         user = User.objects.get(username="test")
         bug = Bug(name="Test title", desc="Test description", author_id=user.id)
         bug.save()
-        response = self.client.get('/view_bugs/{}'.format(bug.id))
-        self.assertEqual(response.status_code, 301)
+        response = self.client.get('/view_bugs/{0}/'.format(bug.id))
+        self.assertEqual(response.status_code, 200)
+        
 
     def test_get_add_bug_page(self):
         page = self.client.get("/view_bugs/new/")
