@@ -4,7 +4,7 @@ from .forms import UserLoginForm, UserRegistrationForm
 # Create your tests here.
 class TestUserLoginForm(TestCase):
     
-    def test_can_create_a_user_with_name_and_description(self):
+    def test_can_create_a_user_with_username_and_password(self):
         form = UserLoginForm({'username': 'Tests', 'password': "create a test"})
         self.assertTrue(form.is_valid())
         
