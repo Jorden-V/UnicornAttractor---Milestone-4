@@ -41,3 +41,4 @@ class TestViews(TestCase):
         page = self.client.get("/view_bugs/100/edit/")
         self.assertEqual(page.status_code, 404)
 
+
