@@ -4,7 +4,7 @@
         <div class="profile-submit-buttons">
             <a href="{% url 'new_bug' %}"><button type="button" class="btn btn-primary"> Submit Bug</button></a>
             <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"> Submit Feature</button></a>
-            <a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"><span </span> Submit Post</button></a> {% if bugs %} {% if bugs %}
+            <a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"><span </span> Submit Post</button></a>
         </div>
     </div>
 
@@ -21,8 +21,7 @@
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade show active" id="bugs">
-            {% if bugs %}
-            {% for bug in bugs %}
+            {% if bugs %} {% for bug in bugs %}
             <div class="card mb-3">
                 <h3 class="card-header">{{bug.name}}</h3>
                 <div class="card-body">
@@ -51,13 +50,14 @@
                     <a class="btn btn btn-secondary" href="{% url 'delete_bug' bug.id %}" role="button">Delete</a>
                 </div>
             </div>
-            {% endfor %}
-            {% else %}
-            test
+            {% endfor %} {% else %}
+            <div class="card mb-3">
+                <h3 class="card-header">Oops! You have not submitted any bugs yet!</h3>
+            </div>
             {% endif %}
         </div>
         <div class="tab-pane fade" id="features">
-            {% for feature in features %}
+            {% if features %} {% for feature in features %}
             <div class="card mb-3">
                 <h3 class="card-header">{{feature.name}}</h3>
                 <div class="card-body">
@@ -86,10 +86,14 @@
                     <a class="btn btn btn-secondary" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} {% else %}
+            <div class="card mb-3">
+                <h3 class="card-header">Oops! You have not submitted any features yet!</h3>
+            </div>
+            {% endif %}
         </div>
         <div class="tab-pane fade" id="posts">
-            {% for post in posts %}
+            {% if posts %} {% for post in posts %}
             <div class="card mb-3">
                 <h3 class="card-header">{{post.name}}</h3>
                 <div class="card-body">
@@ -107,10 +111,13 @@
                     <a class="btn btn btn-secondary" href="{% url 'delete_post' post.id %}" role="button">Delete</a>
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} {% else %}
+            <div class="card mb-3">
+                <h3 class="card-header">Oops! You have not posted anything yet!</h3>
+            </div>
+
+            {% endif %}
         </div>
     </div>
 </section>
-{% endif %}
-{% endif %}
 {% endblock %}
