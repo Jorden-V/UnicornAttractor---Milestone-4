@@ -1,72 +1,202 @@
 {% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
 
-<a href="{% url 'new_bug' %}"><button type="button" class="btn btn-primary"><span </span> Submit Bug</button></a>
-<a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"><span </span> Submit Feature</button></a>
+
 
 <section class="container">
-    {%if features%}
-    <h2>Features</h2>
-    {% for feature in features %}
-    <div class="card mb-3">
-        <h3 class="card-header">{{feature.name}}</h3>
-        <div class="card-body">
-            <p class="card-text">{{feature.desc }}</p>
-            <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
-        </div>
-        <div class="card-footer text-muted">
-            <i class="far fa-eye"> {{ feature.views }} </i>
-            <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                {% csrf_token %}
-                <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
-            </form>
-            <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
-        </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% if bugs %}
-    <h2>Bugs</h2>
-    {% for bug in bugs %}
-    <div class="card mb-3">
-        <h3 class="card-header">{{bug.name}}</h3>
-        <div class="card-body">
-            <p class="card-text">{{bug.desc }}</p>
-            <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
-        </div>
-        <div class="card-footer text-muted">
-            <i class="far fa-eye"> {{ bug.views }} </i>
-            <form method="post" action="{% url 'upvote_bug' bug.id %}">
-                {% csrf_token %}
-                <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
-            </form>
-            <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
-        </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% if posts %}
-    <h2>Posts</h2>
-    {% for post in posts %}
-    <div class="card mb-3">
-        <h3 class="card-header">{{post.name}}</h3>
-        <div class="card-body">
-            <p class="card-text">{{post.desc }}</p>
-            <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
-        </div>
-        <div class="card-footer text-muted">
-            <i class="far fa-eye"> {{ post.views }} </i>
-            <form method="post" action="{% url 'upvote_post' post.id %}">
-                {% csrf_token %}
-                <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
-            </form>
-            <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
-        </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-    
-    
 
+    <div class="row">
+        <div class="profile-submit-buttons">
+            <h1> Search results:</h1>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#all">All results</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#bugs">Bugs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#features">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#posts">Posts</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade show active" id="all">
+            {% if bugs.count == 0 and features.count == 0 and posts.count == 0 %}
+            <div class="card mb-3">
+                <h3 class="card-header">No search results found</h3>
+            </div>
+            {% else %}
+            {% for bug in bugs %}
+            <div class="card mb-3">
+                <h3 class="card-header">{{bug.name}}</h3>
+                <div class="card-body">
+                    <div class="progress">
+                        {% if bug.status == "To do" %}
+                        <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                        {% elif bug.status == "In progress" %}
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                        {% elif bug.status == "Cancelled" %}
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                        {% else %}
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{bug.desc}}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ bug.views }} </i>
+                    <form method="post" action="{% url 'upvote_bug' bug.id %}">
+                        {% csrf_token %}
+                        <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
+                    </form>
+                    <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                </div>
+            </div>
+            {% endfor %} {% for feature in features %}
+            <div class="card mb-3">
+                <h3 class="card-header">{{feature.name}}</h3>
+                <div class="card-body">
+                    <div class="progress">
+                        {% if feature.status == "To do" %}
+                        <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                        {% elif feature.status == "In progress" %}
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                        {% elif feature.status == "Cancelled" %}
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                        {% else %}
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{feature.desc}}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ feature.views }} </i>
+                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
+                    </form>
+                    <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+                </div>
+            </div>
+            {% endfor %}{% for post in posts %}
+            <div class="card mb-3">
+                <h3 class="card-header">{{post.name}}</h3>
+                <div class="card-body">
+                    <p class="card-text">{{post.desc}}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ post.views }} </i>
+                    <form method="post" action="{% url 'upvote_post' post.id %}">
+                        {% csrf_token %}
+                        <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
+                    </form>
+                    <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="tab-pane fade show" id="bugs">
+            {% if bugs %} {% for bug in bugs %}
+            <div class="card mb-3">
+                <h3 class="card-header">{{bug.name}}</h3>
+                <div class="card-body">
+                    <div class="progress">
+                        {% if bug.status == "To do" %}
+                        <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                        {% elif bug.status == "In progress" %}
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                        {% elif bug.status == "Cancelled" %}
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                        {% else %}
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{bug.desc}}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ bug.views }} </i>
+                    <form method="post" action="{% url 'upvote_bug' bug.id %}">
+                        {% csrf_token %}
+                        <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
+                    </form>
+                    <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                </div>
+            </div>
+            {% endfor %} {% else %}
+            <div class="card mb-3">
+                <h3 class="card-header">No search results found</h3>
+            </div>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="features">
+            {% if features %} {% for feature in features %}
+            <div class="card mb-3">
+                <h3 class="card-header">{{feature.name}}</h3>
+                <div class="card-body">
+                    <div class="progress">
+                        {% if feature.status == "To do" %}
+                        <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                        {% elif feature.status == "In progress" %}
+                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                        {% elif feature.status == "Cancelled" %}
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                        {% else %}
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                        {% endif %}
+                    </div>
+                    <p class="card-text">{{feature.desc }}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ feature.views }} </i>
+                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
+                        {% csrf_token %}
+                        <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
+                    </form>
+                    <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+                </div>
+            </div>
+            {% endfor %} {% else %}
+            <div class="card mb-3">
+                <h3 class="card-header">No search results found</h3>
+            </div>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="posts">
+            {% if posts %} {% for post in posts %}
+            <div class="card mb-3">
+                <h3 class="card-header">{{post.name}}</h3>
+                <div class="card-body">
+                    <p class="card-text">{{post.desc}}</p>
+                    <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <i class="far fa-eye"> {{ post.views }} </i>
+                    <form method="post" action="{% url 'upvote_post' post.id %}">
+                        {% csrf_token %}
+                        <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
+                    </form>
+                    <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                </div>
+            </div>
+            {% endfor %} {% else %}
+            <div class="card mb-3">
+                <h3 class="card-header">No search results found</h3>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
 </section>
 
 {% endblock %}
