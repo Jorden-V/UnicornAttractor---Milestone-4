@@ -87,7 +87,34 @@ footer a:hover {
 }
 
 .parallax-bugs {
-    background-image: url("/static/img/bugs.jpeg");
+    background-image: url("/static/img/bug-background.jpeg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-features {
+    background-image: url("/static/img/features-background.jpeg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-stats {
+    background-image: url("/static/img/stats-background.jpeg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax-forum {
+    background-image: url("/static/img/forum3-background.jpeg");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
