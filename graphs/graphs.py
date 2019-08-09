@@ -11,7 +11,7 @@ custom_style = Style(
     value_font_size=25, 
     label_font_size=25,
     major_label_font_size=25,
-    colors=('#2E2FE3', '#583870', '#AE0D7A', '#347B98', '#B88914'))
+    colors=('#072F5F', '#1261A0', '#2780E3', '#3895D3', '#58CCED'))
 
 def bug_bar_chart():
     

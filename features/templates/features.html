@@ -7,10 +7,12 @@
   </section>
 </div>
 
-<a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"><span </span> Submit Feature</button></a>
-
-
 <section class="container">
+  <div class="row">
+    <div class="profile-submit-buttons">
+      <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"> Submit Feature</button></a>
+    </div>
+  </div>
   {% for feature in features %}
   <div class="card mb-3">
     <h3 class="card-header">{{feature.name}}</h3>

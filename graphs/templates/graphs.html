@@ -1,38 +1,37 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="parallax-stats">
-  <section class="container main-message">
-    <div class="jumbotron">
-      <h1 class="display-4">See whats happening <br> under the hood</h1>
-    </div>
-  </section>
+    <section class="container main-message">
+        <div class="jumbotron">
+            <h1 class="display-4">See whats happening <br> under the hood</h1>
+        </div>
+    </section>
 </div>
 
-<div>
-    <h1>Site Statistics</h1>
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-            <h2>Five Most Upvoted Bugs</h2>
-            {{ bug_bar_chart|safe }}
+<section class="container">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <h2>Five Most Upvoted Bugs</h2>
+                {{ bug_bar_chart|safe }}
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <h2>Five Most Upvoted Features</h2>
+                {{ feature_bar_chart|safe }}
+            </div>
         </div>
-        <div class="col-xs-12 col-md-6">
-            <h2>Five Most Upvoted Features</h2>
-            {{ feature_bar_chart|safe }}
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <h2>Bugs Progress</h2>
+                {{ bug_pie_chart|safe }}
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <h2>Features Progress</h2>
+                {{ feature_pie_chart|safe }}
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-            <h2>Bugs Progress</h2>
-            {{ bug_pie_chart|safe }}
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <h2>Features Progress</h2>
-            {{ feature_pie_chart|safe }}
-        </div>
-    </div>
-</div>
+</section>
 
 
 {% endblock %}
