@@ -27,7 +27,7 @@ footer,
 }
 
 footer a {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 footer a:hover {
@@ -208,6 +208,7 @@ footer a:hover {
 }
 
 /*------------------------ profile  ----------------------------------*/
+
 .breadcrumb {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -221,14 +222,18 @@ footer a:hover {
 }
 
 
-.profile-submit-buttons{
+.profile-submit-buttons {
     padding-top: 20px;
-    padding-bottom:20px;
+    padding-bottom: 20px;
+}
+
+/*------------------------ profile  ----------------------------------*/
+
+.checkout-button {
+    padding-bottom: 20px;
 }
 
 /*------------------------ media queries  ----------------------------------*/
-
-
 
 @media only screen and (min-width: 900px) {
     .breadcrumb {

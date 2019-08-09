@@ -8,9 +8,12 @@
   </section>
 </div>
 
-<a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"><span </span> Submit Post</button></a>
-
 <section class="container">
+  <div class="row">
+    <div class="profile-submit-buttons">
+      <a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"> Submit Post</button></a>
+    </div>
+  </div>
   {% for post in posts %}
   <div class="card mb-3">
     <h3 class="card-header">{{post.name}}</h3>
