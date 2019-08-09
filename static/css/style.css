@@ -175,13 +175,15 @@ footer,
 
 footer,
 a {
-    color: white;
+    color: rgba(255,255,255,0.5);
 }
 
-.btn {
-    border-color: white;
+footer,
+a:hover {
     color: white;
+    text-decoration: none;
 }
+
 
 .breadcrumb {
     display: -webkit-box;
