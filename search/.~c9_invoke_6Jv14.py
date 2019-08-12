@@ -14,5 +14,5 @@ def do_search(request):
     bugs = bugs.order_by("-upvotes")
     features = features.order_by("-upvotes")
     posts = posts.order_by("-upvotes")
-    total = bugs.count() + features.count() + posts.count()
-    return render(request, "search.html", {"bugs": bugs, "features": features, "posts": posts, "total": total})
+    total = 
+    return render(request, "search.html", {"bugs": bugs, "features": features, "posts": posts})
