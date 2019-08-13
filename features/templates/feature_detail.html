@@ -1,18 +1,18 @@
 {% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
 
 <section class="container">
-  <div class="card mb-3">
-    <h3 class="card-header">{{feature.name}}</h3>
-    <div class="card-body">
-      <p class="card-text">{{feature.desc }}</p>
-      <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
+    <div class="card mb-3">
+        <h3 class="card-header">{{feature.name}}</h3>
+        <div class="card-body">
+            <p class="card-text">{{feature.desc }}</p>
+            <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
+        </div>
+        <div class="card-footer text-muted">
+            <i class="far fa-eye"> {{ feature.views }} </i>
+            <a href="{% url 'add_to_cart' feature.id %}"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
+            <a class="btn btn btn-primary" href="{% url 'view_features'%}" role="button">Back</a>
+        </div>
     </div>
-    <div class="card-footer text-muted">
-      <i class="far fa-eye"> {{ feature.views }} </i>
-      <a href="{% url 'add_to_cart' feature.id %}"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
-      <a class="btn btn btn-primary" href="{% url 'view_features'%}" role="button">Back</a>
-    </div>
-  </div>
 </section>
 
 <div class="container">
@@ -34,7 +34,12 @@
     <div class="row">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} {{ form | as_bootstrap }}
-            <button type="submit" class="btn btn btn-secondary">Add comment</button>
+            {% if user.is_authenticated %}
+            <button type="submit" class="btn btn btn-secondary">Add comment</button> 
+            {% else %}
+            <p>Please <a href="{% url 'login' %}">login</a> to comment on features.</p>
+            <button type="button" class="btn btn-primary disabled">Submit</button> 
+            {% endif %}
         </form>
     </div>
 </div>

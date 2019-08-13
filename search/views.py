@@ -6,7 +6,6 @@ from features.models import Feature
 from forum.models import ForumPost
 
 # Create your views here.
-@login_required()
 def do_search(request):
     bugs = Bug.objects.filter(name__icontains=request.GET['q'])
     features = Feature.objects.filter(name__icontains=request.GET['q'])

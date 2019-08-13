@@ -4,12 +4,10 @@ from .models import Feature, FeatureComment
 from .forms import CreateFeatureForm, FeatureCommentForm
 
 # Create your views here.
-@login_required()
 def view_features(request):
     features = Feature.objects.all().order_by('-id')
     return render(request, "features.html", {"features": features})
 
-@login_required()
 def feature_detail(request, pk):
     """
     Create a view that returns a single

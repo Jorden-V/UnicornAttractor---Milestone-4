@@ -5,12 +5,12 @@ from .models import Bug, BugComment, BugUpvote
 from .forms import CreateBugForm, BugCommentForm
 
 # Create your views here.
-@login_required()
+
 def view_bugs(request):
     bugs = Bug.objects.all().order_by('-id')
     return render(request, "bugs.html", {"bugs": bugs})
     
-@login_required()
+
 def bug_detail(request, pk):
     """
     Create a view that returns a single
@@ -55,7 +55,7 @@ def upvote_bug(request, pk):
         messages.error(request, "Your vote has been accepted!")
     return redirect('view_bugs')
 
-
+@login_required
 def add_or_edit_bug(request, pk=None):
     """
     Create a view that allows us to create or edit a bug
@@ -77,7 +77,7 @@ def add_or_edit_bug(request, pk=None):
         form = CreateBugForm(instance=bug)
     return render(request, 'create_bug.html', {'form':form})
 
-
+@login_required
 def delete_bug(request, pk):
      bug =  get_object_or_404(Bug, pk=pk) 
      bug.delete()

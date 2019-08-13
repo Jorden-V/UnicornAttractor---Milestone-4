@@ -42,13 +42,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Explore </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{% url 'view_bugs' %}"><i class="fas fa-bug"></i>  Bugs</a>
+                            <a class="dropdown-item" href="{% url 'view_bugs' %}"><i class="fas fa-bug"></i> Bugs</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'view_features' %}"><i class="far fa-lightbulb"></i>  Features</a>
+                            <a class="dropdown-item" href="{% url 'view_features' %}"><i class="far fa-lightbulb"></i> Features</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'graphs' %}"><i class="far fa-chart-bar"></i>  Statistics</a>
+                            <a class="dropdown-item" href="{% url 'view_posts' %}"><i class="far fa-comments"></i> Forum </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'view_posts' %}"><i class="far fa-comments"></i>  Forum </a>
+                            <a class="dropdown-item" href="{% url 'graphs' %}"><i class="far fa-chart-bar"></i> Statistics</a>
                         </div>
                     </li>
 
@@ -68,11 +68,35 @@
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {% else %}
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                </li>
+                <li class="nav-item">
                     <li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Explore </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'view_bugs' %}"><i class="fas fa-bug"></i>  Bugs</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'view_features' %}"><i class="far fa-lightbulb"></i>  Features</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'view_posts' %}"><i class="far fa-comments"></i>  Forum </a>
+                        <a class="dropdown-item" href="{% url 'graphs' %}"><i class="far fa-chart-bar"></i>  Statistics</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'graphs' %}"><i class="far fa-chart-bar"></i>  Statistics</a>
+
+                    </div>
+                </li>
+
                 </ul>
+                <form action="{% url 'search' %}" method="GET" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
                 {% endif %}
 
             </div>

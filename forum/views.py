@@ -4,12 +4,10 @@ from django.contrib import messages
 from .models import ForumPost, ForumComment, ForumPostUpvote
 from .forms import ForumPostForm, ForumCommentForm
 
-@login_required()
 def view_posts(request):
     posts = ForumPost.objects.all()
     return render(request, "forum.html", {"posts": posts})
 
-@login_required()    
 def post_detail(request, pk):
     """
     Create a view that returns a single
