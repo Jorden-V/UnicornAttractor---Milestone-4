@@ -15,12 +15,22 @@ def index(request):
 
 def contact(request):
     if request.method == 'POST':
-        message = request.POST['message']
-        send_mail('Contact Form',
-        message, 
-        settings.EMAIL_HOST_USER,
-        ['jordenkv@gmail.com'], 
-        fail_silently=False)
+        contact_form = request.POST
+        if contact_form.is_valid():
+            message = request.POST['message']
+            subject = request.POST['subject']
+            email_to = request.POST['email']
+            send_mail(
+                subject,
+                message,
+                'jordenkv@gmail.com',
+                [email_to],
+                fail_silently=False,
+                )
+            messages.success(request, "Your message has been sent! ")
+            return render(request, 'contact.html')
+        else:
+            messages.error(request, "Unable to send message at this time")
     return render(request, 'contact.html')
 
 @login_required    
