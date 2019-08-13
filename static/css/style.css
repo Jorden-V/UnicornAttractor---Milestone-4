@@ -178,10 +178,6 @@ footer a:hover {
     text-align: center;
 }
 
-.detail-body {
-    min-height: 200px;
-}
-
 .card-footer i {
     float: left;
     margin-top: 10px;
@@ -209,6 +205,10 @@ footer a:hover {
 
 .card-link{
     float: right;
+}
+
+.mb-3{
+    margin-top: 20px;
 }
 
 /*------------------------ profile  ----------------------------------*/

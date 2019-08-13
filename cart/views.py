@@ -9,18 +9,13 @@ def view_cart(request):
     return render(request, "cart.html" )
 
 @login_required()
+
 def add_to_cart(request, id):
     """Add a quantity of the specified product to the cart"""
     quantity = 1
-
     cart = request.session.get('cart', {})
-    if id in cart:
-        cart[id] = int(cart[id]) + quantity      
-    else:
-        cart[id] = cart.get(id, quantity) 
-
+    cart[id] = cart.get(id, quantity)
     request.session['cart'] = cart
-    messages.error(request, "A feature has been added to your cart")
     return redirect('view_features')
 
 @login_required()
