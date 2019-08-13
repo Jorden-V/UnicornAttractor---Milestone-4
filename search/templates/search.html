@@ -54,6 +54,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
                     </form>
+                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i>
                     <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
@@ -81,6 +82,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
                     </form>
+                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i>
                     <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                 </div>
             </div>
@@ -97,6 +99,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
                     </form>
+                    <i class="far fa-comment"> ({{ post.comment_number }}) </i>
                     <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
@@ -127,6 +130,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
                     </form>
+                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i>
                     <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
@@ -161,6 +165,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
                     </form>
+                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i>
                     <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                 </div>
             </div>
@@ -184,6 +189,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
                     </form>
+                    <i class="far fa-comment"> ({{ post.comment_number }}) </i>
                     <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
