@@ -30,22 +30,21 @@
             <div class="card mb-3">
                 <h3 class="card-header">No search results found</h3>
             </div>
-            {% else %}
-            {% for bug in bugs %}
+            {% else %} {% for bug in bugs %}
             <div class="card mb-3">
-                <h3 class="card-header">{{bug.name}}</h3>
+                <div class="card-header"><strong>{{bug.name}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
+                <div class="progress">
+                    {% if bug.status == "To do" %}
+                    <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
+                    {% elif bug.status == "In progress" %}
+                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
+                    {% elif bug.status == "Cancelled" %}
+                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
+                    {% else %}
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
+                    {% endif %}
+                </div>
                 <div class="card-body">
-                    <div class="progress">
-                        {% if bug.status == "To do" %}
-                        <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
-                        {% elif bug.status == "In progress" %}
-                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
-                        {% elif bug.status == "Cancelled" %}
-                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
-                        {% else %}
-                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
-                        {% endif %}
-                    </div>
                     <p class="card-text">{{bug.desc}}</p>
                     <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
                 </div>
@@ -60,7 +59,7 @@
             </div>
             {% endfor %} {% for feature in features %}
             <div class="card mb-3">
-                <h3 class="card-header">{{feature.name}}</h3>
+                <div class="card-header"><strong>{{feature.name}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
                 <div class="card-body">
                     <div class="progress">
                         {% if feature.status == "To do" %}
@@ -87,7 +86,7 @@
             </div>
             {% endfor %}{% for post in posts %}
             <div class="card mb-3">
-                <h3 class="card-header">{{post.name}}</h3>
+                <div class="card-header"><strong>{{post.name}}</strong><span class="card-link"> {{ post.created_date }} </span></div>
                 <div class="card-body">
                     <p class="card-text">{{post.desc}}</p>
                     <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
@@ -101,13 +100,12 @@
                     <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
-            {% endfor %}
-            {% endif %}
+            {% endfor %} {% endif %}
         </div>
         <div class="tab-pane fade show" id="bugs">
             {% if bugs %} {% for bug in bugs %}
             <div class="card mb-3">
-                <h3 class="card-header">{{bug.name}}</h3>
+                <div class="card-header"><strong>{{bug.name}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
                 <div class="card-body">
                     <div class="progress">
                         {% if bug.status == "To do" %}
@@ -141,7 +139,7 @@
         <div class="tab-pane fade" id="features">
             {% if features %} {% for feature in features %}
             <div class="card mb-3">
-                <h3 class="card-header">{{feature.name}}</h3>
+                <div class="card-header"><strong>{{feature.name}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
                 <div class="card-body">
                     <div class="progress">
                         {% if feature.status == "To do" %}
@@ -175,7 +173,7 @@
         <div class="tab-pane fade" id="posts">
             {% if posts %} {% for post in posts %}
             <div class="card mb-3">
-                <h3 class="card-header">{{post.name}}</h3>
+                <div class="card-header"><strong>{{post.name}}</strong><span class="card-link"> {{ post.created_date }} </span></div>
                 <div class="card-body">
                     <p class="card-text">{{post.desc}}</p>
                     <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>

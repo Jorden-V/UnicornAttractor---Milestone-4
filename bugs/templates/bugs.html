@@ -16,8 +16,7 @@
   
   {% for bug in bugs %}
   <div class="card mb-3">
-    <h3 class="card-header">{{bug.name}}</h3>
-    <div class="card-body">
+      <div class="card-header"><strong>{{bug.name}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
       <div class="progress">
         {% if bug.status == "To do" %}
         <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
@@ -29,6 +28,7 @@
         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
         {% endif %}
       </div>
+    <div class="card-body">
       <p class="card-text">{{bug.desc}}</p>
       <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
     </div>
@@ -38,6 +38,7 @@
         {% csrf_token %}
         <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
       </form>
+      <i class="far fa-comment"> ({{ comments }}) </i>
       <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
     </div>
   </div>

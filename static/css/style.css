@@ -207,6 +207,10 @@ footer a:hover {
     background-color: #e9ecef;
 }
 
+.card-link{
+    float: right;
+}
+
 /*------------------------ profile  ----------------------------------*/
 
 .breadcrumb {

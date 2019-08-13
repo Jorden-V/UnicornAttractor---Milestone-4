@@ -46,7 +46,7 @@ def checkout(request):
                 messages.error(request, "Your card was declined!")
             
             if customer.paid:
-                messages.success(request, "You have successfully paid")
+                messages.error(request, "You have successfully paid")
                 upvote_list = []
                 for id, quantity in cart.items():
                     upvote_list.append(id)
@@ -60,7 +60,7 @@ def checkout(request):
                 messages.error(request, "Unable to take payment")
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(request, "We were unable to take a payment with that card!", extra_tags="alert-primary")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
