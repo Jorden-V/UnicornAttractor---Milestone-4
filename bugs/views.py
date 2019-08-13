@@ -27,6 +27,8 @@ def bug_detail(request, pk):
             bugComment = form.save(commit=False)
             bugComment.bug = bug
             bugComment.author = request.user
+            bug.comment_number += 1
+            bug.save()
             bugComment.save()
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
             

@@ -11,6 +11,7 @@ class Bug(models.Model):
     views = models.IntegerField(default=0)
     author = models.ForeignKey(User, related_name='created_by', on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
+    comment_number = models.IntegerField(default=0)
     
     STATUS_CHOICES = (
         ('To do', 'To do'),
