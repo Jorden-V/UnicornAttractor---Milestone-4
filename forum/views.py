@@ -26,6 +26,8 @@ def post_detail(request, pk):
             postComment = form.save(commit=False)
             postComment.post = post
             postComment.author = request.user
+            post.comment_number += 1
+            post.save()
             postComment.save()
             return redirect(reverse('post_detail', kwargs={'pk': pk}))
             

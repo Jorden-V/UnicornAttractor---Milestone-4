@@ -11,6 +11,7 @@ class ForumPost(models.Model):
     views = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0)
     created_date = models.DateTimeField(auto_now_add=True)
+    comment_number = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
