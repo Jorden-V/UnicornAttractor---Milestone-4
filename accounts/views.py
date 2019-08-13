@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.contrib import auth, messages
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from accounts.forms import UserLoginForm, UserRegistrationForm
+from accounts.forms import UserLoginForm, UserRegistrationForm, ContactForm
 from bugs.models import Bug
 from features.models import Feature
 from forum.models import ForumPost
@@ -15,23 +15,25 @@ def index(request):
 
 def contact(request):
     if request.method == 'POST':
-        contact_form = request.POST
+        contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
             message = request.POST['message']
             subject = request.POST['subject']
-            email_to = request.POST['email']
+            email_from = request.POST['email']
             send_mail(
                 subject,
                 message,
-                'jordenkv@gmail.com',
-                [email_to],
+                email_from,
+                ['jordenkv@gmail.com'],
                 fail_silently=False,
                 )
             messages.success(request, "Your message has been sent! ")
-            return render(request, 'contact.html')
+            return redirect (reverse('index'))
         else:
             messages.error(request, "Unable to send message at this time")
-    return render(request, 'contact.html')
+    else:
+        contact_form = ContactForm()
+    return render(request, 'contact.html', {'contact_form': contact_form})
 
 @login_required    
 def logout(request):
