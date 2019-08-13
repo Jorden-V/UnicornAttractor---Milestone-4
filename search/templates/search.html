@@ -54,7 +54,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
                     </form>
-                    <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% for feature in features %}
@@ -97,7 +97,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
                     </form>
-                    <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% endif %}
@@ -127,7 +127,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
                     </form>
-                    <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% else %}
@@ -184,7 +184,7 @@
                         {% csrf_token %}
                         <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
                     </form>
-                    <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% else %}

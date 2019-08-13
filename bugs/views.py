@@ -50,6 +50,7 @@ def upvote_bug(request, pk):
         bug.upvotes += 1
         bug.save()
         BugUpvote.objects.create(user=request.user, bug=bug)
+        messages.error(request, "Your vote has been accepted!")
     return redirect('view_bugs')
 
 

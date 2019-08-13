@@ -23,3 +23,13 @@ class ForumComment(models.Model):
     
     def __str__(self):
         return self.description
+        
+class ForumPostUpvote(models.Model):
+    """
+    Model to upvote a bug
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.post.title

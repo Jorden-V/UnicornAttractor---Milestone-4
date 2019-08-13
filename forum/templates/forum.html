@@ -27,7 +27,7 @@
         {% csrf_token %}
         <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
       </form>
-      <a class="btn btn btn-secondary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+      <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
     </div>
   </div>
   {% endfor %}

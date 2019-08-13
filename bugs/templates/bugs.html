@@ -39,7 +39,7 @@
         <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
       </form>
       <i class="far fa-comment"> ({{ comments }}) </i>
-      <a class="btn btn btn-secondary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+      <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
     </div>
   </div>
   {% endfor %}

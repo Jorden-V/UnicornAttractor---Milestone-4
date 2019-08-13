@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import ForumPost, ForumComment
+from django.contrib import messages
+from .models import ForumPost, ForumComment, ForumPostUpvote
 from .forms import ForumPostForm, ForumCommentForm
 
 @login_required()
@@ -39,14 +40,18 @@ def post_detail(request, pk):
 @login_required()        
 def upvote_post(request, pk):
     """
-    A view that upvotes the selected post
+    Stops user voting multiple times if they have already.
     """
-    if request.method == "POST":
-        post = get_object_or_404(ForumPost, pk=pk)
+    post = ForumPost.objects.get(pk=pk)
+    if ForumPostUpvote.objects.filter(user=request.user, post=post):
+        messages.error(request, "You have upvoted this post already!")
+    else:
         post.upvotes += 1
         post.save()
-        return redirect('view_posts')
-
+        ForumPostUpvote.objects.create(user=request.user, post=post)
+        messages.error(request, "Your vote has been accepted!")
+    return redirect('view_posts')
+    
 @login_required()        
 def add_or_edit_post(request, pk=None):
     """

@@ -9,37 +9,33 @@
     </div>
     <div class="card-footer text-muted">
       <i class="far fa-eye"> {{ bug.views }} </i>
-      <form method="post" action="{% url 'upvote_bug' bug.id %}">
-        {% csrf_token %}
-        <i type="submit" class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
-        <button class="btn btn btn-secondary" type="submit">Upvotes: {{bug.upvotes}}</button>
-      </form>
+      <a href="{% url 'upvote_bug' bug.id %}"> <i class="fas fa-arrow-up"> {{bug.upvotes}} </i></a> {% csrf_token %}
       <a class="btn btn btn-primary" href="{% url 'view_bugs'%}" role="button">Back</a>
     </div>
   </div>
 </section>
 
 <div class="container">
-    {% if comments %}
-    <div class="row comments">
-        <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
+  {% if comments %}
+  <div class="row comments">
+    <h4>Comments <span style="color:black; font-size:15px;">({{ comments_total }})</span></h4>
+  </div>
+  <div class="card">
+    {% for comment in comments %}
+    <div class="card-body detail-body">
+      <h5 class="card-title">User: {{ comment.author }}</h5>
+      <div class="dropdown-divider"></div>
+      <p class="card-text"> {{ comment.description }} </p>
     </div>
-    <div class="card">
-        {% for comment in comments %}
-        <div class="card-body detail-body">
-            <h5 class="card-title">User: {{ comment.author }}</h5>
-            <div class="dropdown-divider"></div>
-            <p class="card-text"> {{ comment.description }} </p>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
 
-    <div class="row">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %} {{ form | as_bootstrap }}
-            <button type="submit" class="btn btn btn-secondary">Add comment</button>
-        </form>
-    </div>
+  <div class="row">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{ form | as_bootstrap }}
+      <button type="submit" class="btn btn btn-secondary">Add comment</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

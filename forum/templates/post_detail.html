@@ -9,11 +9,7 @@
     </div>
     <div class="card-footer text-muted">
       <i class="far fa-eye"> {{ post.views }} </i>
-      <form method="post" action="{% url 'upvote_post' post.id %}">
-        {% csrf_token %}
-        <i type="submit" class="fas fa-arrow-up"> {{ post.upvotes }} </i>
-        <button class="btn btn btn-secondary" type="submit">Upvotes: {{post.upvotes}}</button>
-      </form>
+      <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %}
       <a class="btn btn btn-primary" href="{% url 'view_posts'%}" role="button">Back</a>
     </div>
   </div>
