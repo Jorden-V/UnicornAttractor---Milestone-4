@@ -1,0 +1,10 @@
+{% extends 'base.html' %} 
+{% block page_title %} Contact Page {% endblock %} 
+{% block content %}
+
+<form metod="POST" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <input type="textarea" name="message" placeholder "Message..."/>
+    <input type="submit" />
+</form>
+{% endblock %}

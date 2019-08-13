@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect, reverse, get_object_or_404
+from django.core.mail import send_mail
 from django.contrib import auth, messages
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from bugs.models import Bug
@@ -10,6 +12,16 @@ from forum.models import ForumPost
 
 def index(request):
     return render(request, 'index.html')
+
+def contact(request):
+    if request.method == 'POST':
+        message = request.POST['message']
+        send_mail('Contact Form',
+        message, 
+        settings.EMAIL_HOST_USER,
+        ['jordenkv@gmail.com'], 
+        fail_silently=False)
+    return render(request, 'contact.html')
 
 @login_required    
 def logout(request):
