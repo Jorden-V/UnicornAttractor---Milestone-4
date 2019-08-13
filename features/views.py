@@ -26,6 +26,8 @@ def feature_detail(request, pk):
             featureComment = form.save(commit=False)
             featureComment.feature = feature
             featureComment.author = request.user
+            feature.comment_number += 1
+            feature.save()
             featureComment.save()
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
             

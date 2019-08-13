@@ -37,7 +37,7 @@
         {% csrf_token %}
         <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
       </form>
-      <i class="far fa-comment"> ({{ comments }}) </i>
+      <i class="far fa-comment"> ({{ feature.comment_number }}) </i>
       <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
     </div>
   </div>
