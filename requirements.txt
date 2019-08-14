@@ -4,7 +4,6 @@ backports.functools-lru-cache==1.5
 certifi==2019.6.16
 cffi==1.12.3
 chardet==3.0.4
-CodeIntel==0.9.3
 configparser==3.7.4
 coverage==4.5.4
 cryptography==2.7
