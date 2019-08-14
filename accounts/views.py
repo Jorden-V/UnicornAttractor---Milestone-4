@@ -7,7 +7,6 @@ from accounts.forms import UserLoginForm, UserRegistrationForm, ContactForm
 from bugs.models import Bug
 from features.models import Feature
 from forum.models import ForumPost
-
 # Create your views here.
 
 def index(request):
@@ -19,11 +18,10 @@ def contact(request):
         if contact_form.is_valid():
             message = request.POST['message']
             subject = request.POST['subject']
-            email_from = request.POST['email']
             send_mail(
                 subject,
-                message,
-                email_from,
+                "Message from: " + request.POST['email'] + "Message: " +message,
+                'jorden@shanemuirhead.co.uk',
                 ['jordenkv@gmail.com'],
                 fail_silently=False,
                 )
