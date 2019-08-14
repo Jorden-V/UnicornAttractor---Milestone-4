@@ -40,11 +40,11 @@
                     <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
                 </div>
                 <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ bug.views }} </i>
-                    <form method="post" action="{% url 'upvote_bug' bug.id %}">
-                        {% csrf_token %}
-                        <i class="fas fa-arrow-up"> {{ bug.upvotes }} </i>
-                    </form>
+                    <i class="far fa-eye"> {{ bug.views }} </i> {% if user.is_authenticated %}
+                    <a href="{% url 'upvote_bug' bug.id %}"> <i class="fas fa-arrow-up"> {{bug.upvotes}} </i></a> {% csrf_token %}
+                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% else %}
+                    <i class="fas fa-arrow-up"> {{bug.upvotes}} </i>
+                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
                     <a href="{% url 'bug_detail' bug.id %}"><button type="button" class="btn btn-primary">View</button>
                     <a href="{% url 'edit_bug' bug.id %}"><button type="button" class="btn btn-primary"> Edit </button>
                     <a href="{% url 'delete_bug' bug.id %}"><button type="button" class="btn btn-primary">Delete</button>
@@ -77,10 +77,11 @@
                 </div>
                 <div class="card-footer text-muted">
                     <i class="far fa-eye"> {{ feature.views }} </i>
-                    <form method="post" action="{% url 'add_to_cart' feature.id %}">
-                        {% csrf_token %}
-                        <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i>
-                    </form>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'add_to_cart' feature.id %}"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
+                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% else %}
+                    <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
+                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
                     <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                     <a class="btn btn btn-primary" href="{% url 'edit_feature' feature.id %}" role="button">Edit</a>
                     <a class="btn btn btn-primary" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
@@ -101,11 +102,11 @@
                     <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
                 </div>
                 <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ post.views }} </i>
-                    <form method="post" action="{% url 'upvote_post' post.id %}">
-                        {% csrf_token %}
-                        <i class="fas fa-arrow-up"> {{ post.upvotes }} </i>
-                    </form>
+                    <i class="far fa-eye"> {{ post.views }} </i> {% if user.is_authenticated %}
+                    <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %}
+                    <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% else %}
+                    <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
+                    <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
                     <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
                     <a class="btn btn btn-primary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
                     <a class="btn btn btn-primary" href="{% url 'delete_post' post.id %}" role="button">Delete</a>
