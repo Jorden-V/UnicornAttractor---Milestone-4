@@ -12,7 +12,3 @@ class TestViews(TestCase):
         page = self.client.get("/cart/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "cart.html")
-        
-    def test_add_item_to_cart(self):
-        
-    def test_delete_item_from_cart(self):
