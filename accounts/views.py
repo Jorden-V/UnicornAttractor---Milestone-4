@@ -75,6 +75,7 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered", extra_tags="altert-success")
+                return redirect(reverse('index'))
             else:
                 messages.error(request, "Unable to register your account at this time", extra_tags="altert-danger")
     else:
