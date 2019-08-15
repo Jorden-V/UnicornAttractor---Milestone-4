@@ -31,7 +31,6 @@
     </div>
     {% endif %}
 
-    <div class="row">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %} {{ form | as_bootstrap }}
             {% if user.is_authenticated %}
@@ -41,6 +40,6 @@
             <button type="button" class="btn btn-primary disabled">Submit</button> 
             {% endif %}
         </form>
-    </div>
+
 </div>
 {% endblock %}

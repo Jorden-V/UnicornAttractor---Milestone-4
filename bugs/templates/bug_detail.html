@@ -31,16 +31,12 @@
   </div>
   {% endif %}
 
-  <div class="row">
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %} {{ form | as_bootstrap }}
-      {% if user.is_authenticated %}
-      <button type="submit" class="btn btn btn-secondary">Add comment</button> 
-      {% else %}
-      <p>Please <a href="{% url 'login' %}">login</a> to comment on bugs.</p>
-      <button type="button" class="btn btn-primary disabled">Submit</button> 
-      {% endif %}
-    </form>
-  </div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{ form | as_bootstrap }} {% if user.is_authenticated %}
+    <button type="submit" class="btn btn btn-secondary">Add comment</button> {% else %}
+    <p>Please <a href="{% url 'login' %}">login</a> to comment on bugs.</p>
+    <button type="button" class="btn btn-primary disabled">Submit</button> {% endif %}
+  </form>
 </div>
+
 {% endblock %}

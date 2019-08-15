@@ -38,6 +38,7 @@ footer a:hover {
 .copyright-footer {
     padding-top: 20px;
     text-align: center;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .row {
