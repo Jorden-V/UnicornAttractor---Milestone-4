@@ -25,10 +25,10 @@ def contact(request):
                 ['jordenkv@gmail.com'],
                 fail_silently=False,
                 )
-            messages.success(request, "Your message has been sent! ")
+            messages.success(request, "Your message has been sent!", extra_tags="alert-success")
             return redirect (reverse('index'))
         else:
-            messages.error(request, "Unable to send message at this time")
+            messages.error(request, "Unable to send message at this time", extra_tags="alert-danger")
     else:
         contact_form = ContactForm()
     return render(request, 'contact.html', {'contact_form': contact_form})
@@ -36,7 +36,7 @@ def contact(request):
 @login_required    
 def logout(request):
     auth.logout(request)
-    messages.success(request, "You have successfully been logged out!")
+    messages.success(request, "You have successfully been logged out!", extra_tags="alert-success")
     return redirect (reverse('index'))
     
 def login(request):
@@ -51,7 +51,7 @@ def login(request):
                                     password=request.POST['password'])
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully logged in!")
+                messages.success(request, "You have successfully logged in!", extra_tags="alert-success")
                 return redirect(reverse('index'))
             else:
                 login_form.add_error(None, "Your username or password is incorrect")
@@ -74,9 +74,9 @@ def registration(request):
                                      password=request.POST['password1'])
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered")
+                messages.success(request, "You have successfully registered", extra_tags="altert-success")
             else:
-                messages.error(request, "Unable to register your account at this time")
+                messages.error(request, "Unable to register your account at this time", extra_tags="altert-danger")
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'registration.html', {

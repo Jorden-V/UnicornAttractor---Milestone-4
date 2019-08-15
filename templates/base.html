@@ -100,13 +100,18 @@
 
             </div>
         </nav>
-        {% if messages %}
-        <div>
-            {% for message in messages %} {{ message }} {% endfor %}
+        {% if messages %} {% for message in messages %}
+        <div class="center">
+            <div class="{{ message.tags }}">
+                <div class="message">
+                    {{ message }}
+                </div>
+            </div>
+            {% endfor %}
         </div>
         {% endif %} {% block content %} {% endblock %}
     </div>
-    
+
     <footer>
         <div class="row">
             <div class="col-6">

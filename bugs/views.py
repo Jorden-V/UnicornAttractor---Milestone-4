@@ -47,12 +47,12 @@ def upvote_bug(request, pk):
     """
     bug = Bug.objects.get(pk=pk)
     if BugUpvote.objects.filter(user=request.user, bug=bug):
-        messages.error(request, "You have upvoted this bug already!")
+        messages.error(request, "You have upvoted this bug already!", extra_tags="alert-danger")
     else:
         bug.upvotes += 1
         bug.save()
         BugUpvote.objects.create(user=request.user, bug=bug)
-        messages.error(request, "Your vote has been accepted!")
+        messages.success(request, "Your vote has been accepted!", extra_tags="alert-success")
     return redirect('view_bugs')
 
 @login_required

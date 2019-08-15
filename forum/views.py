@@ -44,12 +44,12 @@ def upvote_post(request, pk):
     """
     post = ForumPost.objects.get(pk=pk)
     if ForumPostUpvote.objects.filter(user=request.user, post=post):
-        messages.error(request, "You have upvoted this post already!")
+        messages.error(request, "You have upvoted this post already!", extra_tags="alert-danger")
     else:
         post.upvotes += 1
         post.save()
         ForumPostUpvote.objects.create(user=request.user, post=post)
-        messages.error(request, "Your vote has been accepted!")
+        messages.success(request, "Your vote has been accepted!", extra_tags="alert-success")
     return redirect('view_posts')
     
 @login_required()        

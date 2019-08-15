@@ -16,12 +16,12 @@ def add_to_cart(request, id):
     cart = request.session.get('cart', {})
     cart[id] = cart.get(id, quantity)
     request.session['cart'] = cart
+    messages.success(request, "Feature successfully added to cart", extra_tags="alert-success")
     return redirect('view_features')
 
 @login_required()
 def adjust_cart(request, id):
     """Adjust the quantity of the specified product to the specifies amount"""
-    quantity = 1
     cart = request.session.get('cart', {})
     cart.pop(id)
     request.session['cart'] = cart

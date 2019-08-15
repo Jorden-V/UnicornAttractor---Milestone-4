@@ -4,7 +4,7 @@
         <h1> Cart: </h1>
     </div>
     <div class="row">
-        {% for item in cart_items %}
+        {% if cart_items %} {% for item in cart_items %}
         <div class="col-md-4">
             <div class="card mb-3">
                 <h3 class="card-header">{{ item.feature.name }}</h3>
@@ -21,13 +21,19 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+        {% endfor %} {% else %}
+        <div class="card mb-3">
+            <h3 class="card-header">Looks like your cart is empty!</h3>
+        </div>
+        {% endif %}
     </div>
     <div>
         <h2>Total: £{{ total }}</h2>
     </div>
     <div class="checkout-button">
-        <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+        {% if total == 0 %}
+        <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% else %}
+        <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a> {% endif %}
     </div>
     </div>
 </section>
