@@ -11,6 +11,10 @@ from forum.models import ForumPost
 
 def index(request):
     return render(request, 'index.html')
+    
+def PasswordReset(request):
+    return render(request, 'password_reset.html')
+
 
 def contact(request):
     if request.method == 'POST':
