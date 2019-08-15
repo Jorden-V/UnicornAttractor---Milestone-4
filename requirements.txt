@@ -13,7 +13,6 @@ django-forms-bootstrap==3.1.0
 enum34==1.1.6
 gunicorn==19.9.0
 heroku==0.1.4
-ikpdb==1.2.3
 Inflector==2.0.12
 ipaddress==1.0.22
 lazy-object-proxy==1.4.1
