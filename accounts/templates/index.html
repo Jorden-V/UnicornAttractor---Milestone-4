@@ -18,7 +18,7 @@
         <div class="row center">
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="home-icon">
-                   <a href="{% if user.is_authenticated %} {% url 'view_bugs' %} {% else %} {% url 'registration' %} {% endif %}" <i class="fas fa-bug"></i></a>
+                   <a href="{% url 'view_bugs' %}" <i class="fas fa-bug"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Bugs</strong>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="home-icon">
-                  <a href="{% if user.is_authenticated %} {% url 'view_features' %} {% else %} {% url 'registration' %} {% endif %}"  <i class="fas fa-wrench"></i></a>
+                  <a href="{% url 'view_features' %}"  <i class="fas fa-wrench"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Features</strong>
@@ -40,7 +40,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <a href="{% if user.is_authenticated %} {% url 'view_posts' %} {% else %} {% url 'registration' %} {% endif %}"   <i class="fas fa-comments"></i></a>
+                    <a href="{% url 'view_posts' %}"   <i class="fas fa-comments"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Community</strong>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <a href="{% if user.is_authenticated %} {% url 'graphs' %} {% else %} {% url 'registration' %} {% endif %}" <i class="far fa-chart-bar"></i></a>
+                    <a href="{% url 'graphs' %}" <i class="far fa-chart-bar"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Statistics</strong>
