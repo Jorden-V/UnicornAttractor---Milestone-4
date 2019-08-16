@@ -19,8 +19,8 @@
 
 </head>
 
-<body>
-    <div class="page-content">
+<body class="d-flex flex-column">
+    <div class="flex-shrink-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="{% url 'index' %}">Unicorn Attractor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,9 +112,9 @@
         {% endif %} {% block content %} {% endblock %}
     </div>
 
-    <footer>
+    <footer class="footer mt-auto">
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"> <a target="_blank" href="https://www.youtube.com/"><i class="fab fa-youtube-square hvr-grow" aria-hidden="true"></i></a></li>
                     <li class="breadcrumb-item"> <a target="_blank" href="https://twitter.com/?lang=en-gb"><i class="fab fa-twitter-square hvr-grow" aria-hidden="true"></i></a></li>

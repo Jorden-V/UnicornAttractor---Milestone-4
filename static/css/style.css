@@ -6,25 +6,24 @@
 
 html,
 body {
-    height: 100%;
-    margin: 0;
+    height: 100%!important;
 }
 
-.page-content {
-    min-height: 100%;
-    margin-bottom: -54px;
-}
+/*.page-content {*/
+/*    min-height: 100%;*/
+/*    margin-bottom: -54px;*/
+/*}*/
 
-.page-content::after {
-    content: "";
-    display: block;
-}
+/*.page-content::after {*/
+/*    content: "";*/
+/*    display: block;*/
+/*}*/
 
-footer,
-.page-content::after {
-    height: 54px;
-    background-color: #2780E3;
-}
+/*footer,*/
+/*.page-content::after {*/
+/*    height: 54px;*/
+/*    background-color: #2780E3;*/
+/*}*/
 
 footer a {
     color: rgba(255, 255, 255, 0.5);
