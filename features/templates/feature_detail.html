@@ -8,8 +8,11 @@
             <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
         </div>
         <div class="card-footer text-muted">
-            <i class="far fa-eye"> {{ feature.views }} </i>
+            <i class="far fa-eye"> {{ feature.views }} </i> {% if user.is_authenticated %}
             <a href="{% url 'add_to_cart' feature.id %}"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
+            {% else %}
+            <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
+            {% endif %}
             <a class="btn btn btn-primary" href="{% url 'view_features'%}" role="button">Back</a>
         </div>
     </div>
@@ -31,15 +34,13 @@
     </div>
     {% endif %}
 
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %} {{ form | as_bootstrap }}
-            {% if user.is_authenticated %}
-            <button type="submit" class="btn btn btn-secondary">Add comment</button> 
-            {% else %}
-            <p>Please <a href="{% url 'login' %}">login</a> to comment on features.</p>
-            <button type="button" class="btn btn-primary disabled">Submit</button> 
-            {% endif %}
-        </form>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {{ form | as_bootstrap }} {% if user.is_authenticated %}
+        <button type="submit" class="btn btn btn-secondary">Add comment</button> {% else %}
+        <p>Please <a href="{% url 'login' %}">login</a> to comment on features.</p>
+        <button type="button" class="btn btn-primary disabled">Submit</button> {% endif %}
+    </form>
 
 </div>
+<br>
 {% endblock %}
