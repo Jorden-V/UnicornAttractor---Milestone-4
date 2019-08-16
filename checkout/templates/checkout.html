@@ -66,8 +66,10 @@
                 {{ payment_form | as_bootstrap }} {% csrf_token %}
                 <div class="form-group col-md-12">
                     {% if cart_items%}
-                    <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% else %}
-                    <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment"> {% endif %}
+                    <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                    {% else %}
+                    <button type="button" class="btn btn-danger disabled">Submit Payment</button>  
+                    {% endif %}
                 </div>
             </div>
         </div>
