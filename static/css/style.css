@@ -12,7 +12,7 @@ body {
 
 .page-content {
     min-height: 100%;
-    margin-bottom: -5px;
+    margin-bottom: -54px;
 }
 
 .page-content::after {
@@ -21,7 +21,7 @@ body {
 }
 
 footer,
-.page-contnet::after {
+.page-content::after {
     height: 54px;
     background-color: #2780E3;
 }
