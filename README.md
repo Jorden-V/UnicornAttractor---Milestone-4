@@ -1,2 +1,1 @@
 [![Build Status](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4.svg?branch=master)](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4)
-[![Coverage Status](https://coveralls.io/repos/github/JordenCI/UnicornAttractor---Milestone-4/badge.svg?branch=master)](https://coveralls.io/github/JordenCI/UnicornAttractor---Milestone-4?branch=master)
