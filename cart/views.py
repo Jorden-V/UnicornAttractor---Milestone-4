@@ -14,9 +14,12 @@ def add_to_cart(request, id):
     """Add a quantity of the specified product to the cart"""
     quantity = 1
     cart = request.session.get('cart', {})
-    cart[id] = cart.get(id, quantity)
-    request.session['cart'] = cart
-    messages.success(request, "Feature successfully added to cart", extra_tags="alert-success")
+    if id in cart.keys():
+        messages.error(request, "This feature is already in your cart!", extra_tags="alert-danger")
+    else:
+        cart[id] = cart.get(id, quantity)
+        request.session['cart'] = cart
+        messages.success(request, "Feature successfully added to cart", extra_tags="alert-success")
     return redirect('view_features')
 
 @login_required()
