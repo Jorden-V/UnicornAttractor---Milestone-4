@@ -57,10 +57,8 @@ def checkout(request):
                 request.session['cart'] = {}
                 return redirect(reverse('view_features'))
             else:
-                print(payment_form.errors)
                 messages.error(request, "Unable to take payment", extra_tags="alert-danger")
         else:
-            print(payment_form.errors)
             messages.error(request, "We were unable to take a payment with that card!", extra_tags="alert-primary")
     else:
         payment_form = MakePaymentForm()

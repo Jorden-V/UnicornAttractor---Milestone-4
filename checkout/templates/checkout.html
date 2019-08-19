@@ -1,6 +1,15 @@
 {% extends "base.html" %} 
 {% load static from staticfiles %} 
 {% load bootstrap_tags %}
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
 {% block content %}
 
 <section class="container">
@@ -48,7 +57,7 @@
         <legend>Payment Details</legend>
 
         <div id="credit-card-errors" style="display: none;">
-            <div id="alert-message block-message error" id="stripe-error-message"></div>
+            <div id="alert-message block-message alert-danger" id="stripe-error-message"></div>
             <div id="alert-message block-message success" id="stripe-success-message"></div>
         </div>
 
@@ -74,12 +83,4 @@
 </section>
 
 {% endblock %}
-{% block head_js %}
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-    //<![CDATA[
-    Stripe.publishableKey = '{{ publishable }}';
-    //]]>
-</script>
-<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-{% endblock %}
+
