@@ -57,28 +57,44 @@ def upvote_bug(request, pk):
 
 @login_required
 def add_or_edit_bug(request, pk=None):
-    """
-    Create a view that allows us to create or edit a bug
-    depending if the PostID is null or not
-    """
-    bug =  get_object_or_404(Bug, pk=pk) if pk else None
-    
-    if request.method == "POST":
-        form = CreateBugForm(request.POST, instance=bug)
-        
-        
-        if form.is_valid():
-            bug = form.save(commit=False)
-            bug.author = request.user
-            bug.save()
-            return redirect(bug_detail, bug.pk)
-            
+    bug = get_object_or_404(Bug, pk=pk) if pk else None
+    if bug is not None:
+        author = bug.author
+        if author == request.user:
+            if request.method == "POST":
+                form = CreateBugForm(request.POST, instance=bug)
+
+                if form.is_valid():
+                    bug = form.save(commit=False)
+                    bug.author = request.user
+                    bug.save()
+                    return redirect(bug_detail, bug.pk)
+            else:
+                form = CreateBugForm(instance=bug)
+            return render(request, 'create_bug.html', {'form': form})
+        else:
+            messages.error(request, "This is not yours to edit!", extra_tags="alert-danger")
+            return redirect(reverse('index'))
     else:
-        form = CreateBugForm(instance=bug)
-    return render(request, 'create_bug.html', {'form':form})
+        if request.method == "POST":
+            form = CreateBugForm(request.POST)
+            if form.is_valid():
+                bug = form.save(commit=False)
+                bug.author = request.user
+                bug.save()
+                return redirect(reverse('view_bugs'))
+        else:
+            form = CreateBugForm()
+        return render(request, 'create_bug.html', {'form': form})
+
 
 @login_required
 def delete_bug(request, pk):
-     bug =  get_object_or_404(Bug, pk=pk) 
-     bug.delete()
-     return redirect('profile')
+    bug =  get_object_or_404(Bug, pk=pk)
+    author = bug.author
+    if author == request.user:
+        bug.delete()
+    else:
+        messages.error(request, "This is not yours to delete!", extra_tags="alert-danger")
+        return redirect(reverse('index'))
+    return redirect('profile')
