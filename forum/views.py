@@ -52,30 +52,44 @@ def upvote_post(request, pk):
         messages.success(request, "Your vote has been accepted!", extra_tags="alert-success")
     return redirect('view_posts')
     
-@login_required()        
 def add_or_edit_post(request, pk=None):
-    """
-    Create a view that allows us to create or edit a post
-    depending if the PostID is null or not
-    """
-    post =  get_object_or_404(ForumPost, pk=pk) if pk else None
-    
-    if request.method == "POST":
-        form = ForumPostForm(request.POST, instance=post)
-        
-        
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect(post_detail, post.pk)
-            
+    post = get_object_or_404(ForumPost, pk=pk) if pk else None
+    if post is not None:
+        author = post.author
+        if author == request.user:
+            if request.method == "POST":
+                form = ForumPostForm(request.POST, instance=post)
+
+                if form.is_valid():
+                    post = form.save(commit=False)
+                    post.author = request.user
+                    post.save()
+                    return redirect(post_detail, post.pk)
+            else:
+                form = ForumPostForm(instance=post)
+            return render(request, 'create_post.html', {'form': form})
+        else:
+            messages.error(request, "This is not yours to edit!", extra_tags="alert-danger")
+            return redirect(reverse('index'))
     else:
-        form = ForumPostForm(instance=post)
-    return render(request, 'create_post.html', {'form':form})
+        if request.method == "POST":
+            form = ForumPostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.save()
+                return redirect(reverse('view_posts'))
+        else:
+            form = ForumPostForm()
+        return render(request, 'create_post.html', {'form': form})
 
 @login_required()    
 def delete_post(request, pk):
-     post =  get_object_or_404(ForumPost, pk=pk) 
-     post.delete()
-     return redirect('profile')
+    post =  get_object_or_404(ForumPost, pk=pk) 
+    author = post.author
+    if author == request.user:
+        post.delete()
+    else:
+        messages.error(request, "This is not yours to delete!", extra_tags="alert-danger")
+        return redirect(reverse('index'))
+    return redirect('profile')
