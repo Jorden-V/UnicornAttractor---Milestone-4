@@ -56,6 +56,7 @@ def upvote_bug(request, pk):
     return redirect('view_bugs')
 
 @login_required
+
 def add_or_edit_bug(request, pk=None):
     bug = get_object_or_404(Bug, pk=pk) if pk else None
     if bug is not None:

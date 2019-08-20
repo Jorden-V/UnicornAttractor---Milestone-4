@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Feature, FeatureComment
 from .forms import CreateFeatureForm, FeatureCommentForm
 
@@ -37,30 +38,46 @@ def feature_detail(request, pk):
         feature.save()
         return render(request, 'feature_detail.html', {'feature':feature, 'comments':comments, 'comments_total':comments_total, 'form':form})
         
-@login_required()
+@login_required
+
 def add_or_edit_feature(request, pk=None):
-    """
-    Create a view that allows us to create or edit a bug
-    depending if the PostID is null or not
-    """
-    feature =  get_object_or_404(Feature, pk=pk) if pk else None
-    
-    if request.method == "POST":
-        form = CreateFeatureForm(request.POST, instance=feature)
-        
-        
-        if form.is_valid():
-            feature = form.save(commit=False)
-            feature.author = request.user
-            feature.save()
-            return redirect(feature_detail, feature.pk)
-            
+    feature = get_object_or_404(Feature, pk=pk) if pk else None
+    if feature is not None:
+        author = feature.author
+        if author == request.user:
+            if request.method == "POST":
+                form = CreateFeatureForm(request.POST, instance=feature)
+
+                if form.is_valid():
+                    feature = form.save(commit=False)
+                    feature.author = request.user
+                    feature.save()
+                    return redirect(feature_detail, feature.pk)
+            else:
+                form = CreateFeatureForm(instance=feature)
+            return render(request, 'create_feature.html', {'form': form})
+        else:
+            messages.error(request, "This is not yours to edit!", extra_tags="alert-danger")
+            return redirect(reverse('index'))
     else:
-        form = CreateFeatureForm(instance=feature)
-    return render(request, 'create_feature.html', {'form':form})
+        if request.method == "POST":
+            form = CreateFeatureForm(request.POST)
+            if form.is_valid():
+                feature = form.save(commit=False)
+                feature.author = request.user
+                feature.save()
+                return redirect(reverse('view_features'))
+        else:
+            form = CreateFeatureForm()
+        return render(request, 'create_feature.html', {'form': form})
 
 @login_required()
 def delete_feature(request, pk):
-     feature =  get_object_or_404(Feature, pk=pk) 
-     feature.delete()
-     return redirect('profile')
+    feature =  get_object_or_404(Feature, pk=pk)
+    author = feature.author
+    if author == request.user:
+        feature.delete()
+    else:
+        messages.error(request, "This is not yours to delete!", extra_tags="alert-danger")
+        return redirect(reverse('index'))
+    return redirect('profile')
