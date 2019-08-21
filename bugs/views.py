@@ -3,12 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Bug, BugComment, BugUpvote
 from .forms import CreateBugForm, BugCommentForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
 def view_bugs(request):
     bugs = Bug.objects.all().order_by('-id')
+    paginator = Paginator(bugs, 5) # Show 5 bugs per page
+    
+    page = request.GET.get('page')
+    try:
+        bugs = paginator.page(page)
+    except PageNotAnInteger:
+        bugs = paginator.page(1)
+    except EmptyPage:
+        bugs = paginator.page(paginator.num_pages)
+
     return render(request, "bugs.html", {"bugs": bugs})
+    
     
 def view_completed_bugs(request):
     bugs = Bug.objects.all().order_by('-id')

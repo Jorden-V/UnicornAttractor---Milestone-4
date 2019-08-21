@@ -45,11 +45,23 @@
       <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
     </div>
   </div>
-  {% else %}
-  {% endif %}
-  {% endfor %}
+  {% else %} {% endif %} {% endfor %}
 
+  <div class="pagination">
+    <span class="step-links">
+        {% if bugs.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ bugs.previous_page_number }}">previous</a>
+        {% endif %}
 
-
+        <span class="current">
+            Page {{ bugs.number }} of {{ bugs.paginator.num_pages }}.
+        </span> {% if bugs.has_next %}
+    <a href="?page={{ bugs.next_page_number }}">next</a>
+    <a href="?page={{ bugs.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+  </div>
 </section>
+
+<br>
 {% endblock %}
