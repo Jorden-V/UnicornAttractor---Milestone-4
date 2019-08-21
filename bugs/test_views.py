@@ -15,6 +15,11 @@ class TestViews(TestCase):
         page = self.client.get("/view_bugs/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "bugs.html")
+        
+    def test_get_bugs_complete_page(self):
+        page = self.client.get("/view_bugs/complete_bugs")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "completed_bugs.html")
 
     def test_get_bug_details_page(self):
         user = User.objects.get(username="test")

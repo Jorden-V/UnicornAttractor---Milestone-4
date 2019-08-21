@@ -28,7 +28,7 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "create_post.html")
         
-    def test_get_edit_bug_page(self):
+    def test_get_edit_post_page(self):
         user = User.objects.get(username="test")
         post = ForumPost (name="Create a Test", desc="description", author_id=user.id)
         post.save()
