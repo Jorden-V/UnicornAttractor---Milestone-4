@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block content %}
+{% extends 'base.html' %} {% block page_title %} Cart {% endblock %} {% load static from staticfiles %} {% load bootstrap_tags %} {% block content %}
 <section class="container">
     <div class="profile-submit-buttons">
         <h1> Cart: </h1>
@@ -35,7 +35,7 @@
         <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% else %}
         <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a> {% endif %}
     </div>
-    </div>
+
 </section>
 
 {% endblock %}

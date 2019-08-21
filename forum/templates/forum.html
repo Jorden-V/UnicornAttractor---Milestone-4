@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% load bootstrap_tags %}
+{% extends 'base.html' %} {% block page_title %} Forum {% endblock %} {% block content %} {% load bootstrap_tags %}
 
 <div class="parallax-forum">
   <section class="container main-message">
@@ -22,19 +22,33 @@
       <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
     </div>
     <div class="card-footer text-muted">
-      <i class="far fa-eye"> {{ post.views }} </i>
-      {% if user.is_authenticated %}
+      <i class="far fa-eye"> {{ post.views }} </i> {% if user.is_authenticated %}
       <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %}
-      <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i></a>
-      {% else %}
+      <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i></a> {% else %}
       <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
-      <i class="far fa-comment"> ({{ post.comment_number }}) </i>
-      {% endif %}
+      <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
       <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
     </div>
   </div>
   {% endfor %}
 
+  <div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span> {% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}">next</a>
+    <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </span>
+  </div>
+
 </section>
+
+<br>
 
 {% endblock %}

@@ -3,14 +3,33 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Feature, FeatureComment
 from .forms import CreateFeatureForm, FeatureCommentForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def view_features(request):
     features = Feature.objects.all().order_by('-id')
+    paginator = Paginator(features, 5) # Show 5 features per page
+    
+    page = request.GET.get('page')
+    try:
+        features = paginator.page(page)
+    except PageNotAnInteger:
+        features = paginator.page(1)
+    except EmptyPage:
+        features = paginator.page(paginator.num_pages)
     return render(request, "features.html", {"features": features})
     
 def view_completed_features(request):
     features = Feature.objects.all().order_by('-id')
+    paginator = Paginator(features, 5) # Show 5 features per page
+    
+    page = request.GET.get('page')
+    try:
+        features = paginator.page(page)
+    except PageNotAnInteger:
+        features = paginator.page(1)
+    except EmptyPage:
+        features = paginator.page(paginator.num_pages)
     return render(request, "completed_features.html", {"features": features})
 
 def feature_detail(request, pk):

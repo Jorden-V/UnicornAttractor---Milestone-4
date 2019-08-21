@@ -24,6 +24,16 @@ def view_bugs(request):
     
 def view_completed_bugs(request):
     bugs = Bug.objects.all().order_by('-id')
+    
+    paginator = Paginator(bugs, 5) # Show 5 bugs per page
+    
+    page = request.GET.get('page')
+    try:
+        bugs = paginator.page(page)
+    except PageNotAnInteger:
+        bugs = paginator.page(1)
+    except EmptyPage:
+        bugs = paginator.page(paginator.num_pages)
     return render(request, "completed_bugs.html", {"bugs": bugs})
     
 

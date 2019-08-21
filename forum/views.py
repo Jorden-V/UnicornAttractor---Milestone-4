@@ -3,9 +3,20 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import ForumPost, ForumComment, ForumPostUpvote
 from .forms import ForumPostForm, ForumCommentForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def view_posts(request):
     posts = ForumPost.objects.all()
+    
+    paginator = Paginator(posts, 5) # Show 5 posts per page
+    
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     return render(request, "forum.html", {"posts": posts})
 
 def post_detail(request, pk):
