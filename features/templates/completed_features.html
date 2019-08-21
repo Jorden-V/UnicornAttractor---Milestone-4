@@ -12,12 +12,9 @@
     <div class="profile-submit-buttons">
       <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"> Submit Feature</button></a>
     </div>
-    <div class="profile-submit-buttons">
-      <a href="{% url 'view_completed_features' %}"><button type="button" class="btn btn-primary"> Completed Features</button></a>
-    </div>
   </div>
 
-  {% for feature in features %} {% if feature.status == "To do" or feature.status == "In progress" %}
+  {% for feature in features %} {% if feature.status == "Done"%}
   <div class="card mb-3">
     <div class="card-header"><strong>{{feature.name|truncatewords:"5"}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
     <div class="progress">

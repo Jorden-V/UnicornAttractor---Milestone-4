@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^new/$', add_or_edit_bug, name='new_bug'),
     url(r'^(?P<pk>\d+)/edit/$', add_or_edit_bug, name="edit_bug"),
     url(r'^(?P<pk>\d+)/delete/$', delete_bug, name="delete_bug"),
-    url(r'^complete_bugs$', view_completed_bugs, name='view_completed_bugs')
+    url(r'//^$', view_completed_bugs, name='view_completed_bugs')
     ]

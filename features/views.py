@@ -8,6 +8,10 @@ from .forms import CreateFeatureForm, FeatureCommentForm
 def view_features(request):
     features = Feature.objects.all().order_by('-id')
     return render(request, "features.html", {"features": features})
+    
+def view_completed_features(request):
+    features = Feature.objects.all().order_by('-id')
+    return render(request, "completed_features.html", {"features": features})
 
 def feature_detail(request, pk):
     """
