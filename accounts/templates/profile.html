@@ -47,7 +47,7 @@
                     <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
                     <a href="{% url 'bug_detail' bug.id %}"><button type="button" class="btn btn-primary">View</button>
                     <a href="{% url 'edit_bug' bug.id %}"><button type="button" class="btn btn-primary"> Edit </button>
-                    <a href="{% url 'delete_bug' bug.id %}"><button type="button" class="btn btn-primary">Delete</button>
+                    <a href="{% url 'delete_bug' bug.id %}"><button type="button" class="btn btn-primary">Delete</button></a>
                 </div>
             </div>
             {% endfor %} {% else %}

@@ -13,7 +13,8 @@
       <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"> Submit Feature</button></a>
     </div>
   </div>
-  {% for feature in features %}
+
+  {% for feature in features %} {% if feature.status == "To do" or feature.status == "In progress" %}
   <div class="card mb-3">
     <div class="card-header"><strong>{{feature.name|truncatewords:"5"}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
     <div class="progress">
@@ -53,7 +54,7 @@
           <p> Each feature you upvote comes with a £5 charge.</p>
           <p> If you wish to continue click the upvote button.</p>
           <p>The feature will then be added to your cart where you can checkout at your convenience.</p>
-          
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -63,7 +64,9 @@
     </div>
   </div>
 
-  {% endfor %}
+  {% else %}
+ 
+  {% endif %} {% endfor %}
 
 
 

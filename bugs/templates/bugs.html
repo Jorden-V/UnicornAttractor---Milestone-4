@@ -15,7 +15,7 @@
   </div>
 
 
-  {% for bug in bugs %}
+  {% for bug in bugs %} {% if bug.status == "To do" or bug.status == "In progress" %}
   <div class="card mb-3">
     <div class="card-header"><strong>{{bug.name|truncatewords:"5"}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
     <div class="progress">
@@ -42,7 +42,10 @@
       <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
     </div>
   </div>
-{% endfor %}
+  {% else %}
+  {% endif %}
+  {% endfor %}
+
 
 
 </section>
