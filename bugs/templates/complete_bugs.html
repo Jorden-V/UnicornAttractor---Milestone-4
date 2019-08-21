@@ -2,7 +2,7 @@
 <div class="parallax-bugs">
   <section class="container main-message">
     <div class="jumbotron">
-      <h1 class="display-4">View, submit and discuss bugs below</h1>
+      <h1 class="display-4">Completed Bugs</h1>
     </div>
   </section>
 </div>
@@ -12,13 +12,10 @@
     <div class="profile-submit-buttons">
       <a href="{% url 'new_bug' %}"><button type="button" class="btn btn-primary"> Submit Bug</button></a>
     </div>
-    <div class="profile-submit-buttons">
-      <a href="{% url 'view_completed_bugs' %}"><button type="button" class="btn btn-primary"> Completed Bugs</button></a>
-    </div>
   </div>
 
 
-  {% for bug in bugs %} {% if bug.status == "To do" or bug.status == "In progress" %}
+  {% for bug in bugs %} {% if bug.status == "Done"%}
   <div class="card mb-3">
     <div class="card-header"><strong>{{bug.name|truncatewords:"5"}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
     <div class="progress">

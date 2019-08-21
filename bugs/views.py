@@ -10,6 +10,10 @@ def view_bugs(request):
     bugs = Bug.objects.all().order_by('-id')
     return render(request, "bugs.html", {"bugs": bugs})
     
+def view_completed_bugs(request):
+    bugs = Bug.objects.all().order_by('-id')
+    return render(request, "completed_bugs.html", {"bugs": bugs})
+    
 
 def bug_detail(request, pk):
     """
