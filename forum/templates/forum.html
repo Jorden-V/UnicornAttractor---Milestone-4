@@ -16,7 +16,7 @@
   </div>
   {% for post in posts %}
   <div class="card mb-3">
-    <h3 class="card-header">{{post.name}}</h3>
+    <h3 class="card-header">{{post.name|truncatewords:"5"}}</h3>
     <div class="card-body">
       <p class="card-text">{{post.desc}}</p>
       <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
