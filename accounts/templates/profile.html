@@ -40,14 +40,11 @@
                     <h6 class="card-subtitle text-muted">Author: {{ bug.author }} </h6>
                 </div>
                 <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ bug.views }} </i> 
-                    {% if user.is_authenticated %}
+                    <i class="far fa-eye"> {{ bug.views }} </i> {% if user.is_authenticated %}
                     <a href="{% url 'upvote_bug' bug.id %}"> <i class="fas fa-arrow-up"> {{bug.upvotes}} </i></a> {% csrf_token %}
-                    <a href="{% url 'bug_detail' bug.id %}"><i class="far fa-comment"> ({{ bug.comment_number }}) </i> </a> 
-                    {% else %}
+                    <a href="{% url 'bug_detail' bug.id %}"><i class="far fa-comment"> ({{ bug.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{bug.upvotes}} </i>
-                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i> 
-                    {% endif %}
+                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
                     <a href="{% url 'bug_detail' bug.id %}"><button type="button" class="btn btn-primary">View</button>
                     <a href="{% url 'edit_bug' bug.id %}"><button type="button" class="btn btn-primary"> Edit </button>
                     <a href="{% url 'delete_bug' bug.id %}"><button type="button" class="btn btn-primary">Delete</button>
@@ -81,17 +78,38 @@
                 <div class="card-footer text-muted">
                     <i class="far fa-eye"> {{ feature.views }} </i>
                     {% if user.is_authenticated %}
-                    <a href="{% url 'add_to_cart' feature.id %}"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
-                    <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i> </a> 
-                    {% else %}
+                    <a href="{% url 'add_to_cart' feature.id %}" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
+                    <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
-                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i> 
-                    {% endif %}
+                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
                     <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                     <a class="btn btn btn-primary" href="{% url 'edit_feature' feature.id %}" role="button">Edit</a>
                     <a class="btn btn btn-primary" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
                 </div>
             </div>
+
+            <div class="modal" id="exampleModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Feature: {{feature.name|truncatewords:"4"}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Thank you for chosing to upvote this feature.</p>
+                            <p> Each feature you upvote comes with a £5 charge.</p>
+                            <p> If you wish to continue click the upvote button.</p>
+                            <p>The feature will then be added to your cart where you can checkout at your convenience.</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <a href="{% url 'add_to_cart' feature.id %}"><button type="button" class="btn btn-primary">Upvote</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {% endfor %} {% else %}
             <div class="card mb-3">
                 <h3 class="card-header">Oops! You have not submitted any features yet!</h3>
@@ -107,11 +125,9 @@
                     <h6 class="card-subtitle text-muted">Author: {{ post.author }} </h6>
                 </div>
                 <div class="card-footer text-muted">
-                    <i class="far fa-eye"> {{ post.views }} </i> 
-                    {% if user.is_authenticated %}
+                    <i class="far fa-eye"> {{ post.views }} </i> {% if user.is_authenticated %}
                     <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %}
-                    <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i> </a> 
-                    {% else %}
+                    <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
                     <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
                     <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
