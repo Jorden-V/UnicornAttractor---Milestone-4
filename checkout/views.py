@@ -34,7 +34,7 @@ def checkout(request):
                     quantity=quantity
                 )
                 order_line_item.save()
-            
+
             try:
                 customer = stripe.Charge.create(
                     amount=int(total * 100),
@@ -43,10 +43,16 @@ def checkout(request):
                     card=payment_form.cleaned_data['stripe_id']
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!", extra_tags="alert-danger")
-            
+                messages.error(
+                    request,
+                    "Your card was declined!",
+                    extra_tags="alert-danger")
+
             if customer.paid:
-                messages.success(request, "You have successfully paid", extra_tags="alert-success")
+                messages.success(
+                    request,
+                    "You have successfully paid",
+                    extra_tags="alert-success")
                 upvote_list = []
                 for id, quantity in cart.items():
                     upvote_list.append(id)
@@ -57,11 +63,21 @@ def checkout(request):
                 request.session['cart'] = {}
                 return redirect(reverse('view_features'))
             else:
-                messages.error(request, "Unable to take payment", extra_tags="alert-danger")
+                messages.error(
+                    request,
+                    "Unable to take payment",
+                    extra_tags="alert-danger")
         else:
-            messages.error(request, "We were unable to take a payment with that card!", extra_tags="alert-primary")
+            messages.error(
+                request,
+                "We were unable to take a payment with that card!",
+                extra_tags="alert-primary")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
-    
-    return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
+
+    return render(request,
+                  "checkout.html",
+                  {"order_form": order_form,
+                   "payment_form": payment_form,
+                   "publishable": settings.STRIPE_PUBLISHABLE})
