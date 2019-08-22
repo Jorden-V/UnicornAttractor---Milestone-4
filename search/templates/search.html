@@ -30,7 +30,7 @@
             <div class="card mb-3">
                 <h3 class="card-header">No search results found</h3>
             </div>
-            {% else %} {% for bug in bugs %}
+            {% else %} {% for bug in bugs %} {% if bug.status == "To do" or bug.status == "In progress" or bug.status == "Done" %}
             <div class="card mb-3">
                 <div class="card-header"><strong>{{bug.name|truncatewords:"5"}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
                 <div class="progress">
@@ -60,7 +60,8 @@
                     <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
-            {% endfor %} {% for feature in features %}
+            {% endif %}
+            {% endfor %} {% for feature in features %} {% if feature.status == "To do" or feature.status == "In progress" or feature.status == "Done" %}
             <div class="card mb-3">
                 <div class="card-header"><strong>{{feature.name|truncatewords:"5"}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
                 <div class="card-body">
@@ -112,7 +113,7 @@
                     </div>
                 </div>
             </div>
-            
+            {% endif %}
             {% endfor %}{% for post in posts %}
             <div class="card mb-3">
                 <div class="card-header"><strong>{{post.name|truncatewords:"5"}}</strong><span class="card-link"> {{ post.created_date }} </span></div>
@@ -135,7 +136,7 @@
             {% endfor %} {% endif %}
         </div>
         <div class="tab-pane fade show" id="bugs">
-            {% if bugs %} {% for bug in bugs %}
+            {% if bugs %} {% for bug in bugs %} {% if bug.status == "To do" or bug.status == "In progress" or bug.status == "Done" %}
             <div class="card mb-3">
                 <div class="card-header"><strong>{{bug.name|truncatewords:"5"}}</strong><span class="card-link"> {{ bug.created_date }} </span></div>
                 <div class="card-body">
@@ -165,6 +166,7 @@
                     <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
+            {% endif %}
             {% endfor %} {% else %}
             <div class="card mb-3">
                 <h3 class="card-header">No search results found</h3>
@@ -172,7 +174,7 @@
             {% endif %}
         </div>
         <div class="tab-pane fade" id="features">
-            {% if features %} {% for feature in features %}
+            {% if features %} {% for feature in features %} {% if feature.status == "To do" or feature.status == "In progress" or feature.status == "Done" %}
             <div class="card mb-3">
                 <div class="card-header"><strong>{{feature.name|truncatewords:"5"}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
                 <div class="card-body">
@@ -224,7 +226,7 @@
                     </div>
                 </div>
             </div>
-            
+            {% endif %}
             {% endfor %} {% else %}
             <div class="card mb-3">
                 <h3 class="card-header">No search results found</h3>
