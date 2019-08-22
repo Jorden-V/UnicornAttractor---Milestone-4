@@ -4,17 +4,17 @@ from features.models import Feature
 from pygal.style import Style
 
 custom_style = Style(
-    background = 'transparent',
-    plot_background = 'transparent',
-    font_family = 'Roboto',
-    legend_font_size = 25,
-    value_font_size=25, 
+    background='transparent',
+    plot_background='transparent',
+    font_family='Roboto',
+    legend_font_size=25,
+    value_font_size=25,
     label_font_size=25,
     major_label_font_size=25,
     colors=('#072F5F', '#1261A0', '#2780E3', '#3895D3', '#58CCED'))
 
+
 def bug_bar_chart():
-    
     """A bar chart showing the 5 most upvoted bugs in descending order"""
 
     bugs = Bug.objects.order_by('-upvotes')[:5]
@@ -30,15 +30,15 @@ def bug_bar_chart():
 
     return bar_chart.render()
 
+
 def BugBarChart():
-    
     """Enable importing the graph into a view"""
-    
+
     chart = bug_bar_chart()
     return chart
-    
+
+
 def feature_bar_chart():
-    
     """A bar chart showing the 5 most upvoted bugs in descending order"""
 
     features = Feature.objects.order_by('-upvotes')[:5]
@@ -54,15 +54,15 @@ def feature_bar_chart():
 
     return bar_chart.render()
 
+
 def FeatureBarChart():
-    
     """Enable importing the graph into a view"""
-    
+
     chart = feature_bar_chart()
     return chart
-    
+
+
 def bug_pie_chart():
-    
     """A pie chart showing the status of bugs"""
 
     todo = Bug.objects.filter(status='To do').count()
@@ -70,7 +70,7 @@ def bug_pie_chart():
     done = Bug.objects.filter(status='Done').count()
     cancelled = Bug.objects.filter(status='Cancelled').count()
     p_chart = pygal.Pie(
-        print_values=True, 
+        print_values=True,
         style=custom_style,
     )
 
@@ -80,15 +80,15 @@ def bug_pie_chart():
     p_chart.add('Cancelled', cancelled)
     return p_chart.render()
 
+
 def BugPieChart():
-    
     """Enable importing the graph into a view"""
-    
+
     chart = bug_pie_chart()
     return chart
-    
+
+
 def feature_pie_chart():
-    
     """A pie chart showing the status of features"""
 
     todo = Feature.objects.filter(status='To do').count()
@@ -106,9 +106,9 @@ def feature_pie_chart():
     p_chart.add('Cancelled', cancelled)
     return p_chart.render()
 
+
 def FeaturePieChart():
-    
     """Enable importing the graph into a view"""
-    
+
     chart = feature_pie_chart()
-    return chart 
+    return chart
