@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_features(request):
-    features = Feature.objects.all().order_by('-id')
+    features = Feature.objects.all().order_by('-id').exclude(status='Cancelled').exclude(status="Done")
     paginator = Paginator(features, 5)  # Show 5 features per page
 
     page = request.GET.get('page')
@@ -23,7 +23,7 @@ def view_features(request):
 
 
 def view_completed_features(request):
-    features = Feature.objects.all().order_by('-id')
+    features = Feature.objects.all().order_by('-id').filter(status='Done')
     paginator = Paginator(features, 5)  # Show 5 features per page
 
     page = request.GET.get('page')

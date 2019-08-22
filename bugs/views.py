@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_bugs(request):
-    bugs = Bug.objects.all().order_by('-id')
+    bugs = Bug.objects.all().order_by('-id').exclude(status='Cancelled').exclude(status="Done")
     paginator = Paginator(bugs, 5)  # Show 5 bugs per page
 
     page = request.GET.get('page')
@@ -24,7 +24,7 @@ def view_bugs(request):
 
 
 def view_completed_bugs(request):
-    bugs = Bug.objects.all().order_by('-id')
+    bugs = Bug.objects.all().order_by('-id').filter(status='Done')
 
     paginator = Paginator(bugs, 5)  # Show 5 bugs per page
 

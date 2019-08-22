@@ -17,19 +17,11 @@
     </div>
   </div>
 
-  {% for feature in features %} {% if feature.status == "Done"%}
+  {% for feature in features %}
   <div class="card mb-3">
     <div class="card-header"><strong>{{feature.name|truncatewords:"5"}}</strong><span class="card-link"> {{ feature.created_date }} </span></div>
     <div class="progress">
-      {% if feature.status == "To do" %}
-      <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"> To Do</div>
-      {% elif feature.status == "In progress" %}
-      <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> In Progess</div>
-      {% elif feature.status == "Cancelled" %}
-      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Cancelled</div>
-      {% else %}
       <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Complete</div>
-      {% endif %}
     </div>
     <div class="card-body">
       <p class="card-text">{{feature.desc }}</p>
@@ -66,8 +58,7 @@
       </div>
     </div>
   </div>
-
-  {% else %} {% endif %} {% endfor %}
+ {% endfor %}
 
   <div class="pagination">
     <span class="step-links">
