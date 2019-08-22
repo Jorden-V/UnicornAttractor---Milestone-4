@@ -122,6 +122,15 @@ footer a:hover {
     background-size: cover;
 }
 
+.parallax-archive {
+    background-image: url("/static/img/archive.jpeg");
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*------------------------ Index ----------------------------------*/
 
 .home-title {
