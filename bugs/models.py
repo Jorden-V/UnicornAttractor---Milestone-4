@@ -9,10 +9,13 @@ class Bug(models.Model):
     desc = models.TextField(max_length=500, blank=False)
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
-    author = models.ForeignKey(User, related_name='created_by', on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        User,
+        related_name='created_by',
+        on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     comment_number = models.IntegerField(default=0)
-    
+
     STATUS_CHOICES = (
         ('To do', 'To do'),
         ('In progress', 'In progress'),
@@ -27,16 +30,18 @@ class Bug(models.Model):
 
     def __str__(self):
         return self.name
-        
+
+
 class BugComment(models.Model):
     description = models.TextField(max_length=256, blank=False)
     bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
     created_date = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.description
-        
+
+
 class BugUpvote(models.Model):
     """
     Model to upvote a bug
@@ -45,4 +50,4 @@ class BugUpvote(models.Model):
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.bug.title 
+        return self.bug.title
