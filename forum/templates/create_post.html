@@ -7,7 +7,7 @@
     <h3>Submit your post below</h3>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form | as_bootstrap }}
-        <button type="submit" class="btn btn-info">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 

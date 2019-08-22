@@ -37,7 +37,7 @@
       <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i></a> {% else %}
       <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
       <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
-      <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+      <a class="btn btn-primary buttons-right" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
     </div>
   </div>
 

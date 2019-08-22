@@ -50,7 +50,7 @@
                     <a href="{% url 'bug_detail' bug.id %}"><i class="far fa-comment"> ({{ bug.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{bug.upvotes}} </i>
                     <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
-                    <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary buttons-right" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% for feature in features %}
@@ -73,7 +73,7 @@
                     <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i></a> {% else %}
                     <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
                     <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
-                    <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+                    <a class="btn btn-primary buttons-right" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                 </div>
             </div>
 
@@ -111,7 +111,7 @@
                     <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
                     <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
-                    <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary buttons-right" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% endif %}
@@ -137,7 +137,7 @@
                     <a href="{% url 'bug_detail' bug.id %}"><i class="far fa-comment"> ({{ bug.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{bug.upvotes}} </i>
                     <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
-                    <a class="btn btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary buttons-right" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% else %}
@@ -167,7 +167,7 @@
                     <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
                     <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
-                    <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+                    <a class="btn btn-primary buttons-right" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                 </div>
             </div>
 
@@ -212,7 +212,7 @@
                     <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i> </a> {% else %}
                     <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
                     <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
-                    <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                    <a class="btn btn btn-primary buttons-right" href="{% url 'post_detail' post.id %}" role="button">View</a>
                 </div>
             </div>
             {% endfor %} {% else %}

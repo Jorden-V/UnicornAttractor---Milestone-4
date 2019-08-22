@@ -198,6 +198,10 @@ footer a:hover {
     float: right;
 }
 
+.buttons-right{
+    float:right;
+}
+
 .comments {
     margin-left: 3px;
 }
