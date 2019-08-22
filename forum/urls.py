@@ -8,4 +8,4 @@ urlpatterns = [
     url(r'^new/$', add_or_edit_post, name='new_post'),
     url(r'^(?P<pk>\d+)/edit/$', add_or_edit_post, name="edit_post"),
     url(r'^(?P<pk>\d+)/delete/$', delete_post, name="delete_post")
-    ]
+]
