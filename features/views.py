@@ -6,10 +6,12 @@ from .forms import CreateFeatureForm, FeatureCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
+
+
 def view_features(request):
     features = Feature.objects.all().order_by('-id')
-    paginator = Paginator(features, 5) # Show 5 features per page
-    
+    paginator = Paginator(features, 5)  # Show 5 features per page
+
     page = request.GET.get('page')
     try:
         features = paginator.page(page)
@@ -18,11 +20,12 @@ def view_features(request):
     except EmptyPage:
         features = paginator.page(paginator.num_pages)
     return render(request, "features.html", {"features": features})
-    
+
+
 def view_completed_features(request):
     features = Feature.objects.all().order_by('-id')
-    paginator = Paginator(features, 5) # Show 5 features per page
-    
+    paginator = Paginator(features, 5)  # Show 5 features per page
+
     page = request.GET.get('page')
     try:
         features = paginator.page(page)
@@ -31,6 +34,7 @@ def view_completed_features(request):
     except EmptyPage:
         features = paginator.page(paginator.num_pages)
     return render(request, "completed_features.html", {"features": features})
+
 
 def feature_detail(request, pk):
     """
@@ -41,9 +45,9 @@ def feature_detail(request, pk):
     """
     feature = get_object_or_404(Feature, pk=pk)
     if request.method == "POST":
-        
+
         form = FeatureCommentForm(request.POST)
-        
+
         if form.is_valid():
             featureComment = form.save(commit=False)
             featureComment.feature = feature
@@ -52,17 +56,22 @@ def feature_detail(request, pk):
             feature.save()
             featureComment.save()
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
-            
+
     else:
         form = FeatureCommentForm()
         comments = FeatureComment.objects.filter(feature__pk=feature.pk)
         comments_total = len(comments)
         feature.views += 1
         feature.save()
-        return render(request, 'feature_detail.html', {'feature':feature, 'comments':comments, 'comments_total':comments_total, 'form':form})
-        
-@login_required
+        return render(request,
+                      'feature_detail.html',
+                      {'feature': feature,
+                       'comments': comments,
+                       'comments_total': comments_total,
+                       'form': form})
 
+
+@login_required
 def add_or_edit_feature(request, pk=None):
     feature = get_object_or_404(Feature, pk=pk) if pk else None
     if feature is not None:
@@ -80,7 +89,10 @@ def add_or_edit_feature(request, pk=None):
                 form = CreateFeatureForm(instance=feature)
             return render(request, 'create_feature.html', {'form': form})
         else:
-            messages.error(request, "This is not yours to edit!", extra_tags="alert-danger")
+            messages.error(
+                request,
+                "This is not yours to edit!",
+                extra_tags="alert-danger")
             return redirect(reverse('index'))
     else:
         if request.method == "POST":
@@ -94,13 +106,17 @@ def add_or_edit_feature(request, pk=None):
             form = CreateFeatureForm()
         return render(request, 'create_feature.html', {'form': form})
 
+
 @login_required()
 def delete_feature(request, pk):
-    feature =  get_object_or_404(Feature, pk=pk)
+    feature = get_object_or_404(Feature, pk=pk)
     author = feature.author
     if author == request.user:
         feature.delete()
     else:
-        messages.error(request, "This is not yours to delete!", extra_tags="alert-danger")
+        messages.error(
+            request,
+            "This is not yours to delete!",
+            extra_tags="alert-danger")
         return redirect(reverse('index'))
     return redirect('profile')

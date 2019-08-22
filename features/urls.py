@@ -8,4 +8,4 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/edit/$', add_or_edit_feature, name="edit_feature"),
     url(r'^(?P<pk>\d+)/delete/$', delete_feature, name="delete_feature"),
     url(r'^completed_features$', view_completed_features, name='view_completed_features'),
-    ]
+]
