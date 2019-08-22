@@ -36,5 +36,5 @@ urlpatterns = [
     url(r'^search/', include(urls_search)),
     url(r'^graphs/', include(urls_graphs)),
     url(r'^view_posts/', include(urls_posts))
-    
+
 ]
