@@ -35,7 +35,7 @@
                     <strong>Features</strong>
                 </div>
                 <div class="home-sub-text">
-                    Submit and review features for a small fee.
+                    Submit and review features for a small fee<a href="" data-toggle="modal" data-target="#exampleModal">*</a>.
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
@@ -69,6 +69,24 @@
             <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a> {% endif %}
         </div>
 
+    </div>
+
+    <div class="modal" id="exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Each feature you upvote comes with a £5 charge</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p> This is our way of ensuring only the most valued feature requests are being upvoted and gives us the ability to work on these new requests.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </section>
