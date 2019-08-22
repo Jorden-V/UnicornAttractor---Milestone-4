@@ -194,7 +194,7 @@ footer a:hover {
     font-size: 20px;
 }
 
-.card-footer .btn-primary {
+.card-footer .btn-primary .btn-danger {
     float: right;
 }
 
@@ -244,6 +244,10 @@ footer a:hover {
     padding-bottom: 20px;
 }
 
+.button-spacing{
+    margin-left:1px;
+}
+
 /*------------------------ profile  ----------------------------------*/
 
 .checkout-button {
@@ -255,6 +259,13 @@ footer a:hover {
 @media only screen and (min-width: 900px) {
     .breadcrumb {
         padding-left: 160px;
+    }
+
+}
+
+@media only screen and (max-width: 577px) {
+    .profile-buttons {
+        margin-top: 18px;
     }
 
 }
