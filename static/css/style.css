@@ -220,6 +220,18 @@ footer a:hover {
     margin-top: 20px;
 }
 
+.full-height {
+    height: 95%;
+}
+
+.cart-item-height{
+    height: 95%;
+}
+
+.total{
+    padding-top: 20px;
+}
+
 /*------------------------ profile  ----------------------------------*/
 
 .profile-submit-buttons {

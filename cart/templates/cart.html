@@ -6,7 +6,7 @@
     <div class="row">
         {% if cart_items %} {% for item in cart_items %}
         <div class="col-md-4">
-            <div class="card mb-3">
+            <div class="card mb-3 cart-item-height">
                 <h3 class="card-header">{{ item.feature.name|truncatechars:30 }}</h3>
                 <div class="card-body">
                     <p class="card-text">{{ item.feature.desc }}</p>
@@ -27,7 +27,7 @@
         </div>
         {% endif %}
     </div>
-    <div>
+    <div class="total">
         <h2>Total: £{{ total }}</h2>
     </div>
     <div class="checkout-button">
