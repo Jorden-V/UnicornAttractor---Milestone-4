@@ -7,19 +7,20 @@ from django.core.exceptions import ValidationError
 class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
-    
+
+
 class UserRegistrationForm(UserCreationForm):
     password1 = forms.CharField(
-        label="Password", 
+        label="Password",
         widget=forms.PasswordInput)
     password2 = forms.CharField(
         label="Password confirmation",
         widget=forms.PasswordInput)
-        
+
     class Meta:
         model = User
         fields = ['email', 'username', 'password1', 'password2']
-        
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
@@ -33,12 +34,13 @@ class UserRegistrationForm(UserCreationForm):
 
         if not password1 or not password2:
             raise ValidationError("Please confirm your password")
-        
+
         if password1 != password2:
             raise ValidationError("Passwords must match")
-        
+
         return password2
-        
+
+
 class ContactForm(forms.Form):
     name = forms.CharField(required=True)
     email = forms.EmailField(required=True)

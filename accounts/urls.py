@@ -9,5 +9,4 @@ urlpatterns = [
     url(r'^password-reset/', include(url_reset)),
     url(r'^profile/$', profile, name='profile'),
     url(r'^contact/', contact, name="contact"),
-    
 ]
