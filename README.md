@@ -98,6 +98,7 @@ In the future I would like to implement the below features.
 - The ability for users to visit other peoples profiles to see what they have posted, upvoted and commented on.
 - Some kind of reward system for active users who contribute consistently to the site. They would receive special badges etc.
 - User admins as well as site admins. These would be active users who constantly use the site who would have certain privileges above not users but below site admins.
+- A live chat feature for users to directly message with admins.
 
 ## Technologies Used
 
