@@ -72,6 +72,7 @@ def checkout(request):
                 request,
                 "We were unable to take a payment with that card!",
                 extra_tags="alert-primary")
+            print (messages.error)
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()

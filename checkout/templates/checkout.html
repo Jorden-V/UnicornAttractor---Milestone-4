@@ -2,15 +2,6 @@
 {% load static from staticfiles %} 
 {% block page_title %} Checkout {% endblock %}
 {% load bootstrap_tags %}
-{% block head_js %}
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-    //<![CDATA[
-    Stripe.publishableKey = '{{ publishable }}';
-    //]]>
-</script>
-<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
-{% endblock %}
 {% block content %}
 
 <section class="container">
@@ -57,9 +48,8 @@
     <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
         <legend>Payment Details</legend>
 
-        <div id="credit-card-errors" style="display: none;">
-            <div id="alert-message block-message alert-danger" id="stripe-error-message"></div>
-            <div id="alert-message block-message success" id="stripe-success-message"></div>
+        <div id="credit-card-errors" style="display:none">
+            <div id="alert-message block-message error" id="stripe-error-message"></div>
         </div>
 
         <div class="row">
@@ -83,5 +73,14 @@
 
 </section>
 
+{% endblock %}
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 
