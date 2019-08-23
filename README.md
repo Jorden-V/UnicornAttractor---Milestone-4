@@ -143,6 +143,18 @@ In the future I would like to implement the below features.
 
 - I used a number of automated tests in conjunction with coverage and manually tested the areas not covered. Below I have documented the manual tests.
 
+- Stripe payment testing. Please use the below information to test payments.
+1. Card number - 4242424242424242
+2. CVC - 111
+3. Expiry date - Any date in the future.
+
+1. Due to the below statement payments with be successful if a use provides a blank CVC. I have however added validation if a user was to enter an incorrect CVC.
+By default, passing address or CVC data with the card number causes the address and CVC checks to succeed. If this information isn't specified, the value of the checks is null. Any expiration date in the future is considered valid.
+You can also provide invalid card details to test specific error codes resulting from incorrect information being provided. For example:
+invalid_expiry_month: Use an invalid month (e.g., 13)
+invalid_expiry_year: Use a year in the past (e.g., 1970)
+invalid_cvc: Use a two digit number (e.g., 99).
+
 - Bugs, Features and Posts applications
 1. If comment form is valid, comment displays in detailed view and also increments comment count by 1 so i am able to display how many comments each item has.
 2. User is only able to upvote the same item once, if user attempts to upvote a second time an error message is displayed.
