@@ -1,8 +1,4 @@
-{% extends "base.html" %} 
-{% load static from staticfiles %} 
-{% block page_title %} Checkout {% endblock %}
-{% load bootstrap_tags %}
-{% block content %}
+{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %} {% block content %}
 
 <section class="container">
     <div class="row">
@@ -44,13 +40,8 @@
     </div>
     {% endif %}
 
-
     <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
         <legend>Payment Details</legend>
-
-        <div id="credit-card-errors" style="display:none">
-            <div id="alert-message block-message error" id="stripe-error-message"></div>
-        </div>
 
         <div class="row">
             <div class="form-group col-md-6">
@@ -61,20 +52,21 @@
                 {{ payment_form | as_bootstrap }} {% csrf_token %}
                 <div class="form-group col-md-12">
                     {% if cart_items%}
-                    <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
-                    {% else %}
-                    <button type="button" class="btn btn-danger disabled">Submit Payment</button>  
-                    {% endif %}
+                    <div>
+                        <div id="credit-card-errors" style="display:none">
+                            <div id="stripe-error-message"></div>
+                        </div>
+                        <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment"> {% else %}
+                        <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </form>
 
 </section>
 
-{% endblock %}
-{% block head_js %}
+{% endblock %} {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -83,4 +75,3 @@
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
-

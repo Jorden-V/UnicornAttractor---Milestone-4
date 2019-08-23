@@ -11,12 +11,13 @@ class MakePaymentForm(forms.Form):
     credit_card_number = forms.CharField(
         label='Credit card number',
         required=False,
-        min_length=15,
+        min_length=16,
         max_length=16)
     cvv = forms.CharField(
         label='Security code (CVV)',
         required=False,
-        min_length=3)
+        min_length=3,
+        max_length=3)
     expiry_month = forms.ChoiceField(
         label='Month',
         choices=MONTH_CHOICES,
