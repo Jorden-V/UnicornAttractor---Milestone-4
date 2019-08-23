@@ -201,7 +201,7 @@ invalid_cvc: Use a two digit number (e.g., 99).
 
 1. New Heroku Python App created.
 2. Launched Heroku in the C9 environment.
-3. Initiate new Git repository and run git remote add Heroku https://git.heroku.com/recipe-milestone-project.git to allow a push to the Heroku server.
+3. Initiate new Git repository and run git remote add Heroku https://unicornattractor-msp.herokuapp.com/ to allow a push to the Heroku server.
 4. To prevent a "push fail", the requirements.txt was updated using the following command sudo pip3 freeze --local >requirements.txt to keep track of dependancies.
 5. A Procfile was created using the following code: echo web: python run.py > Procfile to inform Heroku which file to run for initiating the app.
 6. To ensure that Web Processes are running the following command line was run in C9: Heroku ps:scale web=1.
