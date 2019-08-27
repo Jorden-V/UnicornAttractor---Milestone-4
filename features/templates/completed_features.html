@@ -1,4 +1,7 @@
 {% extends 'base.html' %} {% block page_title %} Completed Features {% endblock %} {% block content %} {% load bootstrap_tags %}
+
+<!--   Main page image   -->
+
 <div class="parallax-archive">
   <section class="container main-message">
     <div class="jumbotron">
@@ -6,6 +9,8 @@
     </div>
   </section>
 </div>
+
+<!--   Navigation to submit a feature or back to all features  -->
 
 <section class="container">
   <div class="row">
@@ -16,6 +21,8 @@
       <a href="{% url 'view_features' %}"><button type="button" class="btn btn-primary"> Back to Features</button></a>
     </div>
   </div>
+
+  <!--   Bootswatch cards to display features  -->
 
   {% for feature in features %}
   <div class="card mb-3">
@@ -36,6 +43,8 @@
       <a class="btn btn-primary buttons-right" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
     </div>
   </div>
+
+  <!--   Bootstrap modal with upvote information   -->
 
   <div class="modal" id="exampleModal">
     <div class="modal-dialog">
@@ -58,7 +67,10 @@
       </div>
     </div>
   </div>
- {% endfor %}
+  {% endfor %}
+
+
+  <!--   Pagination to display 5 features per page   -->
 
   <div class="pagination">
     <span class="step-links">
@@ -74,7 +86,7 @@
     <a href="?page={{ features.paginator.num_pages }}">last &raquo;</a> {% endif %}
     </span>
   </div>
-  
+
 </section>
 
 <br> {% endblock %}

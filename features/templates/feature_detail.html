@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block page_title %} Feature Detail {% endblock %} {% block content %} {% load bootstrap_tags %}
 
+<!--   Bootswatch panels to display feature detail   -->
+
 <section class="container">
     <div class="card mb-3">
         <h3 class="card-header">{{feature.name}}</h3>
@@ -14,6 +16,8 @@
             <a class="btn btn btn-primary buttons-right" href="{% url 'view_features'%}" role="button">Back</a>
         </div>
     </div>
+
+    <!--   Bootstrap modal with payment info   -->
 
     <div class="modal" id="exampleModal">
         <div class="modal-dialog">
@@ -39,6 +43,8 @@
 
 </section>
 
+<!--   Comment box   -->
+
 <div class="container">
     {% if comments %}
     <div class="row comments">
@@ -54,6 +60,8 @@
         {% endfor %}
     </div>
     {% endif %}
+
+    <!--   Comment submission form   -->
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form | as_bootstrap }} {% if user.is_authenticated %}
