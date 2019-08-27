@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block page_title %} Forum {% endblock %} {% block content %} {% load bootstrap_tags %}
 
+<!--   Main page image   -->
+
 <div class="parallax-forum">
   <section class="container main-message">
     <div class="jumbotron">
@@ -8,12 +10,17 @@
   </section>
 </div>
 
+<!--   Navigation to submit a post   -->
+
 <section class="container">
   <div class="row">
     <div class="profile-submit-buttons">
       <a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"> Submit Post</button></a>
     </div>
   </div>
+
+  <!--   Bootswatch cards to display posts  -->
+
   {% for post in posts %}
   <div class="card mb-3">
     <h3 class="card-header">{{post.name|truncatewords:"5"}}</h3>
@@ -32,6 +39,8 @@
   </div>
   {% endfor %}
 
+<!--   Pagination to display 5 posts per page   -->
+
   <div class="pagination">
     <span class="step-links">
         {% if posts.has_previous %}
@@ -49,6 +58,4 @@
 
 </section>
 
-<br>
-
-{% endblock %}
+<br> {% endblock %}

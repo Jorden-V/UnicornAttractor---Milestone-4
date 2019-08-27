@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block page_title %} Statistics {% endblock %} {% block content %}
 
+<!--   Main page image   -->
+
 <div class="parallax-stats">
     <section class="container main-message">
         <div class="jumbotron">
@@ -10,6 +12,7 @@
 
 <section class="container">
     <div>
+        <!--   Top upvoted bugs and feature bar charts   -->
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h2>Five Most Upvoted Bugs</h2>
@@ -20,6 +23,7 @@
                 {{ feature_bar_chart|safe }}
             </div>
         </div>
+        <!--   Bugs and feature progress pie charts   -->
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h2>Bugs Progress</h2>
