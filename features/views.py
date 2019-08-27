@@ -9,6 +9,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def view_features(request):
+    """View to display all features excluding those with cancelled or done status"""
     features = Feature.objects.all().order_by('-id').exclude(status='Cancelled').exclude(status="Done")
     paginator = Paginator(features, 5)  # Show 5 features per page
 
@@ -23,6 +24,7 @@ def view_features(request):
 
 
 def view_completed_features(request):
+    """View to display completed features"""
     features = Feature.objects.all().order_by('-id').filter(status='Done')
     paginator = Paginator(features, 5)  # Show 5 features per page
 
@@ -73,6 +75,7 @@ def feature_detail(request, pk):
 
 @login_required
 def add_or_edit_feature(request, pk=None):
+    """View to add or edit feature, if you are the feature creator"""
     feature = get_object_or_404(Feature, pk=pk) if pk else None
     if feature is not None:
         author = feature.author
@@ -109,6 +112,7 @@ def add_or_edit_feature(request, pk=None):
 
 @login_required()
 def delete_feature(request, pk):
+    """View to delete feature if user created it"""
     feature = get_object_or_404(Feature, pk=pk)
     author = feature.author
     if author == request.user:

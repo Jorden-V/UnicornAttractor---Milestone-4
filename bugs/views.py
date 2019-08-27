@@ -5,10 +5,10 @@ from .models import Bug, BugComment, BugUpvote
 from .forms import CreateBugForm, BugCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-# Create your views here.
 
 
 def view_bugs(request):
+    """View that displays all bugs excluding cancelled or done status"""
     bugs = Bug.objects.all().order_by('-id').exclude(status='Cancelled').exclude(status="Done")
     paginator = Paginator(bugs, 5)  # Show 5 bugs per page
 
@@ -24,6 +24,7 @@ def view_bugs(request):
 
 
 def view_completed_bugs(request):
+    """View that displays completed bugs"""
     bugs = Bug.objects.all().order_by('-id').filter(status='Done')
 
     paginator = Paginator(bugs, 5)  # Show 5 bugs per page
@@ -97,6 +98,7 @@ def upvote_bug(request, pk):
 
 @login_required
 def add_or_edit_bug(request, pk=None):
+    """View to edit or add a bug. Checks if user editing is the creator"""
     bug = get_object_or_404(Bug, pk=pk) if pk else None
     if bug is not None:
         author = bug.author
@@ -133,6 +135,7 @@ def add_or_edit_bug(request, pk=None):
 
 @login_required
 def delete_bug(request, pk):
+    """View to delete a bug if user created selected bug"""
     bug = get_object_or_404(Bug, pk=pk)
     author = bug.author
     if author == request.user:

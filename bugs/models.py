@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-# Create your models here.
 class Bug(models.Model):
+    """Bug model"""
     name = models.CharField(max_length=75, blank=False)
     desc = models.TextField(max_length=500, blank=False)
     upvotes = models.IntegerField(default=0)
@@ -33,6 +33,7 @@ class Bug(models.Model):
 
 
 class BugComment(models.Model):
+    """Bug comment model"""
     description = models.TextField(max_length=256, blank=False)
     bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
@@ -43,9 +44,7 @@ class BugComment(models.Model):
 
 
 class BugUpvote(models.Model):
-    """
-    Model to upvote a bug
-    """
+    """ Model to upvote a bug """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     bug = models.ForeignKey(Bug, on_delete=models.CASCADE)
 

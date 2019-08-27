@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Contact Page {% endblock %} {% block content %}
 <main class="container">
         <h1>Contact Us</h1>
+        <!--   Contact form   -->
         <form method="POST">
                 {% csrf_token %} {{ contact_form | as_bootstrap }}
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -8,5 +9,4 @@
                 <br>
         </form>
 </main>
-
 {% endblock %}

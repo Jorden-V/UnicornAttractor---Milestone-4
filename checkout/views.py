@@ -8,12 +8,12 @@ from django.utils import timezone
 from features.models import Feature
 import stripe
 
-# Create your views here.
 stripe.api_key = settings.STRIPE_SECRET
 
 
 @login_required()
 def checkout(request):
+    """View to handle customer payment and upvote feature"""
     if request.method == "POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)

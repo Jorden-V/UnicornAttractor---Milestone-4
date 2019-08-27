@@ -7,14 +7,15 @@ from accounts.forms import UserLoginForm, UserRegistrationForm, ContactForm
 from bugs.models import Bug
 from features.models import Feature
 from forum.models import ForumPost
-# Create your views here.
 
 
 def index(request):
+    """View to return index"""
     return render(request, 'index.html')
 
 
 def contact(request):
+    """View handle contact form requests"""
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
@@ -40,6 +41,7 @@ def contact(request):
 
 @login_required
 def logout(request):
+    """View to log user out"""
     auth.logout(request)
     messages.success(request, "You have successfully been logged out!",
                               extra_tags="alert-success")
@@ -47,7 +49,7 @@ def logout(request):
 
 
 def login(request):
-    """Return a login page"""
+    """View to log user in"""
     if request.user.is_authenticated:
         return redirect(reverse('index'))
     if request.method == "POST":
@@ -70,7 +72,7 @@ def login(request):
 
 
 def registration(request):
-    """Render the registration page"""
+    """View to register user"""
     if request.user.is_authenticated:
         return redirect(reverse('index'))
 

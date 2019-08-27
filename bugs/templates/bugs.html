@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Bugs {% endblock %} {% block content %}
 
+<!--   Main page image   -->
+
 <div class="parallax-bugs">
   <section class="container main-message">
     <div class="jumbotron">
@@ -7,6 +9,8 @@
     </div>
   </section>
 </div>
+
+<!--   Navigation to submit a bug or view completed bugs   -->
 
 <section class="container">
   <div class="row">
@@ -18,6 +22,7 @@
     </div>
   </div>
 
+<!--   Bootswatch cards to display bugs  -->
 
   {% for bug in bugs %}
   <div class="card mb-3">
@@ -43,6 +48,8 @@
     </div>
   </div>
   {% endfor %}
+
+<!--   Pagination to display 5 bugs per page   -->
 
   <div class="pagination">
     <span class="step-links">

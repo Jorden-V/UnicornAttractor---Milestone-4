@@ -1,7 +1,6 @@
 from django.test import TestCase
 from .forms import CreateBugForm, BugCommentForm
 
-# Create your tests here.
 
 
 class TestBugForm(TestCase):

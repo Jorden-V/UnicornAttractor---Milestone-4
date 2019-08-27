@@ -4,6 +4,7 @@ from .models import Order
 
 
 class MakePaymentForm(forms.Form):
+    """Form to take users payment information"""
 
     MONTH_CHOICES = [(i, i) for i in range(1, 12)]
     YEAR_CHOICES = [(i, i) for i in range(2019, 2050)]
@@ -30,6 +31,7 @@ class MakePaymentForm(forms.Form):
 
 
 class OrderForm(forms.ModelForm):
+    """Form to take users personal info prior to payment"""
 
     class Meta:
         model = Order

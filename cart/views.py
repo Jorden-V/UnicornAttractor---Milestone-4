@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-# Create your views here.
+
 @login_required()
 def view_cart(request):
     """A View that renders the cart contents page"""
@@ -11,7 +11,7 @@ def view_cart(request):
 
 @login_required()
 def add_to_cart(request, id):
-    """Add a quantity of the specified product to the cart"""
+    """Add a quantity of the specified product to the cart if not already there"""
     quantity = 1
     cart = request.session.get('cart', {})
     if id in cart.keys():
@@ -31,7 +31,7 @@ def add_to_cart(request, id):
 
 @login_required()
 def adjust_cart(request, id):
-    """Adjust the quantity of the specified product to the specifies amount"""
+    """Removes item from cart"""
     cart = request.session.get('cart', {})
     cart.pop(id)
     request.session['cart'] = cart

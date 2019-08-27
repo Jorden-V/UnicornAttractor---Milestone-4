@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_heading %} Profile {% endblock %} {% block content %}
 <section class="container">
+    <!--   Submission buttons   -->
     <div class="row">
         <div class="profile-submit-buttons">
             <a href="{% url 'new_bug' %}"><button type="button" class="btn btn-primary"> Submit Bug</button></a>
@@ -8,6 +9,7 @@
         </div>
     </div>
 
+    <!--   Bootswatch tabs to display bugs, features and forum posts   -->
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#bugs">Bugs ({{ bugs.count }})</a>
@@ -41,16 +43,16 @@
                 </div>
                 <div class="row card-footer text-muted">
                     <div class="col-sm">
-                    <i class="far fa-eye"> {{ bug.views }} </i> {% if user.is_authenticated %}
-                    <a href="{% url 'upvote_bug' bug.id %}"> <i class="fas fa-arrow-up"> {{bug.upvotes}} </i></a> {% csrf_token %}
-                    <a href="{% url 'bug_detail' bug.id %}"><i class="far fa-comment"> ({{ bug.comment_number }}) </i> </a> {% else %}
-                    <i class="fas fa-arrow-up"> {{bug.upvotes}} </i>
-                    <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
+                        <i class="far fa-eye"> {{ bug.views }} </i> {% if user.is_authenticated %}
+                        <a href="{% url 'upvote_bug' bug.id %}"> <i class="fas fa-arrow-up"> {{bug.upvotes}} </i></a> {% csrf_token %}
+                        <a href="{% url 'bug_detail' bug.id %}"><i class="far fa-comment"> ({{ bug.comment_number }}) </i> </a> {% else %}
+                        <i class="fas fa-arrow-up"> {{bug.upvotes}} </i>
+                        <i class="far fa-comment"> ({{ bug.comment_number }}) </i> {% endif %}
                     </div>
                     <div class="col-sm profile-buttons">
-                    <a class="btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
-                    <a class="btn btn btn-primary" href="{% url 'edit_bug' bug.id %}" role="button">Edit</a>
-                    <a class="btn btn btn-danger" href="{% url 'delete_bug' bug.id %}" role="button">Delete</a>
+                        <a class="btn btn-primary" href="{% url 'bug_detail' bug.id %}" role="button">View</a>
+                        <a class="btn btn btn-primary" href="{% url 'edit_bug' bug.id %}" role="button">Edit</a>
+                        <a class="btn btn btn-danger" href="{% url 'delete_bug' bug.id %}" role="button">Delete</a>
                     </div>
                 </div>
             </div>
@@ -81,19 +83,21 @@
                 </div>
                 <div class="row card-footer text-muted">
                     <div class="col-sm">
-                    <i class="far fa-eye"> {{ feature.views }} </i> {% if user.is_authenticated %}
-                    <a href="{% url 'add_to_cart' feature.id %}" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
-                    <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i> </a> {% else %}
-                    <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
-                    <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
+                        <i class="far fa-eye"> {{ feature.views }} </i> {% if user.is_authenticated %}
+                        <a href="{% url 'add_to_cart' feature.id %}" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %}
+                        <a href="{% url 'feature_detail' feature.id %}"><i class="far fa-comment"> ({{ feature.comment_number }}) </i> </a> {% else %}
+                        <i class="fas fa-arrow-up"> {{feature.upvotes}} </i>
+                        <i class="far fa-comment"> ({{ feature.comment_number }}) </i> {% endif %}
                     </div>
                     <div class="col-sm profile-buttons">
-                    <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
-                    <a class="btn btn btn-primary" href="{% url 'edit_feature' feature.id %}" role="button">Edit</a>
-                    <a class="btn btn btn-danger" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
+                        <a class="btn btn-primary" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
+                        <a class="btn btn btn-primary" href="{% url 'edit_feature' feature.id %}" role="button">Edit</a>
+                        <a class="btn btn btn-danger" href="{% url 'delete_feature' feature.id %}" role="button">Delete</a>
                     </div>
                 </div>
             </div>
+
+            <!--   Bootstrap modal   -->
 
             <div class="modal" id="exampleModal">
                 <div class="modal-dialog">
@@ -133,16 +137,16 @@
                 </div>
                 <div class="row card-footer text-muted">
                     <div class="col-sm">
-                    <i class="far fa-eye"> {{ post.views }} </i> {% if user.is_authenticated %}
-                    <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %}
-                    <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i> </a> {% else %}
-                    <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
-                    <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
+                        <i class="far fa-eye"> {{ post.views }} </i> {% if user.is_authenticated %}
+                        <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %}
+                        <a href="{% url 'post_detail' post.id %}"><i class="far fa-comment"> ({{ post.comment_number }}) </i> </a> {% else %}
+                        <i class="fas fa-arrow-up"> {{post.upvotes}} </i>
+                        <i class="far fa-comment"> ({{ post.comment_number }}) </i> {% endif %}
                     </div>
                     <div class="col-sm profile-buttons">
-                    <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
-                    <a class="btn btn btn-primary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
-                    <a class="btn btn btn-danger" href="{% url 'delete_post' post.id %}" role="button">Delete</a>
+                        <a class="btn btn btn-primary" href="{% url 'post_detail' post.id %}" role="button">View</a>
+                        <a class="btn btn btn-primary" href="{% url 'edit_post' post.id %}" role="button">Edit</a>
+                        <a class="btn btn btn-danger" href="{% url 'delete_post' post.id %}" role="button">Delete</a>
                     </div>
                 </div>
             </div>

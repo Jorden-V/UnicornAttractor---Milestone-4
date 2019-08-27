@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-# Create your models here.
 class Feature(models.Model):
+    """Feature model"""
     name = models.CharField(max_length=75, blank=False)
     desc = models.TextField(max_length=500, blank=False)
     upvotes = models.IntegerField(default=0)
@@ -30,6 +30,7 @@ class Feature(models.Model):
 
 
 class FeatureComment(models.Model):
+    """Feature comment model"""
     description = models.TextField(max_length=256, blank=False)
     feature = models.ForeignKey(Feature)
     author = models.ForeignKey(User)

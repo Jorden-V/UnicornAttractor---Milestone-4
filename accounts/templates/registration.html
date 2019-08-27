@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% load bootstrap_tags %} {% block page_title %} Registration Page {% endblock %} {% block content %}
 
 <main class="container input-forms">
+    <!--   Reistration form   -->
     <h1> Register Page</h1>
     <form method="POST">
         {% csrf_token %} {{ registration_form | as_bootstrap }}

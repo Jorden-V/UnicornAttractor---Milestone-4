@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-# Create your models here.
 class ForumPost(models.Model):
+    """Forum post model"""
     name = models.CharField(max_length=75, blank=False)
     desc = models.TextField(max_length=500, blank=False)
     author = models.ForeignKey(User, related_name='posted_by')
@@ -18,6 +18,7 @@ class ForumPost(models.Model):
 
 
 class ForumComment(models.Model):
+    """Forum post comment model"""
     description = models.TextField(max_length=256, blank=False)
     post = models.ForeignKey(ForumPost)
     author = models.ForeignKey(User)

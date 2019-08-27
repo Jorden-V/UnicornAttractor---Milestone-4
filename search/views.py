@@ -5,10 +5,10 @@ from bugs.models import Bug
 from features.models import Feature
 from forum.models import ForumPost
 
-# Create your views here.
 
 
 def do_search(request):
+    """View that returns keyword searchs and renders search html with the results"""
     bugs = Bug.objects.filter(name__icontains=request.GET['q']).exclude(status='Cancelled').exclude(status="Done")
     features = Feature.objects.filter(name__icontains=request.GET['q']).exclude(status='Cancelled').exclude(status="Done")
     posts = ForumPost.objects.filter(name__icontains=request.GET['q'])

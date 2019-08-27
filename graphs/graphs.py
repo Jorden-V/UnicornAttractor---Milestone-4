@@ -3,6 +3,7 @@ from bugs.models import Bug
 from features.models import Feature
 from pygal.style import Style
 
+"""Custom styles for graphs"""
 custom_style = Style(
     background='transparent',
     plot_background='transparent',
@@ -39,7 +40,7 @@ def BugBarChart():
 
 
 def feature_bar_chart():
-    """A bar chart showing the 5 most upvoted bugs in descending order"""
+    """A bar chart showing the 5 most upvoted features in descending order"""
 
     features = Feature.objects.order_by('-upvotes')[:5]
     bar_chart = pygal.Bar(

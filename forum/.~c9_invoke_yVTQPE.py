@@ -80,7 +80,6 @@ def upvote_post(request, pk):
 
 
 def add_or_edit_post(request, pk=None):
-    """View to add or edit a forum post if user created it"""
     post = get_object_or_404(ForumPost, pk=pk) if pk else None
     if post is not None:
         author = post.author
@@ -117,7 +116,6 @@ def add_or_edit_post(request, pk=None):
 
 @login_required()
 def delete_post(request, pk):
-    """View to delete forum post if user created it"""
     post = get_object_or_404(ForumPost, pk=pk)
     author = post.author
     if author == request.user:
