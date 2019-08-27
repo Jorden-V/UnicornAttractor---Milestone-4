@@ -56,7 +56,9 @@
                         <div id="credit-card-errors" style="display:none">
                             <div id="stripe-error-message"></div>
                         </div>
-                        <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment"> {% else %}
+                        <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                        <input class="reset-button" type="button" value="⟲" name="resetForm" id="payment-reset">
+                        {% else %}
                         <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% endif %}
                     </div>
                 </div>

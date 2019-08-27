@@ -252,7 +252,7 @@ footer a:hover {
     margin-left: 1px;
 }
 
-/*------------------------ profile  ----------------------------------*/
+/*------------------------ checkout  ----------------------------------*/
 
 .checkout-button {
     padding-bottom: 20px;
@@ -262,6 +262,15 @@ footer a:hover {
     text-align: center;
     padding-bottom: 10px;
     margin-bottom: 10px;
+}
+
+.reset-button {
+    cursor: pointer;
+    -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    font-size: 27px;
+    vertical-align: middle;
 }
 
 
