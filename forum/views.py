@@ -79,6 +79,7 @@ def upvote_post(request, pk):
     return redirect('view_posts')
 
 
+@login_required()
 def add_or_edit_post(request, pk=None):
     """View to add or edit a forum post if user created it"""
     post = get_object_or_404(ForumPost, pk=pk) if pk else None
