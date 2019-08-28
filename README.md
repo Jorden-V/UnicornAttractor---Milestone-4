@@ -17,40 +17,52 @@ as well as to view statistics on how we handle these requests. On the homepage I
 site for ease of use. Users are able to navigate the site and view the resources without being registered however need to sign up to be able to
 submit any bugs, feature requests or forum posts.
 
-### User stories
+## User stories
 
-- A user notices a bug on the Unicorn Attractor website and wants to submit it to be fixed.
-- A user believes a certain feature would be a good addition to the Unicorn Attractor site and wants to submit that feature request.
-- A user is interested in how many bugs/feature requests are being submitted via our site.
-- A user notices a bug and wants to check if this has already been submitted (via the search function).
-- A has an idea for a feature however wants to check if something the same or similar has already been requested (via the search function).
-- A user wants a general discussion with fellow users therefore visits our forum section.
+1. A user notices a bug on the Unicorn Attractor website and wants to submit it to be fixed.
+2. A user believes a certain feature would be a good addition to the Unicorn Attractor site and wants to submit that feature request.
+3. A user is interested in how many bugs/feature requests are being submitted via our site.
+4. A user notices a bug and wants to check if this has already been submitted (via the search function).
+5. A has an idea for a feature however wants to check if something the same or similar has already been requested (via the search function).
+6. A user wants a general discussion with fellow users therefore visits our forum section.
 
 ## Wireframes
 
 
-1. [Homepage - Desktop wireframe]()
+1. [Homepage - Desktop wireframe](https://ibb.co/wKc62KR)
 
 - Initially on the homepage I planned to display features and bugs however opted to move these to their own page.
 
-2. [Homepage - Mobile wireframe]()
+2. [Homepage - Mobile wireframe](https://ibb.co/vqgcTj5)
 
 - Mobile view is the same as desktop view.
 
-3. [Base template - Desktop & Mobile wireframe(no difference other than Navbar collapsable)]()
+3. [Base template - Desktop & Mobile wireframe(no difference other than Navbar collapsable)](https://ibb.co/qjHMfYD)
 
 - I planned to display a Navbar and Footer in my base.html with the option to view/hide elements depending on if the user was logged in or not.
 - Since then i decided to show all to non registered users but restricted their ability to interact throughout the site.
 
-4. [Bugs, Features and Forum post - Desktop Wireframe]()
+4. [Bugs, Features and Forum post - Desktop Wireframe](https://ibb.co/n1kc2wP)
 
 - This remained similar to my original wireframe with the exception of displaying the items in rows instead of blocks. I also opted to add the image headers on each page.
 
-5. [Bugs, Features and Forum post - Mobile Wireframe]()
+5. [Bugs, Features and Forum post - Mobile Wireframe](https://ibb.co/PMbxhjn)
 
 - Again this remained similar to the original wireframe.
 
-6. [Bugs, Features and Forum post detail - Desktop & Mobile Wireframe]()
+6. [Bugs, Features and Forum post detail - Desktop Wireframe](https://ibb.co/1zZxJQJ)
+
+- No major changes from the original wireframe here.
+
+7. [Bugs, Features and Forum post detail - Mobile Wireframe](https://ibb.co/SfdyScd)
+
+- No major changes from the original wireframe here.
+
+8. [Graphs - Desktop Wireframe](https://ibb.co/sb5xjd2)
+
+- No major changes from the original wireframe here.
+
+9. [Graphs - Mobile Wireframe](https://ibb.co/Csf3117)
 
 - No major changes from the original wireframe here.
 
@@ -92,7 +104,7 @@ submit any bugs, feature requests or forum posts.
 - Users can view all their submitted items here as well as submit new items or edit and delete existing ones.
 
 
-### Features Left to Implement
+## Features Left to Implement
 
 In the future I would like to implement the below features.
 - The ability for users to visit other peoples profiles to see what they have posted, upvoted and commented on.
@@ -211,7 +223,7 @@ invalid_cvc: Use a two digit number (e.g., 99).
 10. App launched successfully.
 11. In addition, you can clone or download the code from this GitHub repository.
 
-## How do hou set this project up as your own django app?
+## How do you set this project up as your own django app?
 
 1. First, create a new project and install all the packages in my requirements.txt file
 2. Create a new django project and superuser.
@@ -220,10 +232,10 @@ invalid_cvc: Use a two digit number (e.g., 99).
 5. Then make sure your settings match mine (changing environment variables to variables relevant to you).
 
 
-### Content
+## Content
 - The images used on the page headers were sourced from (https://www.pexels.com/)
   
-### Acknowledgements
+## Acknowledgements
 
 - I received inspiration for this project from a combination of the mini projects leading up to this.
 - The Slack community have been great on giving me feedback on my project (Shane Muirhead in particular has been very helpful, even to go as far as to setup an email for me on his personal server!).
