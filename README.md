@@ -197,9 +197,9 @@ invalid_cvc: Use a two digit number (e.g., 99).
 3. Mobile Galaxy S5 - 360 X 640, Pixel 2 - 411 x 731, Pixel 2 xl - 411 x 823, iPhone 5 - 320 x 568, iPhone 6,7,8 - 375 x 667, iPhone 6,7,8 Plus - 414 x 736, iPhone x - 375 x 812.
     1. Displays as intended
 
-## Deployment
+## My Deployment
 
-1. New Heroku Python App created.
+1. Create Heroku Python App created.
 2. Launched Heroku in the C9 environment.
 3. Initiate new Git repository and run git remote add Heroku https://unicornattractor-msp.herokuapp.com/ to allow a push to the Heroku server.
 4. To prevent a "push fail", the requirements.txt was updated using the following command sudo pip3 freeze --local >requirements.txt to keep track of dependancies.
@@ -210,6 +210,14 @@ invalid_cvc: Use a two digit number (e.g., 99).
 9. Code added, committed and pushed to both GitHub and Heroku.
 10. App launched successfully.
 11. In addition, you can clone or download the code from this GitHub repository.
+
+## How do hou set this project up as your own django app?
+
+1. First, create a new project and install all the packages in my requirements.txt file
+2. Create a new django project and superuser.
+3. Copy all my apps into your new django project.
+4. In your settings makse sure you have your apps in the installed_apps array
+5. Then make sure your settings match mine (changing environment variables to variables relevant to you).
 
 
 ### Content
