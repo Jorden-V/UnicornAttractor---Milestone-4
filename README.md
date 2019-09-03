@@ -114,58 +114,52 @@ In the future I would like to implement the below features.
 
 ## Technologies Used
 
-- [Bootstrap](https://getbootstrap.com/)
-     - This was used for a basic HTML templates and styling.
-
-- [Python 3](https://www.python.org/download/releases/3.0/)
-    - The back end functionality of the application was written in python.
-
-- [Django](https://docs.djangoproject.com/en/2.2/)
-     - This project uses Django framework to provide a useful and comprehensible toolkit to a  build an effective web application. 
-
-- [Stripe](https://stripe.com/gb)
-     - This project uses Stripe as a payment service for users and to ensure that all security checks are dealt with. 
-
+Languages:
+- [HTML](https://en.wikipedia.org/wiki/HTML)
+- [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-     - JavaScript was used to implement the stripe payment system.
+- [Python 3](https://www.python.org/download/releases/3.0/)
+- [SQL](https://en.wikipedia.org/wiki/SQL)
 
+Framework / Libraries
 - [jQuery](https://jquery.com/)
-     - This was used in conjunction with stripe.
-
+- [Django](https://docs.djangoproject.com/en/2.2/)
 - [Font Awesome](https://fontawesome.com/)
-     - This was used for social icons in the footer.
+- [Stripe](https://stripe.com/gb)
+- [Bootstrap](https://getbootstrap.com/)
 
-- [Pygal](https://fontawesome.com/)
-     - This was used for social icons in the footer.
-
+Tools:
 - [Whitenoise](http://whitenoise.evans.io/en/stable/)
-     - This project uses Whitenoise as a means of storing static files. 
+- [Pygal](http://pygal.org/en/stable/)
+- [Git](https://en.wikipedia.org/wiki/Git)
 
+Databases:
 - [SQLite](https://www.sqlite.org/docs.html)
-     - This project uses SQLite as database to use locally.
-
 - [PostgreSQL](https://www.postgresql.org/docs/)
-     - This project uses PostgreSQL as a database to use globally.
 
-## Testing
 
+## Automated tests
+### Validation services
 - I used [This HTML validator](https://validator.w3.org/) to ensure my code was legal.
 - I used [This CSS validator](https://jigsaw.w3.org/css-validator/) to ensure my CSS was legal.
 - I used [This Python validator](http://pep8online.com/) to ensure my Python was legal.
+    - I also used [autopep](https://pypi.org/project/autopep8/) to format my python code systematically.
+- I used a number of automated tests which can be found in the test.py files in each applications folders.
 
-- I used a number of automated tests in conjunction with coverage and manually tested the areas not covered. Below I have documented the manual tests.
+### Stripe payment testing
+Please use the below information to test payments.
+- Card number - 4242424242424242
+- CVC - 111
+- Expiry date - Any date in the future.
 
-- Stripe payment testing. Please use the below information to test payments.
-1. Card number - 4242424242424242
-2. CVC - 111
-3. Expiry date - Any date in the future.
-
-1. Due to the below statement payments with be successful if a use provides a blank CVC. I have however added validation if a user was to enter an incorrect CVC.
+Due to the below statement payments with be successful if a use provides a blank CVC. I have however added validation if a user was to enter an incorrect CVC.
 By default, passing address or CVC data with the card number causes the address and CVC checks to succeed. If this information isn't specified, the value of the checks is null. Any expiration date in the future is considered valid.
 You can also provide invalid card details to test specific error codes resulting from incorrect information being provided. For example:
 invalid_expiry_month: Use an invalid month (e.g., 13)
 invalid_expiry_year: Use a year in the past (e.g., 1970)
 invalid_cvc: Use a two digit number (e.g., 99).
+
+## Manual tests
 
 - Bugs, Features and Posts applications
 1. If comment form is valid, comment displays in detailed view and also increments comment count by 1 so i am able to display how many comments each item has.
@@ -209,28 +203,93 @@ invalid_cvc: Use a two digit number (e.g., 99).
 3. Mobile Galaxy S5 - 360 X 640, Pixel 2 - 411 x 731, Pixel 2 xl - 411 x 823, iPhone 5 - 320 x 568, iPhone 6,7,8 - 375 x 667, iPhone 6,7,8 Plus - 414 x 736, iPhone x - 375 x 812.
     1. Displays as intended
 
-## My Deployment
+# Deployment
 
-1. Create Heroku Python App created.
-2. Launched Heroku in the C9 environment.
-3. Initiate new Git repository and run git remote add Heroku https://unicornattractor-msp.herokuapp.com/ to allow a push to the Heroku server.
-4. To prevent a "push fail", the requirements.txt was updated using the following command sudo pip3 freeze --local >requirements.txt to keep track of dependancies.
-5. A Procfile was created using the following code: echo web: python run.py > Procfile to inform Heroku which file to run for initiating the app.
-6. To ensure that Web Processes are running the following command line was run in C9: Heroku ps:scale web=1.
-7. Config Vars set as follows: IP=0.0.0.0 and PORT=5000.
-8. Lastly, dynos were restarted in Heroku app.
-9. Code added, committed and pushed to both GitHub and Heroku.
-10. App launched successfully.
-11. In addition, you can clone or download the code from this GitHub repository.
+## How to run this project locally
 
-## How do you set this project up as your own django app?
+To run this project on your own IDE follow the instructions below:
 
-1. First, create a new project and install all the packages in my requirements.txt file
-2. Create a new django project and superuser.
-3. Copy all my apps into your new django project.
-4. In your settings makse sure you have your apps in the installed_apps array
-5. Then make sure your settings match mine (changing environment variables to variables relevant to you).
+Ensure you have the following tools: 
+- An IDE such as [AWS C9](https://aws.amazon.com/cloud9/)
 
+The following **must be installed** on your machine:
+- [PIP](https://pip.pypa.io/en/stable/installing/)
+- [Python 3](https://www.python.org/downloads/)
+- [Git](https://gist.github.com/derhuerst/1b15ff4652a867391f03)
+
+### Instructions
+1. Save a copy of the github repository located at https://github.com/JordenCI/UnicornAttractor---Milestone-4 by clicking the "download zip" button at the top of the page and extracting the zip file to your chosen folder. If you have Git installed on your system, you can clone the repository with the following command.
+```
+git clone https://github.com/JordenCI/UnicornAttractor---Milestone-4
+```
+2. If possible open a terminal session in the unzip folder or cd to the correct location.
+
+3. Install all required modules with the command 
+```
+pip -r requirements.txt.
+```
+4. Attempt to run project where you will get an error message displaying your host name.
+```
+python3 manage.py runserver $IP:$PORT
+```
+5. In your settings.py file add your hostname under 'ALLOWED_HOSTS'.
+
+6. Create a [stripe](https://stripe.com/gb) account and get your API keys.
+
+7. In your local IDE create a file called `env.py`.
+
+8. Inside the env.py file create the below variables.
+    - SECRET_KEY
+    - STRIPE_PUBLISHABLE
+    - STRIPE_SECRET
+    - DEFAULT_FROM_EMAIL
+    - SERVER_EMAIL
+    - EMAIL_HOST
+    - EMAIL_HOST_USER
+    - EMAIL_HOST_PASSWORD
+
+9. You can now re-run the runserver command to view local project.
+```
+python3 manage.py runserver $IP:$PORT
+```
+
+
+## Heroku Deployment
+
+To deploy Family Hub to heroku, take the following steps:
+
+1. Create a `requirements.txt` file using the terminal command `pip freeze > requirements.txt`.
+
+2. Create a `Procfile` with the terminal command `echo web: python app.py > Procfile`.
+
+3. `git add` and `git commit` the new requirements and Procfile and then `git push` the project to GitHub.
+
+3. Create a new app on the [Heroku website](https://dashboard.heroku.com/apps) by clicking the "New" button in your dashboard. Give it a name and set the region to Europe.
+
+4. From the heroku dashboard of your newly created application, click on "Deploy" > "Deployment method" and select GitHub.
+
+5. Confirm the linking of the heroku app to the correct GitHub repository.
+
+6. In the heroku dashboard for the application, click on "Settings" > "Reveal Config Vars".
+
+7. Set the following config vars:
+
+| Key | Value |
+ --- | ---
+SECRET_KEY | `<your_secret_key>`
+STRIPE_PUBLISHABLE | `<your_stripe_publishable>`
+STRIPE_SECRET | `<your_stripe_secret>`
+DEFAULT_FROM_EMAIL | `<your_from_email>`
+SERVER_EMAIL | `<your_server_email>`
+EMAIL_HOST | `<your_email_host>`
+EMAIL_HOST_USER | `<your_host_user>`
+EMAIL_HOST_PASSWORD | `<your_host_password>`
+
+8. In the Heroku dashboard, click "Deploy".
+
+9. In the "Manual Deployment" section of this page, made sure the master branch is selected and then click "Deploy Branch".
+
+10. The site is now successfully deployed.
 
 ## Content
 - The images used on the page headers were sourced from (https://www.pexels.com/)
