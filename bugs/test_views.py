@@ -12,7 +12,7 @@ class TestViews(TestCase):
         self.client.login(username="test", password="testing")
         bug = Bug.objects.create(
             name="test",
-            desc="testing",
+            description="testing",
             author_id=user.id)
 
     def test_get_bugs_page(self):
@@ -29,7 +29,7 @@ class TestViews(TestCase):
         user = User.objects.get(username="test")
         bug = Bug(
             name="Test title",
-            desc="Test description",
+            description="Test description",
             author_id=user.id)
         bug.save()
         response = self.client.get('/view_bugs/{0}/'.format(bug.id))
@@ -42,7 +42,7 @@ class TestViews(TestCase):
 
     def test_get_edit_bug_page(self):
         user = User.objects.get(username="test")
-        bug = Bug(name="Create a Test", desc="description", author_id=user.id)
+        bug = Bug(name="Create a Test", description="description", author_id=user.id)
         bug.save()
 
         page = self.client.get("/view_bugs/{0}/edit/".format(bug.id))

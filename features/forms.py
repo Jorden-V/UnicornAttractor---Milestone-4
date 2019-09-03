@@ -6,11 +6,11 @@ class CreateFeatureForm(forms.ModelForm):
     """Form to create feature requests"""
     class Meta:
         model = Feature
-        fields = ('name', 'desc')
+        fields = ('name', 'description')
 
 
 class FeatureCommentForm(forms.ModelForm):
     """Form to create feature comments"""
     class Meta:
         model = FeatureComment
-        fields = ('description',)
+        fields = ('comment',)

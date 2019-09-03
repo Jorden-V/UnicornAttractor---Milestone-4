@@ -6,11 +6,11 @@ class CreateBugForm(forms.ModelForm):
     """Form to create bugs"""
     class Meta:
         model = Bug
-        fields = ('name', 'desc')
+        fields = ('name', 'description')
 
 
 class BugCommentForm(forms.ModelForm):
     """View to create bug comments"""
     class Meta:
         model = BugComment
-        fields = ('description',)
+        fields = ('comment',)

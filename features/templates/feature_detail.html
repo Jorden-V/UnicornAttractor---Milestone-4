@@ -6,7 +6,7 @@
     <div class="card mb-3">
         <h3 class="card-header">{{feature.name}}</h3>
         <div class="card-body">
-            <p class="card-text">{{feature.desc }}</p>
+            <p class="card-text">{{feature.description }}</p>
             <h6 class="card-subtitle text-muted">Author: {{ feature.author }} </h6>
         </div>
         <div class="card-footer text-muted">
@@ -31,7 +31,7 @@
         <div class="card-body detail-body">
             <h5 class="card-title">User: {{ comment.author }}</h5>
             <div class="dropdown-divider"></div>
-            <p class="card-text"> {{ comment.description }} </p>
+            <p class="card-text"> {{ comment.comment }} </p>
         </div>
         {% endfor %}
     </div>

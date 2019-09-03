@@ -6,11 +6,11 @@ class ForumPostForm(forms.ModelForm):
     """Form ti create forum posts"""
     class Meta:
         model = ForumPost
-        fields = ('name', 'desc')
+        fields = ('name', 'description')
 
 
 class ForumCommentForm(forms.ModelForm):
     """form to create forum post comments"""
     class Meta:
         model = ForumComment
-        fields = ('description',)
+        fields = ('comment',)

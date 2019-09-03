@@ -22,7 +22,7 @@ class TestViews(TestCase):
         user = User.objects.get(username="test")
         post = ForumPost(
             name="Test title",
-            desc="Test description",
+            description="Test description",
             author_id=user.id)
         post.save()
         response = self.client.get('/view_posts/{}'.format(post.id))
@@ -37,7 +37,7 @@ class TestViews(TestCase):
         user = User.objects.get(username="test")
         post = ForumPost(
             name="Create a Test",
-            desc="description",
+            description="description",
             author_id=user.id)
         post.save()
 

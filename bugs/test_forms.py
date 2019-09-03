@@ -21,15 +21,15 @@ class TestBugForm(TestCase):
     def test_correct_message_for_missing_desc(self):
         form = CreateBugForm({'form': ''})
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['desc'], [u'This field is required.'])
+        self.assertEqual(form.errors['description'], [u'This field is required.'])
 
 
 class TestBugCommentForm(TestCase):
 
     def test_can_create_a_comment_with_required_values(self):
-        form = BugCommentForm({'description': "comment"})
+        form = BugCommentForm({'comment': "comment"})
         self.assertTrue(form.is_valid())
 
     def test_cannot_post_blank_comment(self):
-        form = BugCommentForm({'description': ''})
+        form = BugCommentForm({'comment': ''})
         self.assertFalse(form.is_valid())

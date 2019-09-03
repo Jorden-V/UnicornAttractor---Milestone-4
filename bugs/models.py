@@ -6,7 +6,7 @@ from django.utils import timezone
 class Bug(models.Model):
     """Bug model"""
     name = models.CharField(max_length=75, blank=False)
-    desc = models.TextField(max_length=500, blank=False)
+    description = models.TextField(max_length=500, blank=False)
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     author = models.ForeignKey(
@@ -34,13 +34,13 @@ class Bug(models.Model):
 
 class BugComment(models.Model):
     """Bug comment model"""
-    description = models.TextField(max_length=256, blank=False)
+    comment = models.TextField(max_length=256, blank=False)
     bug = models.ForeignKey(Bug)
     author = models.ForeignKey(User)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.description
+        return self.comment
 
 
 class BugUpvote(models.Model):

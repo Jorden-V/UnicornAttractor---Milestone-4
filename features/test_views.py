@@ -27,7 +27,7 @@ class TestViews(TestCase):
         user = User.objects.get(username="test")
         feature = Feature(
             name="Test title",
-            desc="Test description",
+            description="Test description",
             author_id=user.id)
         feature.save()
         response = self.client.get('/features/{}'.format(feature.id))
@@ -42,7 +42,7 @@ class TestViews(TestCase):
         user = User.objects.get(username="test")
         feature = Feature(
             name="Create a Test",
-            desc="description",
+            description="description",
             author_id=user.id)
         feature.save()
 
