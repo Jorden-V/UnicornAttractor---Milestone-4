@@ -253,7 +253,10 @@ python3 manage.py runserver $IP:$PORT
 ```
 python3 manage.py runserver $IP:$PORT
 ```
-
+10. Note - If you are having issues viewing static files you may need to collect static with the below command.
+```
+python3 manage.py collectstatic
+```
 
 ## Heroku Deployment
 
