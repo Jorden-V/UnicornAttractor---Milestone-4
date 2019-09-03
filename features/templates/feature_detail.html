@@ -62,13 +62,15 @@
     {% endif %}
 
     <!--   Comment submission form   -->
-
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %} {{ form | as_bootstrap }} {% if user.is_authenticated %}
-        <button type="submit" class="btn btn btn-secondary">Add comment</button> {% else %}
+    <div class="detail-padding">
+        {% if user.is_authenticated %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} {{ form | as_bootstrap }}
+            <button type="submit" class="btn btn btn-primary">Add comment</button>
+        </form>
+        {% else %}
         <p>Please <a href="{% url 'login' %}">login</a> to comment on features.</p>
-        <button type="button" class="btn btn-primary disabled">Submit</button> {% endif %}
-    </form>
-
+        {% endif %}
+    </div>
 </div>
 <br> {% endblock %}
