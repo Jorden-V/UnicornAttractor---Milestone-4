@@ -11,7 +11,7 @@
         </div>
         <div class="card-footer text-muted">
             <i class="far fa-eye"> {{ feature.views }} </i> {% if user.is_authenticated %}
-            <a href="{% url 'add_to_cart' feature.id %}" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %} {% else %}
+            <a href="{% url 'add_to_cart' feature.id %}" data-toggle="modal" data-target="#exampleModal" aria-label="upvote"> <i class="fas fa-arrow-up"> {{ feature.upvotes }} </i></a> {% csrf_token %} {% else %}
             <i class="fas fa-arrow-up"> {{feature.upvotes}} </i> {% endif %}
             <a class="btn btn btn-primary buttons-right" href="{% url 'view_features'%}" role="button">Back</a>
         </div>
@@ -24,7 +24,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Feature: {{feature.name|truncatewords:"4"}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p>Thank you for chosing to upvote this feature.</p>

@@ -20,7 +20,7 @@
     <!--===== Bootstrap naviagtion bar =====-->
     <div class="flex-shrink-0">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="{% url 'index' %}">Solutions iO</a>
+            <a class="navbar-brand" href="{% url 'index' %}" aria-label="home">Solutions iO</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,7 +54,7 @@
                 <form action="{% url 'search' %}" method="GET" class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'view_cart' %}">
+                            <a class="nav-link" href="{% url 'view_cart' %}" aria-label="cart">
                         <i class="fas fa-shopping-cart"></i> Cart
                             {% if feature_count > 0 %}
                             <label class="badge badge-warning">{{ feature_count }}</label>
@@ -62,7 +62,7 @@
                     </a>
                         </li>
                     </ul>
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q" aria-label="search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {% else %}
@@ -91,7 +91,7 @@
 
                 </ul>
                 <form action="{% url 'search' %}" method="GET" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q" aria-label="search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
                 {% endif %}
@@ -119,10 +119,10 @@
         <div class="row footer-background">
             <div class="col-6">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"> <a target="_blank" href="https://www.youtube.com/"><i class="fab fa-youtube-square hvr-grow" aria-hidden="true"></i></a></li>
-                    <li class="breadcrumb-item"> <a target="_blank" href="https://twitter.com/?lang=en-gb"><i class="fab fa-twitter-square hvr-grow" aria-hidden="true"></i></a></li>
-                    <li class="breadcrumb-item"> <a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-square hvr-grow" aria-hidden="true"></i></a></li>
-                    <li class="breadcrumb-item"> <a target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram hvr-grow" aria-hidden="true"></i></a></li>
+                    <li class="breadcrumb-item"> <a target="_blank" href="https://www.youtube.com/"><i class="fab fa-youtube-square hvr-grow" aria-label="youtube"></i></a></li>
+                    <li class="breadcrumb-item"> <a target="_blank" href="https://twitter.com/?lang=en-gb"><i class="fab fa-twitter-square hvr-grow" aria-label="twitter"></i></a></li>
+                    <li class="breadcrumb-item"> <a target="_blank" href="https://www.facebook.com/"><i class="fab fa-facebook-square hvr-grow" aria-label="facebook"></i></a></li>
+                    <li class="breadcrumb-item"> <a target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram hvr-grow" aria-label="instagram"></i></a></li>
                     <li class="breadcrumb-item"> <a href="{% url 'contact' %}">Contact Us</a></li>
                 </ol>
             </div>

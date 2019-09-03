@@ -4,7 +4,7 @@
     <!--   Login form   -->
     <form method="POST">
         {% csrf_token %} {{ login_form | as_bootstrap }}
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" aria-label="login">Login</button>
     </form>
     <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
     <p>If you do not have an account, you can <a href="{% url 'registration' %}">register</a></p>

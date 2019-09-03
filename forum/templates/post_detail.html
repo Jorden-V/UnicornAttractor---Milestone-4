@@ -11,7 +11,7 @@
         </div>
         <div class="card-footer text-muted">
             <i class="far fa-eye"> {{ post.views }} </i> {% if user.is_authenticated %}
-            <a href="{% url 'upvote_post' post.id %}"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %} {% else %}
+            <a href="{% url 'upvote_post' post.id %}" aria-label="upvotes"> <i class="fas fa-arrow-up"> {{ post.upvotes }} </i></a> {% csrf_token %} {% else %}
             <i class="fas fa-arrow-up"> {{post.upvotes}} </i> {% endif %}
             <a class="btn btn btn-primary buttons-right" href="{% url 'view_posts'%}" role="button">Back</a>
         </div>

@@ -5,7 +5,7 @@
         <div class="jumbotron">
             <h1 class="display-4">Solutions to your <br> software needs</h1>
             {% if user.is_authenticated %} {% else %}
-            <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a> {% endif %}
+            <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button" aria-label="Register">Register</a> {% endif %}
         </div>
     </div>
 </section>
@@ -21,7 +21,7 @@
         <div class="row center">
             <div class="col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <a href="{% url 'view_bugs' %}"> <i class="fas fa-bug"></i></a>
+                    <a href="{% url 'view_bugs' %}" aria-label="bugs"> <i class="fas fa-bug"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Bugs</strong>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <a href="{% url 'view_features' %}"> <i class="fas fa-wrench"></i></a>
+                    <a href="{% url 'view_features' %}" aria-label="features"> <i class="fas fa-wrench"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Features</strong>
@@ -43,7 +43,7 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <a href="{% url 'view_posts' %}"> <i class="fas fa-comments"></i></a>
+                    <a href="{% url 'view_posts' %}" aria-label="forum"> <i class="fas fa-comments"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Community</strong>
@@ -54,7 +54,7 @@
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="home-icon">
-                    <a href="{% url 'graphs' %}"> <i class="far fa-chart-bar"></i></a>
+                    <a href="{% url 'graphs' %}" aria-label="statistics"> <i class="far fa-chart-bar"></i></a>
                 </div>
                 <div class="home-sub-header">
                     <strong>Statistics</strong>
@@ -71,7 +71,7 @@
     <div class="container center">
         <div class="bottom-register">
             {% if user.is_authenticated %} {% else %}
-            <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a> {% endif %}
+            <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button" aria-label="register">Register</a> {% endif %}
         </div>
 
     </div>
@@ -83,14 +83,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Each feature you upvote comes with a £5 charge</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
                     <p> This is our way of ensuring only the most valued feature requests are being upvoted and gives us the ability to work on these new requests.</p>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">Close</button>
                 </div>
             </div>
         </div>
