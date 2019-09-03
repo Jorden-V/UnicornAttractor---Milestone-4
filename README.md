@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4.svg?branch=master)](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4)
-
 # Solutions iO
 
 The purpose of this project was to build a full-stack site based around business logic used to control a centrally-owned dataset.
@@ -139,12 +137,15 @@ Databases:
 
 
 ## Automated tests
+- I used a number of automated tests which can be found in the test.py files in each applications folders.
+- I used [Travis](https://travis-ci.org/) to test my test.py files.
+[![Build Status](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4.svg?branch=master)](https://travis-ci.org/JordenCI/UnicornAttractor---Milestone-4)
+
 ### Validation services
 - I used [This HTML validator](https://validator.w3.org/) to ensure my code was legal.
 - I used [This CSS validator](https://jigsaw.w3.org/css-validator/) to ensure my CSS was legal.
 - I used [This Python validator](http://pep8online.com/) to ensure my Python was legal.
     - I also used [autopep](https://pypi.org/project/autopep8/) to format my python code systematically.
-- I used a number of automated tests which can be found in the test.py files in each applications folders.
 
 ### Stripe payment testing
 Please use the below information to test payments.
