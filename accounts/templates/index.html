@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block page_title %} Unicorn Attractor {% endblock %} {% block content %}
 <!--   head image   -->
-<div class="parallax">
-    <section class="container main-message">
+<section class="parallax">
+    <div class="container main-message">
         <div class="jumbotron">
             <h1 class="display-4">Solutions to your <br> software needs</h1>
             {% if user.is_authenticated %} {% else %}
             <a class="btn btn-primary btn-lg" href="{% url 'registration' %}" role="button">Register</a> {% endif %}
         </div>
-    </section>
-</div>
+    </div>
+</section>
 
 <section class="container">
     <div class="center home-title">

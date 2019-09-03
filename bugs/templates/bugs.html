@@ -2,13 +2,13 @@
 
 <!--   Main page image   -->
 
-<div class="parallax-bugs">
-  <section class="container main-message">
+<section class="parallax-bugs">
+  <div class="container main-message">
     <div class="jumbotron">
       <h1 class="display-4">View, submit and discuss bugs below</h1>
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
 <!--   Navigation to submit a bug or view completed bugs   -->
 
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-<!--   Bootswatch cards to display bugs  -->
+  <!--   Bootswatch cards to display bugs  -->
 
   {% for bug in bugs %}
   <div class="card mb-3">
@@ -49,7 +49,7 @@
   </div>
   {% endfor %}
 
-<!--   Pagination to display 5 bugs per page   -->
+  <!--   Pagination to display 5 bugs per page   -->
 
   <div class="pagination">
     <span class="step-links">
