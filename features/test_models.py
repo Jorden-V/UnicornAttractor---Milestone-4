@@ -34,5 +34,5 @@ class TestFeatureModel(TestCase):
 class TestFeatureCommentModel(TestCase):
 
     def test_comment_str(self):
-        test_description = FeatureComment(comment="A test comment")
+        test_comment = FeatureComment(comment="A test comment")
         self.assertEqual(str(test_comment), "A test comment")

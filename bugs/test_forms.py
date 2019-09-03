@@ -6,7 +6,7 @@ from .forms import CreateBugForm, BugCommentForm
 class TestBugForm(TestCase):
 
     def test_can_create_a_bug_with_name_and_description(self):
-        form = CreateBugForm({'name': 'Tests', 'desc': "create a test"})
+        form = CreateBugForm({'name': 'Tests', 'description': "create a test"})
         self.assertTrue(form.is_valid())
 
     def test_cannot_create_a_bug_without_required_values(self):

@@ -11,7 +11,7 @@ class TestViews(TestCase):
         user = User.objects.create_user(username="test", password="testing")
         self.client.login(username="test", password="testing")
         feature = Feature.objects.create(
-            name="test", desc="testing", author_id=user.id)
+            name="test", description="testing", author_id=user.id)
 
     def test_get_feature_page(self):
         page = self.client.get("/features/")

@@ -19,7 +19,7 @@ class TestBugModel(TestCase):
         bug = Bug(name="Create a Test", author_id=user.id)
         bug.save()
         self.assertEqual(bug.name, "Create a Test")
-        self.assertFalse(bug.descriptio)
+        self.assertFalse(bug.description)
 
     def test_can_create_a_bug_with_a_name_and_desc(self):
         user = User.objects.get(username="test")
