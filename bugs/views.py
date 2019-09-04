@@ -154,3 +154,19 @@ def delete_bug(request, pk):
             extra_tags="alert-danger")
         return redirect(reverse('index'))
     return redirect('profile')
+    
+@login_required
+def delete_bug_comment(request, pk):
+    """View to delete a comment if user created it"""
+    bug = get_object_or_404(Bug, pk=pk)
+    comment = get_object_or_404(BugComment, pk=pk)
+    author = comment.author
+    if author == request.user:
+        comment.delete()
+    else:
+        messages.error(
+            request,
+            "This is not yours to delete!",
+            extra_tags="alert-danger")
+        return redirect(reverse('index'))
+    return redirect('bug_detail', kwargs={'pk': pk})

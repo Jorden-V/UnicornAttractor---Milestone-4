@@ -250,7 +250,6 @@ footer a:hover {
 }
 
 /*------------------------ profile  ----------------------------------*/
-
 .profile-submit-buttons {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -318,11 +317,5 @@ footer a:hover {
 @media (min-width:992px) {
     .navbar {
         max-height: 54.38px;
-    }
-}
-
-@media (max-width:401px) {
-    .display-4 {
-        font-size: 57px;
     }
 }
