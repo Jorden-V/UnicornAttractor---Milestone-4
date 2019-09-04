@@ -2,11 +2,16 @@
 <section class="container detail-padding">
     <!--   Submission buttons   -->
     <div class="row">
-        <div class="profile-submit-buttons">
+        <div class="checkout-button center col-sm-4">
             <a href="{% url 'new_bug' %}"><button type="button" class="btn btn-primary"> Submit Bug</button></a>
+        </div>
+        <div class="checkout-button center col-sm-4">
             <a href="{% url 'new_feature' %}"><button type="button" class="btn btn-primary"> Submit Feature</button></a>
+        </div>
+        <div class="checkout-button center col-sm-4">
             <a href="{% url 'new_post' %}"><button type="button" class="btn btn-primary"> Submit Post</button></a>
         </div>
+
     </div>
 
     <!--   Bootswatch tabs to display bugs, features and forum posts   -->
