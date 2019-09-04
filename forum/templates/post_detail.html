@@ -32,7 +32,7 @@
             <div class="dropdown-divider"></div>
             <p class="card-text"> {{ comment.comment }} </p>
             {% if user == comment.author %}
-            <a class="btn btn btn-danger" href="{% url 'delete_post_comment' comment.id %}" role="button">Delete</a> {% else %} {% endif %}
+            <a class="btn btn btn-danger buttons-right" href="{% url 'delete_post_comment' comment.id %}" role="button">Delete</a> {% else %} {% endif %}
         </div>
         {% endfor %}
     </div>
