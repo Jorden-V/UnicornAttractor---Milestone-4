@@ -51,12 +51,10 @@ footer a:hover {
     margin-bottom: 0px;
 }
 
-.bottom-padding{
-    padding-bottom: 30px;
-}
+.bottom-padding {
 
-.messages {
-    padding-top: 24px;
+    padding-bottom: 54.38px;
+
 }
 
 /*------------------------ Parralax header ----------------------------------*/
@@ -80,7 +78,6 @@ footer a:hover {
 }
 
 .main-message {
-    padding-top: 75px;
     text-align: center;
 }
 
@@ -182,14 +179,14 @@ footer a:hover {
     margin-bottom: 30px;
 }
 
-.feature-info{
+.feature-info {
     text-decoration: none;
 }
 
 /*------------------------ Login/Register ----------------------------------*/
 
 .input-forms {
-    margin-top: 30px;
+    margin-top: 35px;
     margin-bottom: 30px;
 }
 
@@ -304,4 +301,28 @@ footer a:hover {
         margin-top: 18px;
     }
 
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 5rem 2rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .jumbotron {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (min-width:992px) {
+    .navbar {
+        max-height: 54.38px;
+    }
+}
+
+@media (max-width:401px) {
+    .display-4 {
+        font-size: 57px;
+    }
 }

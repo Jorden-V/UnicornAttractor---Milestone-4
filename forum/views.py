@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def view_posts(request):
     """View to display all forum posts"""
-    posts = ForumPost.objects.all()
+    posts = ForumPost.objects.all().order_by('-id')
 
     paginator = Paginator(posts, 5)  # Show 5 posts per page
 
