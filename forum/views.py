@@ -137,3 +137,15 @@ def delete_post(request, pk):
             extra_tags="alert-danger")
         return redirect(reverse('index'))
     return redirect('profile')
+    
+@login_required
+def delete_post_comment(request, pk):
+    comment = get_object_or_404(ForumComment, pk=pk)
+    post = comment.post
+    if request.user == comment.author:
+        comment.delete()
+        messages.success(request, 'This comment has been deleted.')
+    else:
+        messages.info(request,
+                      'You do not have permission to delete this comment.')
+    return redirect('post_detail', pk=post.pk)

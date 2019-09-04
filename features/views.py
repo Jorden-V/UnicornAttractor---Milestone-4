@@ -131,3 +131,15 @@ def delete_feature(request, pk):
             extra_tags="alert-danger")
         return redirect(reverse('index'))
     return redirect('profile')
+
+@login_required
+def delete_feature_comment(request, pk):
+    comment = get_object_or_404(FeatureComment, pk=pk)
+    feature = comment.feature
+    if request.user == comment.author:
+        comment.delete()
+        messages.success(request, 'This comment has been deleted.')
+    else:
+        messages.info(request,
+                      'You do not have permission to delete this comment.')
+    return redirect('feature_detail', pk=feature.pk)

@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from .views import view_features, feature_detail, add_or_edit_feature, delete_feature, view_completed_features
+from .views import view_features, feature_detail, add_or_edit_feature, delete_feature, view_completed_features, delete_feature_comment
 
 urlpatterns = [
     url(r'^$', view_features, name='view_features'),
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/edit/$', add_or_edit_feature, name="edit_feature"),
     url(r'^(?P<pk>\d+)/delete/$', delete_feature, name="delete_feature"),
     url(r'^completed_features$', view_completed_features, name='view_completed_features'),
+    url(r'^(?P<pk>\d+)/delete/comment$', delete_feature_comment, name="delete_feature_comment"),
 ]

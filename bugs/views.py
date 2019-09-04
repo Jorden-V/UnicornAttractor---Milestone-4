@@ -112,7 +112,6 @@ def add_or_edit_bug(request, pk=None):
         if author == request.user:
             if request.method == "POST":
                 form = CreateBugForm(request.POST, instance=bug)
-
                 if form.is_valid():
                     bug = form.save(commit=False)
                     bug.author = request.user
@@ -154,19 +153,15 @@ def delete_bug(request, pk):
             extra_tags="alert-danger")
         return redirect(reverse('index'))
     return redirect('profile')
-    
+
 @login_required
 def delete_bug_comment(request, pk):
-    """View to delete a comment if user created it"""
-    bug = get_object_or_404(Bug, pk=pk)
     comment = get_object_or_404(BugComment, pk=pk)
-    author = comment.author
-    if author == request.user:
+    bug = comment.bug
+    if request.user == comment.author:
         comment.delete()
+        messages.success(request, 'This comment has been deleted.')
     else:
-        messages.error(
-            request,
-            "This is not yours to delete!",
-            extra_tags="alert-danger")
-        return redirect(reverse('index'))
-    return redirect('bug_detail', kwargs={'pk': pk})
+        messages.info(request,
+                      'You do not have permission to delete this comment.')
+    return redirect('bug_detail', pk=bug.pk)
