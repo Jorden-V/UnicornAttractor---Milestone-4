@@ -59,6 +59,13 @@ def bug_detail(request, pk):
             bug.save()
             bugComment.save()
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
+        else:
+            messages.error(
+                    request,
+                    "Looks like your comment is empty!",
+                    extra_tags="alert-danger")
+            form = BugCommentForm(instance=bug)
+            return redirect(reverse('bug_detail', kwargs={'pk': pk}))
 
     else:
         form = BugCommentForm()

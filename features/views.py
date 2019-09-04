@@ -58,6 +58,13 @@ def feature_detail(request, pk):
             feature.save()
             featureComment.save()
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
+        else:
+            messages.error(
+                    request,
+                    "Looks like your comment is empty!",
+                    extra_tags="alert-danger")
+            form = FeatureCommentForm(instance=feature)
+            return redirect(reverse('feature_detail', kwargs={'pk': pk}))
 
     else:
         form = FeatureCommentForm()

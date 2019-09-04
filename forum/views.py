@@ -42,6 +42,13 @@ def post_detail(request, pk):
             post.save()
             postComment.save()
             return redirect(reverse('post_detail', kwargs={'pk': pk}))
+        else:
+            messages.error(
+                    request,
+                    "Looks like your comment is empty!",
+                    extra_tags="alert-danger")
+            form = ForumComment()
+            return redirect(reverse('post_detail', kwargs={'pk': pk}))
 
     else:
         form = ForumCommentForm()
