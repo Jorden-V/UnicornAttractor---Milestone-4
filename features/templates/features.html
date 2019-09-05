@@ -1,4 +1,10 @@
-{% extends 'base.html' %} {% block page_title %} Features {% endblock %} {% block content %} {% load bootstrap_tags %}
+{% extends 'base.html' %} {% block page_title %} Features {% endblock %} {% block onloadmodal %}
+<script type="text/javascript">
+  $(window).on('load', function() {
+    $('#featureGuide').modal('show');
+  });
+</script>
+{% endblock %} {% block content %} {% load bootstrap_tags %}
 
 <!--   Main page image   -->
 
@@ -95,10 +101,4 @@
 
 </section>
 
-<br> {% block onloadmodal %}
-<script type="text/javascript">
-  $(window).on('load', function() {
-    $('#featureGuide').modal('show');
-  });
-</script>
-{% endblock %} {% endblock %}
+<br> {% endblock %}

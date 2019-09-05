@@ -1,4 +1,11 @@
-{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %} {% block head_js %}
+{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %} {% block onloadmodal %}
+<script type="text/javascript">
+    $(window).on('load', function() {
+        $('#paymentGuide').modal('show');
+    });
+</script>
+
+{% endblock %} {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -12,6 +19,29 @@
     <div class="row">
         <div class="profile-submit-buttons">
             <h1>Check Out:</h1>
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="paymentGuide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Test payment info</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please use the below information to test payment</p>
+                    <ol>
+                        <li>Card number: 4242424242424242</li>
+                        <li>CVC number: 111</li>
+                        <li>expiry date: Any date in the future</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Got it!</button>
+                </div>
+            </div>
         </div>
     </div>
 

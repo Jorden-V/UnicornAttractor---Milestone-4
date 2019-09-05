@@ -11,3 +11,7 @@ $('#payment-reset').click(function() {
   $('#form-reset').trigger("reset");
   $('#submit_payment_btn').prop('disabled', false);
 });
+
+$(window).on('load', function() {
+    $('#featureGuide').modal('show');
+  });
