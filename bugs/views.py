@@ -156,11 +156,14 @@ def delete_bug(request, pk):
 
 @login_required
 def delete_bug_comment(request, pk):
+    bugs = get_object_or_404(Bug, pk=pk)
     comment = get_object_or_404(BugComment, pk=pk)
     bug = comment.bug
     if request.user == comment.author:
+        bugs.comment_number -= 1
         comment.delete()
-        messages.success(request, 'This comment has been deleted.')
+        messages.success(request, 'This comment has been deleted.',
+                                    extra_tags="alert-success")
     else:
         messages.info(request,
                       'You do not have permission to delete this comment.')

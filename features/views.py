@@ -138,7 +138,8 @@ def delete_feature_comment(request, pk):
     feature = comment.feature
     if request.user == comment.author:
         comment.delete()
-        messages.success(request, 'This comment has been deleted.')
+        messages.success(request, 'This comment has been deleted.',
+                                    extra_tags="alert-success")
     else:
         messages.info(request,
                       'You do not have permission to delete this comment.')
