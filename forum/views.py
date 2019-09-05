@@ -143,6 +143,8 @@ def delete_post_comment(request, pk):
     comment = get_object_or_404(ForumComment, pk=pk)
     post = comment.post
     if request.user == comment.author:
+        comment.post.comment_number -= 1
+        post.save()
         comment.delete()
         messages.success(request, 'This comment has been deleted.',
                                     extra_tags="alert-success")

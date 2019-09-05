@@ -137,6 +137,8 @@ def delete_feature_comment(request, pk):
     comment = get_object_or_404(FeatureComment, pk=pk)
     feature = comment.feature
     if request.user == comment.author:
+        comment.feature.comment_number -= 1
+        feature.save()
         comment.delete()
         messages.success(request, 'This comment has been deleted.',
                                     extra_tags="alert-success")
