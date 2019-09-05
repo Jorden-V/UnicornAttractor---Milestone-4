@@ -152,3 +152,29 @@ def delete_post_comment(request, pk):
         messages.info(request,
                       'You do not have permission to delete this comment.')
     return redirect('post_detail', pk=post.pk)
+
+@login_required()
+def edit_post_comments(request, pk):
+    """
+    This view allows the author of a comment to
+    edit it. Other users who try to
+    access this function using the url will be
+    redirected to a blank form where they can
+    add a new comment.
+    """
+    comment = get_object_or_404(ForumComment, pk=pk)
+    post = comment.post
+    if request.user == comment.author:
+        if request.method == "POST":
+            form = ForumCommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('post_detail', pk=post.pk)
+        else:
+            form = ForumCommentForm(instance=comment)
+        return render(request, "edit_post_comments.html", {"form": form})
+    else:
+        messages.info(request,
+                      'You do not have permission to edit this comment.')
+        form = ForumCommentForm()
+    return redirect('feature_detail', pk=post.pk)

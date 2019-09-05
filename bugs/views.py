@@ -170,7 +170,7 @@ def delete_bug_comment(request, pk):
     return redirect('bug_detail', pk=bug.pk)
 
 @login_required()
-def edit_bug_comment(request, pk):
+def edit_bug_comments(request, pk):
     """
     This view allows the author of a comment to
     edit it. Other users who try to
@@ -188,9 +188,9 @@ def edit_bug_comment(request, pk):
                 return redirect('bug_detail', pk=bug.pk)
         else:
             form = BugCommentForm(instance=comment)
-        return render(request, "add_bug_comments.html", {"form": form})
+        return render(request, "edit_bug_comments.html", {"form": form})
     else:
         messages.info(request,
                       'You do not have permission to edit this comment.')
-        form = AddBugCommentForm()
+        form = BugCommentForm()
     return redirect('bug_detail', pk=bug.pk)

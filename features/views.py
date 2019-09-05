@@ -41,8 +41,8 @@ def view_completed_features(request):
 def feature_detail(request, pk):
     """
     Create a view that returns a single
-    bug object based on the bug ID (pk) and
-    render it to the bug_detail.html template
+    feature object based on the feature ID (pk) and
+    render it to the feature_detail.html template
     or return 404 error if object is not found
     """
     feature = get_object_or_404(Feature, pk=pk)
@@ -145,4 +145,30 @@ def delete_feature_comment(request, pk):
     else:
         messages.info(request,
                       'You do not have permission to delete this comment.')
+    return redirect('feature_detail', pk=feature.pk)
+    
+@login_required()
+def edit_feature_comments(request, pk):
+    """
+    This view allows the author of a comment to
+    edit it. Other users who try to
+    access this function using the url will be
+    redirected to a blank form where they can
+    add a new comment.
+    """
+    comment = get_object_or_404(FeatureComment, pk=pk)
+    feature = comment.feature
+    if request.user == comment.author:
+        if request.method == "POST":
+            form = FeatureCommentForm(request.POST, instance=comment)
+            if form.is_valid():
+                form.save()
+                return redirect('feature_detail', pk=feature.pk)
+        else:
+            form = FeatureCommentForm(instance=comment)
+        return render(request, "edit_feature_comments.html", {"form": form})
+    else:
+        messages.info(request,
+                      'You do not have permission to edit this comment.')
+        form = FeatureCommentForm()
     return redirect('feature_detail', pk=feature.pk)

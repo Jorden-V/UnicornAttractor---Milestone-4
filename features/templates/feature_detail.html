@@ -33,7 +33,14 @@
             <div class="dropdown-divider"></div>
             <p class="card-text"> {{ comment.comment }} </p>
             {% if user == comment.author %}
-            <a class="btn btn btn-danger buttons-right" href="{% url 'delete_feature_comment' comment.id %}" role="button">Delete</a> {% else %} {% endif %}
+            <div class="btn-group buttons-right">
+                <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Options<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'edit_feature_comments' comment.id %}" role="button">Edit</a></li>
+                    <li><a href="{% url 'delete_feature_comment' comment.id %}" role="button">Delete</a></li>
+                </ul>
+            </div>
+            {% else %} {% endif %}
         </div>
         {% endfor %}
     </div>
