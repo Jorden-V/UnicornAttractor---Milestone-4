@@ -34,10 +34,14 @@ footer a:hover {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    /*padding: 20px 0px 0px 0px;*/
     margin-bottom: 0px;
     list-style: none;
     background-color: #2780E3;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: none;
+    padding-right: 0;
 }
 
 .row {
