@@ -263,10 +263,11 @@ footer a:hover {
 
 .dropdown-menu>li>a:hover {
     background-color: #2780E3;
-    color:white;
+    color: white;
 }
 
 /*------------------------ profile  ----------------------------------*/
+
 .profile-submit-buttons {
     padding-top: 20px;
     padding-bottom: 20px;
