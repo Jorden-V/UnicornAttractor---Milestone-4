@@ -75,7 +75,7 @@
                     <a class="btn btn-primary buttons-right" href="{% url 'feature_detail' feature.id %}" role="button">View</a>
                 </div>
             </div>
-            
+
             {% endfor %}{% for post in posts %}
             <div class="card mb-3">
                 <div class="card-header"><strong>{{post.name|truncatewords:"5"}}</strong><span class="card-link"> {{ post.created_date }} </span></div>
