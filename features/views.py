@@ -10,7 +10,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def view_features(request):
     """View to display all features excluding those with cancelled or done status"""
-    features = Feature.objects.all().order_by('-id').exclude(status='Cancelled').exclude(status="Done")
+    features = Feature.objects.all().order_by(
+        '-id').exclude(status='Cancelled').exclude(status="Done")
     paginator = Paginator(features, 5)  # Show 5 features per page
 
     page = request.GET.get('page')
@@ -60,9 +61,9 @@ def feature_detail(request, pk):
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
         else:
             messages.error(
-                    request,
-                    "Looks like your comment is empty!",
-                    extra_tags="alert-danger")
+                request,
+                "Looks like your comment is empty!",
+                extra_tags="alert-danger")
             form = FeatureCommentForm(instance=feature)
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
 
@@ -132,6 +133,7 @@ def delete_feature(request, pk):
         return redirect(reverse('index'))
     return redirect('profile')
 
+
 @login_required
 def delete_feature_comment(request, pk):
     comment = get_object_or_404(FeatureComment, pk=pk)
@@ -141,12 +143,13 @@ def delete_feature_comment(request, pk):
         feature.save()
         comment.delete()
         messages.success(request, 'This comment has been deleted.',
-                                    extra_tags="alert-success")
+                         extra_tags="alert-success")
     else:
         messages.info(request,
                       'You do not have permission to delete this comment.')
     return redirect('feature_detail', pk=feature.pk)
-    
+
+
 @login_required()
 def edit_feature_comments(request, pk):
     """

@@ -44,9 +44,9 @@ def post_detail(request, pk):
             return redirect(reverse('post_detail', kwargs={'pk': pk}))
         else:
             messages.error(
-                    request,
-                    "Looks like your comment is empty!",
-                    extra_tags="alert-danger")
+                request,
+                "Looks like your comment is empty!",
+                extra_tags="alert-danger")
             form = ForumComment()
             return redirect(reverse('post_detail', kwargs={'pk': pk}))
 
@@ -137,7 +137,8 @@ def delete_post(request, pk):
             extra_tags="alert-danger")
         return redirect(reverse('index'))
     return redirect('profile')
-    
+
+
 @login_required
 def delete_post_comment(request, pk):
     comment = get_object_or_404(ForumComment, pk=pk)
@@ -147,11 +148,12 @@ def delete_post_comment(request, pk):
         post.save()
         comment.delete()
         messages.success(request, 'This comment has been deleted.',
-                                    extra_tags="alert-success")
+                         extra_tags="alert-success")
     else:
         messages.info(request,
                       'You do not have permission to delete this comment.')
     return redirect('post_detail', pk=post.pk)
+
 
 @login_required()
 def edit_post_comments(request, pk):

@@ -90,19 +90,15 @@
     <a href="?page={{ features.paginator.num_pages }}">last &raquo;</a> {% endif %}
     </span>
   </div>
-  
-  
+
+
 
 </section>
 
-<br> 
-
-{% block onloadmodal %}
+<br> {% block onloadmodal %}
 <script type="text/javascript">
-    $(window).on('load',function(){
-        $('#featureGuide').modal('show');
-    });
+  $(window).on('load', function() {
+    $('#featureGuide').modal('show');
+  });
 </script>
-{% endblock %}
-
-{% endblock %}
+{% endblock %} {% endblock %}

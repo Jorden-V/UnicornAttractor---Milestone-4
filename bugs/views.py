@@ -6,10 +6,10 @@ from .forms import CreateBugForm, BugCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-
 def view_bugs(request):
     """View that displays all bugs excluding cancelled or done status"""
-    bugs = Bug.objects.all().order_by('-id').exclude(status='Cancelled').exclude(status="Done")
+    bugs = Bug.objects.all().order_by(
+        '-id').exclude(status='Cancelled').exclude(status="Done")
     paginator = Paginator(bugs, 5)  # Show 5 bugs per page
 
     page = request.GET.get('page')
@@ -61,9 +61,9 @@ def bug_detail(request, pk):
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
         else:
             messages.error(
-                    request,
-                    "Looks like your comment is empty!",
-                    extra_tags="alert-danger")
+                request,
+                "Looks like your comment is empty!",
+                extra_tags="alert-danger")
             form = BugCommentForm(instance=bug)
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
 
@@ -154,6 +154,7 @@ def delete_bug(request, pk):
         return redirect(reverse('index'))
     return redirect('profile')
 
+
 @login_required
 def delete_bug_comment(request, pk):
     comment = get_object_or_404(BugComment, pk=pk)
@@ -163,11 +164,12 @@ def delete_bug_comment(request, pk):
         bug.save()
         comment.delete()
         messages.success(request, 'This comment has been deleted.',
-                                    extra_tags="alert-success")
+                         extra_tags="alert-success")
     else:
         messages.info(request,
                       'You do not have permission to delete this comment.')
     return redirect('bug_detail', pk=bug.pk)
+
 
 @login_required()
 def edit_bug_comments(request, pk):

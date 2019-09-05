@@ -23,11 +23,14 @@ def contact(request):
             subject = request.POST['subject']
             send_mail(
                 subject,
-                "Message from: " + request.POST['email'] + "Message: " + message,
+                "Message from: " +
+                request.POST['email'] +
+                "Message: " +
+                message,
                 'jorden@shanemuirhead.co.uk',
                 ['jordenkv@gmail.com'],
                 fail_silently=False,
-                )
+            )
             messages.success(request, "Your message has been sent!",
                                       extra_tags="alert-success")
             return redirect(reverse('index'))
@@ -90,8 +93,10 @@ def registration(request):
                                           extra_tags="alert-success")
                 return redirect(reverse('index'))
             else:
-                messages.error(request, "Unable to register your account at this time",
-                                        extra_tags="alert-danger")
+                messages.error(
+                    request,
+                    "Unable to register your account at this time",
+                    extra_tags="alert-danger")
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'registration.html', {
