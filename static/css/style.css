@@ -249,6 +249,19 @@ footer a:hover {
     padding-top: 30px;
 }
 
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: #2780E3;
+    color:white;
+}
+
 /*------------------------ profile  ----------------------------------*/
 .profile-submit-buttons {
     padding-top: 20px;
