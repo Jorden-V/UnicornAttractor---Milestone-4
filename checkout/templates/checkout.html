@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %}
-{% block head_js %}
+{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %} {% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -80,7 +79,7 @@
 
     <!--   Payment form   -->
 
-    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}" onsubmit="submit_payment_btn.disabled = true;">
         <legend>Payment Details</legend>
 
         <div class="row">
@@ -96,8 +95,7 @@
                         <div id="credit-card-errors" style="display:none">
                             <div id="stripe-error-message"></div>
                         </div>
-                        <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment" aria-label="Submit">
-                        <input class="reset-button" type="button" value="⟲" name="resetForm" id="payment-reset" aria-label="reset"> {% else %}
+                        <input class=" btn btn-success" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment" aria-label="Submit"> {% else %}
                         <button type="button" class="btn btn-danger disabled">Submit Payment</button> {% endif %}
                     </div>
                 </div>
