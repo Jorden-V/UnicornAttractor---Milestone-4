@@ -158,7 +158,7 @@ Databases:
 ### Stripe payment testing
 Please use the below information to test payments.
 - Card number - 4242424242424242
-- CVC - 111
+- CVC - Any 3 digit number.
 - Expiry date - Any date in the future.
 
 Due to the below statement payments with be successful if a use provides a blank CVC. I have however added validation if a user was to enter an incorrect CVC.

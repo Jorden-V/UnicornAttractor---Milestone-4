@@ -1,8 +1,15 @@
 {% extends 'base.html' %} {% block page_title %} Features {% endblock %} {% block onloadmodal %}
 <script type="text/javascript">
-  $(window).on('load', function() {
-    $('#featureGuide').modal('show');
-  });
+$(function() {
+  if (typeof Storage != "undefined") {
+    if (!sessionStorage.getItem("done")) {
+      setTimeout(function() {
+        $('#featureGuide').modal('show');
+      }, 1400);
+    }
+    sessionStorage.setItem("done", true);
+  }
+});
 </script>
 {% endblock %} {% block content %} {% load bootstrap_tags %}
 
