@@ -282,6 +282,14 @@ footer a:hover {
     margin-left: 1px;
 }
 
+.edit-button{
+    margin-right: 30px;
+}
+
+.delete-button{
+    color: red;
+}
+
 /*------------------------ checkout  ----------------------------------*/
 
 .checkout-button {
