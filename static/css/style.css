@@ -57,7 +57,7 @@ footer a:hover {
 
 .bottom-padding {
 
-    padding-bottom: 54.38px;
+    padding-bottom: 54px;
 
 }
 
@@ -334,6 +334,12 @@ footer a:hover {
 
 @media (min-width:992px) {
     .navbar {
-        max-height: 54.38px;
+        max-height: 54px;
+    }
+}
+
+@media (max-width:364px) {
+    .display-4 {
+        font-size: 59px;
     }
 }
