@@ -2,7 +2,6 @@ from django import forms
 from .models import Order
 
 
-
 class MakePaymentForm(forms.Form):
     """Form to take users payment information"""
 
@@ -13,12 +12,17 @@ class MakePaymentForm(forms.Form):
         label='Credit card number',
         required=False,
         min_length=16,
-        max_length=16)
+        max_length=16,
+        widget=forms.TextInput(attrs={
+            'pattern':
+            '[0-9]{4} *[0-9]{4} *[0-9]{4} *[0-9]{4}',
+            'placeholder':
+            '4242 4242 4242 4242',
+            'required': True}))
     cvv = forms.CharField(
         label='Security code (CVV)',
-        required=False,
-        min_length=3,
-        max_length=3)
+        min_length=3, max_length=3, required=False,
+        widget=forms.TextInput(attrs={'required': 'True'}))
     expiry_month = forms.ChoiceField(
         label='Month',
         choices=MONTH_CHOICES,
