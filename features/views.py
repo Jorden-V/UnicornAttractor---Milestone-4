@@ -5,7 +5,7 @@ from .models import Feature, FeatureComment
 from .forms import CreateFeatureForm, FeatureCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-# Create your views here.
+users = []
 
 
 def view_features(request):
@@ -68,11 +68,16 @@ def feature_detail(request, pk):
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
 
     else:
+        user = request.user
         form = FeatureCommentForm()
         comments = FeatureComment.objects.filter(feature__pk=feature.pk)
         comments_total = len(comments)
-        feature.views += 1
-        feature.save()
+        if user in users:
+            feature.save()
+        else:      
+            feature.views +=1 
+            users.append(user)
+            feature.save()
         return render(request,
                       'feature_detail.html',
                       {'feature': feature,
