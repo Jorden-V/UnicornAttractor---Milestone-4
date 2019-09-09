@@ -1,11 +1,5 @@
-{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %} {% block onloadmodal %}
-<script type="text/javascript">
-    $(window).on('load', function() {
-        $('#paymentGuide').modal('show');
-    });
-</script>
-
-{% endblock %} {% block head_js %}
+{% extends "base.html" %} {% load static from staticfiles %} {% block page_title %} Checkout {% endblock %} {% load bootstrap_tags %}
+{% block head_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -15,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}{% block content %}
 
 <section class="container detail-padding">

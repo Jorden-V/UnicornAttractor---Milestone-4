@@ -5,6 +5,7 @@ from .models import Bug, BugComment, BugUpvote
 from .forms import CreateBugForm, BugCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+users = []
 
 def view_bugs(request):
     """View that displays all bugs excluding cancelled or done status"""
@@ -68,16 +69,21 @@ def bug_detail(request, pk):
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
 
     else:
+        user = request.user
         form = BugCommentForm()
         comments = BugComment.objects.filter(bug__pk=bug.pk)
-        comments_total = len(comments)
-        bug.views += 1
-        bug.save()
+        comments_total = len(comments)  
+        if user in users:
+            bug.save()
+        else:      
+            bug.views +=1 
+            users.append(user)
+            bug.save()
         return render(request,
                       'bug_detail.html',
                       {'bug': bug,
-                       'comments': comments,
-                       'comments_total': comments_total,
+                          'comments': comments,
+                          'comments_total': comments_total,
                        'form': form})
 
 

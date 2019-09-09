@@ -1,9 +1,9 @@
 /* ---------- Disables payment button once clicked and submits form ---------*/
 $(function() {
-  $('#submit_payment_btn').on('click', function() {
-    $(this).prop('disabled', true);
-    $("#payment-form").submit();
-  });
+    $('#submit_payment_btn').on('click', function() {
+         $("#submit_payment_btn").attr("disabled", true);
+         $("#payment-form").submit();
+    });
 });
 
 /* ---------- Resets payment form and re-enables payment button ---------*/
@@ -12,6 +12,7 @@ $('#payment-reset').click(function() {
   $('#submit_payment_btn').prop('disabled', false);
 });
 
+/* ---------- Loads modal to display information on payment ---------*/
 $(window).on('load', function() {
-    $('#featureGuide').modal('show');
+    $('#paymentGuide').modal('show');
   });

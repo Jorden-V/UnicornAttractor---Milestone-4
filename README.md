@@ -161,13 +161,6 @@ Please use the below information to test payments.
 - CVC - Any 3 digit number.
 - Expiry date - Any date in the future.
 
-Due to the below statement payments with be successful if a use provides a blank CVC. I have however added validation if a user was to enter an incorrect CVC.
-By default, passing address or CVC data with the card number causes the address and CVC checks to succeed. If this information isn't specified, the value of the checks is null. Any expiration date in the future is considered valid.
-You can also provide invalid card details to test specific error codes resulting from incorrect information being provided. For example:
-invalid_expiry_month: Use an invalid month (e.g., 13)
-invalid_expiry_year: Use a year in the past (e.g., 1970)
-invalid_cvc: Use a two digit number (e.g., 99).
-
 ## Manual tests
 
 - Bugs, Features and Posts applications
