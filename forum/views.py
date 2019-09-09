@@ -5,6 +5,8 @@ from .models import ForumPost, ForumComment, ForumPostUpvote
 from .forms import ForumPostForm, ForumCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+users = []
+
 
 def view_posts(request):
     """View to display all forum posts"""
@@ -51,11 +53,16 @@ def post_detail(request, pk):
             return redirect(reverse('post_detail', kwargs={'pk': pk}))
 
     else:
+        user = request.user
         form = ForumCommentForm()
         comments = ForumComment.objects.filter(post__pk=post.pk)
         comments_total = len(comments)
-        post.views += 1
-        post.save()
+        if user in users:
+            post.save()
+        else:      
+            post.views +=1 
+            users.append(user)
+            post.save()
         return render(request,
                       'post_detail.html',
                       {'post': post,
