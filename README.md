@@ -143,7 +143,15 @@ Databases:
 
 ### Validation services
 - I used [This HTML validator](https://validator.w3.org/) to ensure my code was legal.
+    - The only warnings were when the validator failed to recognise the Django template tags.
 - I used [This CSS validator](https://jigsaw.w3.org/css-validator/) to ensure my CSS was legal.
+            <p>
+                <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                    <img style="border:0;width:88px;height:31px"
+                        src="http://jigsaw.w3.org/css-validator/images/vcss"
+                        alt="Valid CSS!" />
+                </a>
+            </p>
 - I used [This Python validator](http://pep8online.com/) to ensure my Python was legal.
     - I also used [autopep](https://pypi.org/project/autopep8/) to format my python code systematically.
 
