@@ -64,7 +64,7 @@ def post_detail(request, pk):
                            'form': form})
         if request.session.get('post'):
             postId = request.session.get('post')
-            
+
             if postId != post.pk:
                 request.session['post'] = post.pk
                 post.views += 1
