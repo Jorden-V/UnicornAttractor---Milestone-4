@@ -6,7 +6,7 @@ $(window).on('load', function() {
 /* ---------- Resets payment form and re-enables payment button ---------*/
 $('#payment-reset').click(function() {
   $('#form-reset').trigger("reset");
-  $('#submit_payment_btn').prop('disabled', false);
+  $('#submit_payment_btn').prop('disabled', false).val("Submit Payment");
 });
 
 /* ---------- changes text when payment form is submitted ---------*/
