@@ -70,30 +70,32 @@ def bug_detail(request, pk):
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
 
     else:
-        response = render(request, pk)
         form = BugCommentForm()
         comments = BugComment.objects.filter(bug__pk=bug.pk)
         comments_total = len(comments)
-        if request.COOKIES.has_key('last_visit' ):
-                last_visit = request.COOKIES['last_visit']
-                # the cookie is a string - convert back to a datetime type
-                last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
-                curr_time = datetime.now()
-                if (curr_time-last_visit_time).days > 0:
-                        # if at least one day has gone by then inc the views count.
-                        response.set_cookie('last_visit', datetime.now())
-                        bug.views +=1
-                        bug.save()
-        else:
+        response = render(request,
+                          'bug_detail.html',
+                          {'bug': bug,
+                           'comments': comments,
+                           'comments_total': comments_total,
+                           'form': form})
+        if 'last_visit' in request.COOKIES:
+            last_visit = request.COOKIES['last_visit']
+            # the cookie is a string - convert back to a datetime type
+            last_visit_time = datetime.strptime(
+                last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+            curr_time = datetime.now()
+            if (curr_time - last_visit_time).days > 0:
+                # if at least one day has gone by then inc the views count.
                 response.set_cookie('last_visit', datetime.now())
-                bug.views +=1
+                bug.views += 1
                 bug.save()
-        return render(request,
-                      'bug_detail.html',
-                      {'bug': bug,
-                          'comments': comments,
-                          'comments_total': comments_total,
-                       'form': form})
+            else:
+                response.set_cookie('last_visit', datetime.now())
+                bug.views += 1
+                bug.save()
+        return response
+
 
 
 @login_required()
@@ -211,9 +213,8 @@ def edit_bug_comments(request, pk):
                       'You do not have permission to edit this comment.')
         form = BugCommentForm()
     return redirect('bug_detail', pk=bug.pk)
-    
-    
-    
+
+
 # def bug_detail(request, pk):
 #     """
 #     Create a view that returns a single
@@ -246,11 +247,11 @@ def edit_bug_comments(request, pk):
 #         user = request.user
 #         form = BugCommentForm()
 #         comments = BugComment.objects.filter(bug__pk=bug.pk)
-#         comments_total = len(comments)  
+#         comments_total = len(comments)
 #         if user in users:
 #             bug.save()
-#         else:      
-#             bug.views +=1 
+#         else:
+#             bug.views +=1
 #             users.append(user)
 #             bug.save()
 #         return render(request,
