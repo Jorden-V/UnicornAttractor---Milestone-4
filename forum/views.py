@@ -53,22 +53,27 @@ def post_detail(request, pk):
             return redirect(reverse('post_detail', kwargs={'pk': pk}))
 
     else:
-        user = request.user
         form = ForumCommentForm()
         comments = ForumComment.objects.filter(post__pk=post.pk)
         comments_total = len(comments)
-        if user in users:
+        response = render(request,
+                          'post_detail.html',
+                          {'post': post,
+                           'comments': comments,
+                           'comments_total': comments_total,
+                           'form': form})
+        if request.session.get('post'):
+            postId = request.session.get('post')
+            
+            if postId != post.pk:
+                request.session['post'] = post.pk
+                post.views += 1
+                post.save()
+        else:
+            request.session['post'] = post.pk
+            post.views += 1
             post.save()
-        else:      
-            post.views +=1 
-            users.append(user)
-            post.save()
-        return render(request,
-                      'post_detail.html',
-                      {'post': post,
-                       'comments': comments,
-                       'comments_total': comments_total,
-                       'form': form})
+        return response
 
 
 @login_required()
