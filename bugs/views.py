@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 from django.contrib import messages
 from .models import Bug, BugComment, BugUpvote
 from .forms import CreateBugForm, BugCommentForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-users = []
 
 def view_bugs(request):
     """View that displays all bugs excluding cancelled or done status"""
@@ -69,16 +70,24 @@ def bug_detail(request, pk):
             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
 
     else:
-        user = request.user
+        response = render(request, pk)
         form = BugCommentForm()
         comments = BugComment.objects.filter(bug__pk=bug.pk)
-        comments_total = len(comments)  
-        if user in users:
-            bug.save()
-        else:      
-            bug.views +=1 
-            users.append(user)
-            bug.save()
+        comments_total = len(comments)
+        if request.COOKIES.has_key('last_visit' ):
+                last_visit = request.COOKIES['last_visit']
+                # the cookie is a string - convert back to a datetime type
+                last_visit_time = datetime.strptime(last_visit[:-7], "%Y-%m-%d %H:%M:%S")
+                curr_time = datetime.now()
+                if (curr_time-last_visit_time).days > 0:
+                        # if at least one day has gone by then inc the views count.
+                        response.set_cookie('last_visit', datetime.now())
+                        bug.views +=1
+                        bug.save()
+        else:
+                response.set_cookie('last_visit', datetime.now())
+                bug.views +=1
+                bug.save()
         return render(request,
                       'bug_detail.html',
                       {'bug': bug,
@@ -202,3 +211,51 @@ def edit_bug_comments(request, pk):
                       'You do not have permission to edit this comment.')
         form = BugCommentForm()
     return redirect('bug_detail', pk=bug.pk)
+    
+    
+    
+# def bug_detail(request, pk):
+#     """
+#     Create a view that returns a single
+#     bug object based on the bug ID (pk) and
+#     render it to the bug_detail.html template
+#     or return 404 error if object is not found
+#     """
+#     bug = get_object_or_404(Bug, pk=pk)
+#     if request.method == "POST":
+
+#         form = BugCommentForm(request.POST)
+
+#         if form.is_valid():
+#             bugComment = form.save(commit=False)
+#             bugComment.bug = bug
+#             bugComment.author = request.user
+#             bug.comment_number += 1
+#             bug.save()
+#             bugComment.save()
+#             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
+#         else:
+#             messages.error(
+#                 request,
+#                 "Looks like your comment is empty!",
+#                 extra_tags="alert-danger")
+#             form = BugCommentForm(instance=bug)
+#             return redirect(reverse('bug_detail', kwargs={'pk': pk}))
+
+#     else:
+#         user = request.user
+#         form = BugCommentForm()
+#         comments = BugComment.objects.filter(bug__pk=bug.pk)
+#         comments_total = len(comments)  
+#         if user in users:
+#             bug.save()
+#         else:      
+#             bug.views +=1 
+#             users.append(user)
+#             bug.save()
+#         return render(request,
+#                       'bug_detail.html',
+#                       {'bug': bug,
+#                           'comments': comments,
+#                           'comments_total': comments_total,
+#                       'form': form})
