@@ -82,15 +82,15 @@ def bug_detail(request, pk):
                            'comments': comments,
                            'comments_total': comments_total,
                            'form': form})
-        if request.session.get('bugg'):
-            buggId = request.session.get('bugg')
+        if request.session.get('bug'):
+            bugId = request.session.get('bug')
 
-            if buggId != bug.pk:
-                request.session['bugg'] = bug.pk
+            if bugId != bug.pk:
+                request.session['bug'] = bug.pk
                 bug.views += 1
                 bug.save()
         else:
-            request.session['bugg'] = bug.pk
+            request.session['bug'] = bug.pk
             bug.views += 1
             bug.save()
         return response

@@ -45,6 +45,9 @@ def feature_detail(request, pk):
     feature object based on the feature ID (pk) and
     render it to the feature_detail.html template
     or return 404 error if object is not found
+    Also handles commenting on the feature as well
+    as regulating the amount of views attributed
+    to the feature.
     """
     feature = get_object_or_404(Feature, pk=pk)
     if request.method == "POST":
@@ -68,22 +71,27 @@ def feature_detail(request, pk):
             return redirect(reverse('feature_detail', kwargs={'pk': pk}))
 
     else:
-        user = request.user
         form = FeatureCommentForm()
         comments = FeatureComment.objects.filter(feature__pk=feature.pk)
         comments_total = len(comments)
-        if user in users:
+        response = render(request,
+                          'feature_detail.html',
+                          {'feature': feature,
+                           'comments': comments,
+                           'comments_total': comments_total,
+                           'form': form})
+        if request.session.get('feature'):
+            featureId = request.session.get('feature')
+
+            if featureId != feature.pk:
+                request.session['feature'] = feature.pk
+                feature.views += 1
+                feature.save()
+        else:
+            request.session['feature'] = feature.pk
+            feature.views += 1
             feature.save()
-        else:      
-            feature.views +=1 
-            users.append(user)
-            feature.save()
-        return render(request,
-                      'feature_detail.html',
-                      {'feature': feature,
-                       'comments': comments,
-                       'comments_total': comments_total,
-                       'form': form})
+        return response
 
 
 @login_required
